@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BONO 4 — Plan de Activación en 72 Horas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .page { max-width: 780px; margin: 0 auto; }
+
+  /* HEADER */
+  .header { text-align: center; margin-bottom: 40px; }
+
+  .bono-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .main-title {
+    font-size: clamp(26px, 5vw, 44px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .main-title span {
+    background: linear-gradient(135deg, #f97316, #fb923c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle { font-size: 14px; color: #888; max-width: 520px; margin: 0 auto 8px; line-height: 1.7; }
+  .tag-line { font-size: 13px; color: #f97316; font-weight: 600; letter-spacing: 1px; }
+
+  .valor-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1a0d00;
+    border: 1px solid #7c3412;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: #fb923c;
+    font-weight: 700;
+    margin-bottom: 36px;
+  }
+
+  /* COPY */
+  .copy-box {
+    background: #111;
+    border: 1px solid #222;
+    border-left: 4px solid #f97316;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 28px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #ccc;
+  }
+  .copy-box strong { color: #fff; }
+
+  /* CONTADOR */
+  .contador-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .contador-item {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
+  }
+
+  .contador-num {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .c1 .contador-num { color: #3b82f6; }
+  .c2 .contador-num { color: #a855f7; }
+  .c3 .contador-num { color: #f97316; }
+
+  .contador-label { font-size: 11px; color: #555; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* PROGRESO GLOBAL */
+  .progreso-global {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+  }
+
+  .pg-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .pg-label { font-size: 13px; font-weight: 700; color: #ddd; }
+  .pg-pct { font-size: 13px; font-weight: 700; color: #f97316; }
+
+  .pg-bar {
+    height: 8px;
+    background: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .pg-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f97316, #fb923c);
+    border-radius: 8px;
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  .pg-sub { font-size: 12px; color: #555; margin-top: 8px; }
+
+  /* DÍA CARD */
+  .dia-card {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .dia-header {
+    padding: 22px 26px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .dia-header:hover { background: rgba(255,255,255,0.02); }
+
+  .dia-num {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .d1 .dia-num { background: linear-gradient(135deg, #1e3a5f, #1d4ed8); }
+  .d2 .dia-num { background: linear-gradient(135deg, #3b1f6e, #7c3aed); }
+  .d3 .dia-num { background: linear-gradient(135deg, #7c2d12, #ea580c); }
+
+  .dia-num-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: rgba(255,255,255,0.6); text-transform: uppercase; }
+  .dia-num-val { font-size: 22px; font-weight: 900; line-height: 1; }
+
+  .dia-meta { flex: 1; }
+  .dia-titulo { font-size: 19px; font-weight: 900; }
+  .d1 .dia-titulo { color: #60a5fa; }
+  .d2 .dia-titulo { color: #c084fc; }
+  .d3 .dia-titulo { color: #fb923c; }
+
+  .dia-desc { font-size: 13px; color: #666; margin-top: 3px; }
+
+  .dia-estado {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #555;
+    font-weight: 600;
+  }
+
+  .dia-check-count {
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: #555;
+    font-weight: 700;
+  }
+
+  .dia-check-count.parcial { background: #1a1a0a; color: #f5c518; }
+  .dia-check-count.completo { background: #0a1f0a; color: #22c55e; }
+
+  .chevron {
+    width: 20px; height: 20px;
+    color: #444;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .chevron.open { transform: rotate(180deg); }
+
+  /* DÍA BODY */
+  .dia-body {
+    display: none;
+    padding: 0 26px 26px;
+  }
+
+  .dia-body.open { display: block; }
+
+  .metrica-box {
+    background: #0d0d0d;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .metrica-icon { font-size: 22px; flex-shrink: 0; }
+  .metrica-content {}
+  .metrica-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #555; text-transform: uppercase; margin-bottom: 4px; }
+  .metrica-text { font-size: 13px; color: #ddd; line-height: 1.5; }
+
+  /* TAREA */
+  .tarea-block {
+    background: #0d0d0d;
+    border: 1px solid #1a1a1a;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    transition: border-color 0.15s;
+  }
+
+  .tarea-block.completada {
+    border-color: #166534;
+    background: #050f05;
+  }
+
+  .tarea-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .check-btn {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid #333;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: transparent;
+  }
+
+  .check-btn:hover { border-color: #555; }
+  .check-btn.done { background: #22c55e; border-color: #22c55e; }
+
+  .check-icon { display: none; color: #fff; font-size: 13px; font-weight: 900; }
+  .check-btn.done .check-icon { display: block; }
+
+  .tarea-nombre {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ddd;
+    flex: 1;
+    line-height: 1.4;
+    transition: color 0.15s;
+  }
+
+  .tarea-block.completada .tarea-nombre { color: #555; text-decoration: line-through; }
+
+  .tarea-tiempo {
+    font-size: 11px;
+    color: #555;
+    background: #111;
+    border: 1px solid #222;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .tarea-body { padding-left: 34px; }
+
+  .tarea-desc { font-size: 13px; color: #888; line-height: 1.6; margin-bottom: 10px; }
+
+  .tarea-pasos { list-style: none; }
+  .tarea-pasos li {
+    font-size: 12px;
+    color: #777;
+    padding: 3px 0 3px 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .tarea-pasos li::before { content: '→'; position: absolute; left: 0; color: #444; }
+
+  .tarea-tip {
+    background: #111;
+    border-left: 3px solid #f97316;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 12px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #bbb;
+    line-height: 1.5;
+  }
+
+  .tarea-tip strong { color: #f97316; }
+
+  /* CONTROL */
+  .control-box {
+    background: #0d0d0d;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-top: 16px;
+  }
+
+  .control-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #555; text-transform: uppercase; margin-bottom: 10px; }
+
+  .control-preguntas { list-style: none; }
+  .control-preguntas li {
+    font-size: 13px;
+    color: #999;
+    padding: 5px 0 5px 18px;
+    position: relative;
+    line-height: 1.5;
+    border-bottom: 1px solid #151515;
+  }
+  .control-preguntas li:last-child { border-bottom: none; }
+  .control-preguntas li::before { content: '?'; position: absolute; left: 0; color: #f97316; font-weight: 900; font-size: 12px; }
+
+  /* ANOTA */
+  .anota {
+    background: #0d0d0d;
+    border: 1px solid #1a1a1a;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 10px;
+  }
+
+  .anota-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #444; text-transform: uppercase; margin-bottom: 8px; }
+
+  .anota textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #bbb;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    resize: none;
+    min-height: 60px;
+  }
+
+  .anota textarea::placeholder { color: #333; }
+
+  /* CIERRE */
+  .cierre {
+    background: #111;
+    border: 1px solid #2a1f0a;
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    margin-top: 36px;
+  }
+
+  .cierre h3 { font-size: 20px; font-weight: 900; margin-bottom: 10px; }
+  .cierre p { font-size: 14px; color: #999; line-height: 1.7; max-width: 500px; margin: 0 auto 20px; }
+
+  .cierre-regla {
+    background: #0d0d0d;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: inline-block;
+    max-width: 480px;
+  }
+
+  .cierre-regla-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #f97316; text-transform: uppercase; margin-bottom: 8px; }
+  .cierre-regla-text { font-size: 14px; color: #ddd; line-height: 1.6; font-style: italic; }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 32px 0 8px; border-top: 1px solid #1a1a1a; margin-top: 40px; }
+  .footer-brand {
+    font-size: 20px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #f97316, #fb923c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .footer-sub { font-size: 12px; color: #444; }
+
+  @media (max-width: 480px) {
+    .contador-wrap { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .contador-num { font-size: 28px; }
+    .dia-estado { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="bono-badge">⚙️ BONO 4</div>
+    <h1 class="main-title">Plan de Activación<br><span>en 72 Horas</span></h1>
+    <p class="subtitle">No con motivación, sino con estructura. Un plan tan concreto que seguirlo sea más fácil que ignorarlo.</p>
+    <p class="tag-line">3 días · 9 acciones · 1 monetización activada</p>
+  </div>
+
+  <div style="text-align:center">
+    <div class="valor-pill">🔥 Valor individual: USD 37</div>
+  </div>
+
+  <!-- COPY -->
+  <div class="copy-box">
+    Transforma la claridad en movimiento real con un plan diseñado para que avances <strong>incluso si tu tiempo es limitado.</strong> En lugar de quedarte en la planificación eterna, tendrás un camino concreto para poner tu monetización en marcha en las primeras <strong>72 horas.</strong>
+  </div>
+
+  <!-- CONTADOR -->
+  <div class="contador-wrap">
+    <div class="contador-item c1"><div class="contador-num">3</div><div class="contador-label">Días</div></div>
+    <div class="contador-item c2"><div class="contador-num">9</div><div class="contador-label">Acciones</div></div>
+    <div class="contador-item c3"><div class="contador-num" id="minTotales">~4h</div><div class="contador-label">Tiempo total</div></div>
+  </div>
+
+  <!-- PROGRESO GLOBAL -->
+  <div class="progreso-global">
+    <div class="pg-top">
+      <div class="pg-label">Tu progreso de activación</div>
+      <div class="pg-pct" id="pctLabel">0%</div>
+    </div>
+    <div class="pg-bar"><div class="pg-fill" id="pgFill"></div></div>
+    <div class="pg-sub" id="pgSub">0 de 9 acciones completadas · Haz clic en una tarea para empezar</div>
+  </div>
+
+  <!-- ======= DÍA 1 ======= -->
+  <div class="dia-card d1">
+    <div class="dia-header" onclick="toggleDia('d1', this)">
+      <div class="dia-num"><div class="dia-num-label">DÍA</div><div class="dia-num-val">1</div></div>
+      <div class="dia-meta">
+        <div class="dia-titulo">Claridad</div>
+        <div class="dia-desc">Sabes exactamente qué tienes y por dónde empezar</div>
+      </div>
+      <div class="dia-estado">
+        <div class="dia-check-count" id="cnt-d1">0/3</div>
+        <svg class="chevron open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+    <div class="dia-body open" id="body-d1">
+
+      <div class="metrica-box">
+        <div class="metrica-icon">📊</div>
+        <div class="metrica-content">
+          <div class="metrica-label">Métrica de movimiento</div>
+          <div class="metrica-text">Al terminar el día 1 debes poder completar esta frase en menos de 30 segundos: <strong>"Ayudo a [QUIÉN] a [RESULTADO] a través de [CÓMO]."</strong> Si puedes decirlo sin dudar, el día fue exitoso.</div>
+        </div>
+      </div>
+
+      <!-- TAREA 1.1 -->
+      <div class="tarea-block" id="t1">
+        <div class="tarea-top">
+          <button class="check-btn" onclick="marcar('t1', 'd1')"><span class="check-icon">✓</span></button>
+          <div class="tarea-nombre">Definir tu habilidad monetizable</div>
+          <div class="tarea-tiempo">⏱ 45 min</div>
+        </div>
+        <div class="tarea-body">
+          <div class="tarea-desc">No es una habilidad en abstracto. Es una habilidad aplicada a un problema concreto de una persona concreta. Esta tarea convierte tu inventario del toolkit en una habilidad con potencial de venta.</div>
+          <ul class="tarea-pasos">
+            <li>Abre el Módulo 1 del toolkit y revisa tus activos identificados</li>
+            <li>Elige el activo que obtuvo mayor puntaje en el Módulo 2</li>
+            <li>Escribe: "Soy buena/o haciendo [X] y puedo ayudar a [Y] a lograr [Z]"</li>
+            <li>Valida que "Z" sea un resultado concreto, no una promesa vaga</li>
+            <li>Si tienes más de una opción, elige la que puedas entregar más rápido</li>
+          </ul>
+          <div class="tarea-tip"><strong>Punto de control:</strong> Si no puedes escribir la frase en menos de 5 minutos, el activo no está suficientemente definido. Vuélvelo más específico: no "marketing", sino "diseño de carruseles de Instagram para coaches".</div>
+          <div class="anota">
+            <div class="anota-label">✏️ Anota tu respuesta aquí</div>
+            <textarea placeholder="Soy buena/o haciendo ________ y puedo ayudar a ________ a lograr ________."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAREA 1.2 -->
+      <div class="tarea-block" id="t2">
+        <div class="tarea-top">
+          <button class="check-btn" onclick="marcar('t2', 'd1')"><span class="check-icon">✓</span></button>
+          <div class="tarea-nombre">Elegir tu ruta de ingreso principal</div>
+          <div class="tarea-tiempo">⏱ 30 min</div>
+        </div>
+        <div class="tarea-body">
+          <div class="tarea-desc">Con base en el Bono 1 y tu habilidad definida, elige UNA ruta de monetización. No la más compleja ni la más escalable: la más rápida para tu situación actual.</div>
+          <ul class="tarea-pasos">
+            <li>Revisa la tabla comparativa del Bono 1</li>
+            <li>Considera: ¿cuánto tiempo tengo esta semana? ¿Quiero ingresos hoy o en 2 semanas?</li>
+            <li>Marca una sola ruta: Servicio express / Afiliación / Producto digital / Validación pagada / Habilidad existente</li>
+            <li>Escribe por qué esa ruta tiene sentido ahora (no en general, sino ahora)</li>
+            <li>Descarta las demás sin culpa. Siempre puedes volver a ellas.</li>
+          </ul>
+          <div class="tarea-tip"><strong>Regla:</strong> Si dudas entre dos rutas, elige la que te genera ingresos más rápido. La velocidad de validación es más valiosa que la perfección del modelo.</div>
+          <div class="anota">
+            <div class="anota-label">✏️ Mi ruta elegida</div>
+            <textarea placeholder="Ruta: _______&#10;Por qué tiene sentido ahora: _______"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAREA 1.3 -->
+      <div class="tarea-block" id="t3">
+        <div class="tarea-top">
+          <button class="check-btn" onclick="marcar('t3', 'd1')"><span class="check-icon">✓</span></button>
+          <div class="tarea-nombre">Identificar tu primer cliente potencial</div>
+          <div class="tarea-tiempo">⏱ 30 min</div>
+        </div>
+        <div class="tarea-body">
+          <div class="tarea-desc">No es un perfil demográfico genérico. Es una persona real que conoces, o un tipo de persona específico que puedes encontrar esta semana. Cuanto más concreta, mejor.</div>
+          <ul class="tarea-pasos">
+            <li>Piensa: ¿quién en tu red tiene el problema que resuelves?</li>
+            <li>Lista 5 nombres o perfiles concretos (no categorías, sino personas)</li>
+            <li>Para cada uno: ¿qué problema tiene? ¿Pagaría por resolverlo? ¿Cómo contactarlo?</li>
+            <li>Elige los 3 más prometedores para el Día 3</li>
+            <li>Si no conoces a nadie, define en qué comunidad online o grupo están</li>
+          </ul>
+          <div class="tarea-tip"><strong>Punto de control:</strong> Al final de este bloque debes tener al menos 3 nombres o perfiles concretos con una forma de contacto. Si no, el día no está completo.</div>
+          <div class="anota">
+            <div class="anota-label">✏️ Mis 3 primeros contactos potenciales</div>
+            <textarea placeholder="1. Nombre / perfil: _____ · Problema: _____ · Contacto: _____&#10;2. &#10;3. "></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-box">
+        <div class="control-label">🔎 Punto de control — Día 1</div>
+        <ul class="control-preguntas">
+          <li>¿Puedo describir mi habilidad monetizable en una sola frase sin vacilar?</li>
+          <li>¿Elegí UNA ruta y descarte las demás sin dejar la puerta abierta?</li>
+          <li>¿Tengo nombres reales o perfiles concretos, no categorías vagas?</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======= DÍA 2 ======= -->
+  <div class="dia-card d2">
+    <div class="dia-header" onclick="toggleDia('d2', this)">
+      <div class="dia-num"><div class="dia-num-label">DÍA</div><div class="dia-num-val">2</div></div>
+      <div class="dia-meta">
+        <div class="dia-titulo">Estructura</div>
+        <div class="dia-desc">Tienes una oferta real y un punto de contacto activo</div>
+      </div>
+      <div class="dia-estado">
+        <div class="dia-check-count" id="cnt-d2">0/3</div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+    <div class="dia-body" id="body-d2">
+
+      <div class="metrica-box">
+        <div class="metrica-icon">📊</div>
+        <div class="metrica-content">
+          <div class="metrica-label">Métrica de movimiento</div>
+          <div class="metrica-text">Al terminar el día 2 debes poder responder esta pregunta en 10 segundos: <strong>"¿Qué vendes, a quién, a qué precio y cómo te contactan?"</strong> Si tienes las 4 respuestas, el día fue exitoso.</div>
+        </div>
+      </div>
+
+      <!-- TAREA 2.1 -->
+      <div class="tarea-block" id="t4">
+        <div class="tarea-top">
+          <button class="check-btn" onclick="marcar('t4', 'd2')"><span class="check-icon">✓</span></button>
+          <div class="tarea-nombre">Crear tu oferta mínima</div>
+          <div class="tarea-tiempo">⏱ 45 min</div>
+        </div>
+        <div class="tarea-body">
+          <div class="tarea-desc">Una oferta mínima no es una oferta incompleta. Es una oferta enfocada: resuelve un problema específico, tiene un entregable claro y un precio definido. Nada más es necesario para empezar.</div>
+          <ul class="tarea-pasos">
+            <li>Define el nombre provisional: "Sesión de X" / "Guía para Y" / "Pack de Z"</li>
+            <li>Escribe qué incluye exactamente (máximo 3 elementos)</li>
+            <li>Define el resultado que el cliente obtiene (no lo que haces, lo que logra)</li>
+            <li>Establece el precio. Usa el Módulo 3 del toolkit como referencia.</li>
+            <li>Define el formato de entrega: sesión por Zoom / documento PDF / mensaje de voz / etc.</li>
+          </ul>
+          <div class="tarea-tip"><strong>Anti-trampa:</strong> Si tu oferta tiene más de 3 componentes o más de 2 semanas de entrega, es demasiado compleja para validar. Simplifícala hasta que incomode un poco. Ahí está el precio correcto de entrada.</div>
+          <div class="anota">
+            <div class="anota-label">✏️ Tu oferta mínima</div>
+            <textarea placeholder="Nombre: _______&#10;Qué incluye: _______&#10;Resultado que obtiene el cliente: _______&#10;Precio: $ _______&#10;Formato de entrega: _______"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAREA 2.2 -->
+      <div class="tarea-block" id="t5">
+        <div class="tarea-top">
+          <button class="check-btn" onclick="marcar('t5', 'd2')"><span class="check-icon">✓</span></button>
+          <div class="tarea-nombre">Configurar tu punto de contacto</div>
+          <div class="tarea-tiempo">⏱ 30 min</div>
+        </div>
+        <div class="tarea-body">
+          <div class="tarea-desc">Antes de salir a ofrecer, necesitas que quien te contacte llegue a algún lugar. No tiene que ser una web. Puede ser tu perfil de Instagram optimizado, tu LinkedIn o un link de WhatsApp Business.</div>
+          <ul class="tarea-pasos">
+            <li>Elige UNA plataforma de presencia (Instagram, LinkedIn o Linktree)</li>
+            <li>Actualiza tu bio o titular con tu propuesta: "Ayudo a [QUIÉN] a [RESULTADO]"</li>
+            <li>Agrega un call-to-action claro: "Escríbeme" / "Mira mi oferta aquí" / "Link en bio"</li>
+            <li>Configura WhatsApp Business si aún no lo tienes (15 minutos, Bono 3)</li>
+            <li>Verifica que el camino desde tu bio hasta contactarte tenga máximo 2 clics</li>
+          </ul>
+          <div class="tarea-tip"><strong>Punto de control:</strong> Pide a alguien de confianza que intente contactarte siguiendo tu perfil. Si tarda más de 30 segundos en encontrar cómo, simplifica.</div>
+          <div class="anota">
+            <div class="anota-label">✏️ Mi punto de contacto</div>
+            <textarea placeholder="Plataforma elegida: _______&#10;Bio / titular actualizado: _______&#10;Link de contacto: _______"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAREA 2.3 -->
+      <div class="tarea-block" id="t6">
+        <div class="tarea-top">
+          <button class="check-btn" onclick="marcar('t6', 'd2')"><span class="check-icon">✓</span></button>
+          <div class="tarea-nombre">Preparar tu mensaje de validación</div>
+          <div class="tarea-tiempo">⏱ 30 min</div>
+        </div>
+        <div class="tarea-body">
+          <div class="tarea-desc">No es un copy de venta. Es un mensaje humano, directo y sin presión, que abre una conversación. Se envía mañana. Hoy lo preparas con calma para no improvisar cuando la adrenalina sube.</div>
+          <ul class="tarea-pasos">
+            <li>Escribe la versión para contacto directo (WhatsApp / DM): 3-4 líneas máximo</li>
+            <li>Incluye: referencia personal → problema que resuelves → pregunta de apertura</li>
+            <li>Evita: "¿Te interesaría comprar?" / "Tengo una oferta increíble" / precios en el primer mensaje</li>
+            <li>Prepara también una versión corta para publicar en redes si aplica</li>
+            <li>Léelo en voz alta. Si suena a venta forzada, reescríbelo.</li>
+          </ul>
+          <div class="tarea-tip"><strong>Plantilla base:</strong> "Hola [nombre], ¿cómo estás? Estoy trabajando en [algo relacionado con tu área] y pensé en ti porque sé que [problema o contexto del contacto]. ¿Estarías dispuesta/o a contarme cómo lo estás manejando ahora?" — La conversación es la venta.</div>
+          <div class="anota">
+            <div class="anota-label">✏️ Tu mensaje de validación</div>
+            <textarea placeholder="Versión para DM / WhatsApp:&#10;&#10;&#10;Versión para publicación (opcional):"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-box">
+        <div class="control-label">🔎 Punto de control — Día 2</div>
+        <ul class="control-preguntas">
+          <li>¿Mi oferta tiene nombre, precio e incluye máximo 3 elementos?</li>
+          <li>¿Alguien que llegue a mi perfil sabe qué hago y cómo contactarme en 30 segundos?</li>
+          <li>¿Mi mensaje de validación suena como una persona real, no como un anuncio?</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======= DÍA 3 ======= -->
+  <div class="dia-card d3">
+    <div class="dia-header" onclick="toggleDia('d3', this)">
+      <div class="dia-num"><div class="dia-num-label">DÍA</div><div class="dia-num-val">3</div></div>
+      <div class="dia-meta">
+        <div class="dia-titulo">Movimiento</div>
+        <div class="dia-desc">Tus primeros mensajes están enviados. Tienes datos reales.</div>
+      </div>
+      <div class="dia-estado">
+        <div class="dia-check-count" id="cnt-d3">0/3</div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+    <div class="dia-body" id="body-d3">
+
+      <div class="metrica-box">
+        <div class="metrica-icon">📊</div>
+        <div class="metrica-content">
+          <div class="metrica-label">Métrica de movimiento</div>
+          <div class="metrica-text">Al terminar el día 3 debes poder responder: <strong>"¿Cuántos mensajes envié? ¿Cuántas respuestas obtuve? ¿Cuál fue la reacción más frecuente?"</strong> Esos datos son tu siguiente paso. No la intuición.</div>
+        </div>
+      </div>
+
+      <!-- TAREA 3.1 -->
+      <div class="tarea-block" id="t7">
+        <div class="tarea-top">
+          <button class="check-btn" onclick="marcar('t7', 'd3')"><span class="check-icon">✓</span></button>
+          <div class="tarea-nombre">Enviar los primeros mensajes de validación</div>
+          <div class="tarea-tiempo">⏱ 45 min</div>
+        </div>
+        <div class="tarea-body">
+          <div class="tarea-desc">Este es el momento que más miedo da y más avance produce. No necesitas que todos respondan. Necesitas empezar a tener datos reales del mercado. 5 mensajes enviados valen más que 500 estrategias pensadas.</div>
+          <ul class="tarea-pasos">
+            <li>Toma los 3–5 contactos del Día 1 y envía el mensaje preparado ayer</li>
+            <li>Personaliza mínimamente cada uno: cambia el nombre y agrega una referencia personal</li>
+            <li>No envíes todos a la vez: hazlo de forma escalonada (uno cada 10–15 min)</li>
+            <li>Registra en una hoja simple: nombre → enviado → respuesta → tipo de respuesta</li>
+            <li>Si no tienes contactos directos: publica en tu red principal con la versión pública del mensaje</li>
+          </ul>
+          <div class="tarea-tip"><strong>Regla de oro:</strong> El objetivo de hoy no es vender. Es conversación. Si alguien pregunta el precio, responde. Si alguien dice "no gracias", agradece y sigue. Cada respuesta es información valiosa.</div>
+          <div class="anota">
+            <div class="anota-label">✏️ Registro de envíos</div>
+            <textarea placeholder="Mensajes enviados: ___&#10;Respuestas recibidas: ___&#10;Tipo de respuesta más frecuente: _______&#10;Interesados que necesitan seguimiento: _______"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAREA 3.2 -->
+      <div class="tarea-block" id="t8">
+        <div class="tarea-top">
+          <button class="check-btn" onclick="marcar('t8', 'd3')"><span class="check-icon">✓</span></button>
+          <div class="tarea-nombre">Publicar tu primera pieza de contenido</div>
+          <div class="tarea-tiempo">⏱ 45 min</div>
+        </div>
+        <div class="tarea-body">
+          <div class="tarea-desc">Una publicación sola no vende, pero construye contexto. Le dice al mercado quién eres y qué problema resuelves. Hoy no publicas para vender, publicas para existir con intención.</div>
+          <ul class="tarea-pasos">
+            <li>Elige el formato más cómodo: texto, imagen con frase, carrusel simple o video corto</li>
+            <li>El tema: el problema que resuelves, desde la perspectiva de tu cliente ideal</li>
+            <li>Estructura: problema → por qué ocurre → lo que cambia cuando se resuelve → CTA suave</li>
+            <li>CTA suave: "Si estás en esta situación, escríbeme" / "¿Te identificas? Cuéntame."</li>
+            <li>Publica. Sin buscar la perfección. La segunda publicación siempre es mejor que la primera.</li>
+          </ul>
+          <div class="tarea-tip"><strong>Anti-parálisis:</strong> Si llevas más de 30 minutos "terminando" la publicación, publícala como está. El algoritmo y tú aprenden con lo que sale, no con lo que se queda en borradores.</div>
+          <div class="anota">
+            <div class="anota-label">✏️ Link o texto de tu publicación</div>
+            <textarea placeholder="Plataforma: _______&#10;Resumen del contenido: _______&#10;CTA usado: _______"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAREA 3.3 -->
+      <div class="tarea-block" id="t9">
+        <div class="tarea-top">
+          <button class="check-btn" onclick="marcar('t9', 'd3')"><span class="check-icon">✓</span></button>
+          <div class="tarea-nombre">Evaluar respuestas y definir siguiente paso</div>
+          <div class="tarea-tiempo">⏱ 30 min</div>
+        </div>
+        <div class="tarea-body">
+          <div class="tarea-desc">Las primeras 72 horas terminan aquí. Pero el movimiento no. Esta tarea convierte lo que aprendiste en un plan para la semana siguiente. Sin esta reflexión, el aprendizaje se pierde.</div>
+          <ul class="tarea-pasos">
+            <li>Revisa tu registro de mensajes: ¿cuántas respuestas? ¿Qué dijeron?</li>
+            <li>Clasifica: 🟢 Interesado · 🟡 Curioso · 🔴 No interesado ahora</li>
+            <li>Para cada 🟢: define una próxima acción concreta (llamada, enviar info, propuesta)</li>
+            <li>Analiza: ¿el mensaje funcionó? ¿Qué ajustarías?</li>
+            <li>Define UNA acción para mañana basada en lo que aprendiste hoy</li>
+          </ul>
+          <div class="tarea-tip"><strong>Punto de control final:</strong> Si obtuviste al menos 1 respuesta positiva en 72 horas, tu oferta tiene potencial. Si no obtuviste ninguna, el problema no es la idea — es el canal, el mensaje o el público. Ajusta uno a la vez.</div>
+          <div class="anota">
+            <div class="anota-label">✏️ Evaluación de 72 horas</div>
+            <textarea placeholder="Interesados 🟢: ___ · Curiosos 🟡: ___ · No interesados 🔴: ___&#10;&#10;¿Qué funcionó?&#10;&#10;¿Qué ajustaría?&#10;&#10;Mi acción para mañana: _______"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-box">
+        <div class="control-label">🔎 Punto de control — Día 3</div>
+        <ul class="control-preguntas">
+          <li>¿Envié al menos 5 mensajes personalizados o hice una publicación pública?</li>
+          <li>¿Tengo datos reales de respuesta, no suposiciones?</li>
+          <li>¿Sé exactamente cuál es mi próxima acción para mañana?</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CIERRE -->
+  <div class="cierre">
+    <h3>Las 72 horas terminaron. 🎯</h3>
+    <p>No importa si todo salió perfecto. Lo que importa es que estás en movimiento, tienes datos reales y sabes exactamente qué ajustar. Eso vale más que cualquier estrategia que quedó en borradores.</p>
+    <div class="cierre-regla">
+      <div class="cierre-regla-label">⚡ La única regla que importa</div>
+      <div class="cierre-regla-text">"Una oferta imperfecta enviada hoy genera más información que una oferta perfecta que nunca salió. Los ingresos no llegan por tener el plan correcto. Llegan por moverse con el plan que tienes."</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">MONETIZA YA</div>
+    <div class="footer-sub">BONO 4 — Plan de Activación en 72 Horas · Parte del Toolkit Completo</div>
+  </div>
+
+</div>
+
+<script>
+  const diasData = { d1: ['t1','t2','t3'], d2: ['t4','t5','t6'], d3: ['t7','t8','t9'] };
+  const completadas = {};
+
+  function marcar(tid, did) {
+    const card = document.getElementById(tid);
+    const btn = card.querySelector('.check-btn');
+    const done = btn.classList.toggle('done');
+    card.classList.toggle('completada', done);
+    completadas[tid] = done;
+    actualizarContador(did);
+    actualizarGlobal();
+  }
+
+  function actualizarContador(did) {
+    const tareas = diasData[did];
+    const n = tareas.filter(t => completadas[t]).length;
+    const el = document.getElementById('cnt-' + did);
+    el.textContent = n + '/' + tareas.length;
+    el.className = 'dia-check-count' + (n === tareas.length ? ' completo' : n > 0 ? ' parcial' : '');
+  }
+
+  function actualizarGlobal() {
+    const total = 9;
+    const done = Object.values(completadas).filter(Boolean).length;
+    const pct = Math.round((done / total) * 100);
+    document.getElementById('pgFill').style.width = pct + '%';
+    document.getElementById('pctLabel').textContent = pct + '%';
+    const msgs = [
+      'Haz clic en una tarea para empezar',
+      'Buen inicio. Sigue el orden.',
+      'Vas bien. No te detengas.',
+      'Más de la mitad del camino. El impulso ya es tuyo.',
+      'Casi terminando. El movimiento ya empezó.',
+      '¡72 horas completadas! Tu monetización está activada.'
+    ];
+    const idx = done === 0 ? 0 : done <= 2 ? 1 : done <= 4 ? 2 : done <= 6 ? 3 : done <= 8 ? 4 : 5;
+    document.getElementById('pgSub').textContent = done + ' de ' + total + ' acciones completadas · ' + msgs[idx];
+  }
+
+  function toggleDia(did, header) {
+    const body = document.getElementById('body-' + did);
+    const chevron = header.querySelector('.chevron');
+    const isOpen = body.classList.toggle('open');
+    chevron.classList.toggle('open', isOpen);
+  }
+</script>
+</body>
+</html>

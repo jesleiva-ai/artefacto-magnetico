@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BONO 3 — Kit Mínimo de Herramientas Gratuitas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .page { max-width: 780px; margin: 0 auto; }
+
+  /* HEADER */
+  .header { text-align: center; margin-bottom: 40px; }
+
+  .bono-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .main-title {
+    font-size: clamp(26px, 5vw, 44px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .main-title span {
+    background: linear-gradient(135deg, #22c55e, #4ade80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle { font-size: 14px; color: #888; max-width: 520px; margin: 0 auto 8px; line-height: 1.7; }
+  .tag-line { font-size: 13px; color: #22c55e; font-weight: 600; letter-spacing: 1px; }
+
+  .valor-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0a1f0f;
+    border: 1px solid #166534;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: #4ade80;
+    font-weight: 700;
+    margin-bottom: 36px;
+  }
+
+  /* COPY */
+  .copy-box {
+    background: #111;
+    border: 1px solid #222;
+    border-left: 4px solid #22c55e;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 36px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #ccc;
+  }
+  .copy-box strong { color: #fff; }
+
+  /* ALERTA */
+  .alerta {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .alerta-icon { font-size: 22px; flex-shrink: 0; }
+  .alerta-text { font-size: 13px; color: #999; line-height: 1.7; }
+  .alerta-text strong { color: #ddd; }
+
+  /* FILTROS */
+  .filtros {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .filtro-btn {
+    background: #111;
+    border: 1px solid #222;
+    color: #888;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.3px;
+  }
+
+  .filtro-btn:hover { border-color: #333; color: #ddd; }
+  .filtro-btn.active { background: #0a1f0f; border-color: #22c55e; color: #4ade80; }
+
+  /* SECCIÓN */
+  .seccion { margin-bottom: 40px; }
+
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .sec-icon {
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .f1 .sec-icon { background: #0f1a2e; }
+  .f2 .sec-icon { background: #1a150a; }
+  .f3 .sec-icon { background: #0a1f0f; }
+  .f4 .sec-icon { background: #1a0f1a; }
+  .f5 .sec-icon { background: #1a0a0a; }
+
+  .sec-meta { flex: 1; }
+  .sec-num { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #555; text-transform: uppercase; margin-bottom: 2px; }
+  .sec-nombre { font-size: 17px; font-weight: 800; }
+  .f1 .sec-nombre { color: #3b82f6; }
+  .f2 .sec-nombre { color: #f5c518; }
+  .f3 .sec-nombre { color: #22c55e; }
+  .f4 .sec-nombre { color: #a855f7; }
+  .f5 .sec-nombre { color: #f97316; }
+
+  .sec-desc { font-size: 13px; color: #666; margin-top: 2px; }
+
+  /* TARJETA HERRAMIENTA */
+  .herramienta-card {
+    background: #111;
+    border: 1px solid #1a1a1a;
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 12px;
+    transition: border-color 0.15s;
+  }
+
+  .herramienta-card:hover { border-color: #272727; }
+
+  .h-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .h-left { display: flex; align-items: center; gap: 12px; }
+
+  .h-logo {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: #0d0d0d;
+    border: 1px solid #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .h-name { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+  .h-tipo { font-size: 11px; color: #555; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+
+  .badge-gratis {
+    background: #0a1f0f;
+    border: 1px solid #166534;
+    color: #4ade80;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .h-desc { font-size: 13px; color: #999; line-height: 1.6; margin-bottom: 14px; }
+
+  .h-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .h-detail {
+    background: #0d0d0d;
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .h-detail-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #444;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .h-detail-val { font-size: 12px; color: #bbb; line-height: 1.5; }
+
+  .h-config {
+    grid-column: 1 / -1;
+    background: #0d0d0d;
+    border-left: 3px solid #22c55e;
+    border-radius: 0 10px 10px 0;
+    padding: 12px 14px;
+  }
+
+  .h-config.azul { border-left-color: #3b82f6; }
+  .h-config.amarillo { border-left-color: #f5c518; }
+  .h-config.verde { border-left-color: #22c55e; }
+  .h-config.morado { border-left-color: #a855f7; }
+  .h-config.naranja { border-left-color: #f97316; }
+
+  .h-config-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #22c55e;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .h-config-label.azul { color: #3b82f6; }
+  .h-config-label.amarillo { color: #f5c518; }
+  .h-config-label.morado { color: #a855f7; }
+  .h-config-label.naranja { color: #f97316; }
+
+  .h-config-val { font-size: 12px; color: #ccc; line-height: 1.6; }
+
+  /* TABLA RESUMEN */
+  .resumen-section { margin: 48px 0; }
+
+  .resumen-title { font-size: 17px; font-weight: 800; margin-bottom: 20px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: #111; }
+  th {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #555;
+    text-transform: uppercase;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  td {
+    padding: 13px 14px;
+    border-bottom: 1px solid #111;
+    color: #bbb;
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 700; color: #fff; }
+
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .dot-b { background: #3b82f6; }
+  .dot-y { background: #f5c518; }
+  .dot-g { background: #22c55e; }
+  .dot-p { background: #a855f7; }
+  .dot-o { background: #f97316; }
+
+  .evitar-section {
+    background: #140a0a;
+    border: 1px solid #2a1010;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 40px;
+  }
+
+  .evitar-title { font-size: 16px; font-weight: 800; color: #ef4444; margin-bottom: 16px; }
+  .evitar-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #bbb;
+    line-height: 1.6;
+  }
+  .evitar-item::before { content: '✗'; color: #ef4444; font-weight: 700; flex-shrink: 0; }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 32px 0 8px; border-top: 1px solid #1a1a1a; margin-top: 8px; }
+  .footer-brand {
+    font-size: 20px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #22c55e, #4ade80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .footer-sub { font-size: 12px; color: #444; }
+
+  @media (max-width: 480px) {
+    .h-grid { grid-template-columns: 1fr; }
+    .filtros { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="bono-badge">🛠️ BONO 3</div>
+    <h1 class="main-title">Kit Mínimo de<br><span>Herramientas Gratuitas</span></h1>
+    <p class="subtitle">La excusa tecnológica es real, pero no es válida. Puedes construir un negocio funcional sin invertir un peso en software.</p>
+    <p class="tag-line">Todo lo que necesitas para empezar · USD 0 en herramientas</p>
+  </div>
+
+  <div style="text-align:center">
+    <div class="valor-pill">💚 Valor individual: USD 29</div>
+  </div>
+
+  <!-- COPY -->
+  <div class="copy-box">
+    Empieza a moverte <strong>sin invertir en software costoso ni configuraciones complejas.</strong> Este kit te muestra exactamente qué usar, qué evitar y cómo mantener tu estructura lo más simple posible mientras comienzas a generar ingresos. Ideal para avanzar sin fricción técnica ni gastos innecesarios.
+  </div>
+
+  <!-- ALERTA -->
+  <div class="alerta">
+    <div class="alerta-icon">⚡</div>
+    <div class="alerta-text">
+      <strong>Principio rector de este kit:</strong> Menos herramientas = más ejecución. El objetivo no es tener el setup perfecto. Es tener el setup mínimo que te permita cobrar esta semana. Agrega complejidad solo cuando el volumen de trabajo lo exija.
+    </div>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="filtros">
+    <button class="filtro-btn active" onclick="filtrar('todas', this)">Todas las funciones</button>
+    <button class="filtro-btn" onclick="filtrar('presencia', this)">🌐 Presencia</button>
+    <button class="filtro-btn" onclick="filtrar('validar', this)">🧪 Validar</button>
+    <button class="filtro-btn" onclick="filtrar('cobrar', this)">💳 Cobrar</button>
+    <button class="filtro-btn" onclick="filtrar('organizar', this)">📋 Organizar</button>
+    <button class="filtro-btn" onclick="filtrar('contenido', this)">🎨 Contenido</button>
+  </div>
+
+  <!-- ===== FUNCIÓN 1: PRESENCIA ===== -->
+  <div class="seccion f1" data-fn="presencia">
+    <div class="sec-header">
+      <div class="sec-icon">🌐</div>
+      <div class="sec-meta">
+        <div class="sec-num">Función 01</div>
+        <div class="sec-nombre">Crear Presencia Básica</div>
+        <div class="sec-desc">Plataformas para tener un perfil profesional sin web propia</div>
+      </div>
+    </div>
+
+    <div class="herramienta-card">
+      <div class="h-top">
+        <div class="h-left">
+          <div class="h-logo">🔗</div>
+          <div><div class="h-name">Linktree</div><div class="h-tipo">Página de enlaces</div></div>
+        </div>
+        <div class="badge-gratis">GRATIS</div>
+      </div>
+      <div class="h-desc">Una sola URL que agrupa todos tus canales, oferta y forma de contacto. Reemplaza una web completa para quien recién empieza. Funciona como tu "sede digital" provisional.</div>
+      <div class="h-grid">
+        <div class="h-detail">
+          <div class="h-detail-label">Cuándo usarlo</div>
+          <div class="h-detail-val">Desde el día 1, antes de tener cualquier otra plataforma</div>
+        </div>
+        <div class="h-detail">
+          <div class="h-detail-label">Configuración mínima</div>
+          <div class="h-detail-val">Foto, nombre, 1 frase de propuesta, link de oferta o contacto</div>
+        </div>
+        <div class="h-config azul">
+          <div class="h-config-label azul">⚙️ Setup en 15 minutos</div>
+          <div class="h-config-val">Crea cuenta → sube foto → agrega título con tu propuesta de valor → añade máximo 3 links (oferta, WhatsApp o email, red principal) → comparte esa URL en tu bio de Instagram o LinkedIn.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="herramienta-card">
+      <div class="h-top">
+        <div class="h-left">
+          <div class="h-logo">💼</div>
+          <div><div class="h-name">LinkedIn (perfil optimizado)</div><div class="h-tipo">Red profesional</div></div>
+        </div>
+        <div class="badge-gratis">GRATIS</div>
+      </div>
+      <div class="h-desc">Un perfil de LinkedIn bien configurado funciona como CV, landing page y canal de contacto al mismo tiempo. Ideal para posicionarte frente a clientes B2B o de servicios.</div>
+      <div class="h-grid">
+        <div class="h-detail">
+          <div class="h-detail-label">Cuándo usarlo</div>
+          <div class="h-detail-val">Si tu cliente ideal es profesional, empresa o freelancer</div>
+        </div>
+        <div class="h-detail">
+          <div class="h-detail-label">Configuración mínima</div>
+          <div class="h-detail-val">Foto profesional, titular con resultado que ofreces, sección "Acerca de" con tu propuesta</div>
+        </div>
+        <div class="h-config azul">
+          <div class="h-config-label azul">⚙️ Setup esencial</div>
+          <div class="h-config-val">Titular: "Ayudo a [QUIÉN] a [RESULTADO] sin [OBSTÁCULO]" → Acerca de: 3 párrafos (problema que resuelves, cómo lo haces, a quién ayudas) → Agrega tu link de Linktree o WhatsApp Business en contacto.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FUNCIÓN 2: VALIDAR ===== -->
+  <div class="seccion f2" data-fn="validar">
+    <div class="sec-header">
+      <div class="sec-icon">🧪</div>
+      <div class="sec-meta">
+        <div class="sec-num">Función 02</div>
+        <div class="sec-nombre">Validar Oferta</div>
+        <div class="sec-desc">Herramientas para testear interés real antes de crear el producto</div>
+      </div>
+    </div>
+
+    <div class="herramienta-card">
+      <div class="h-top">
+        <div class="h-left">
+          <div class="h-logo">📋</div>
+          <div><div class="h-name">Google Forms</div><div class="h-tipo">Formularios y encuestas</div></div>
+        </div>
+        <div class="badge-gratis">GRATIS</div>
+      </div>
+      <div class="h-desc">Crea una encuesta de validación de 3 a 5 preguntas para medir si tu audiencia pagaría por tu oferta antes de construirla. Simple, rápido y con respuestas automáticas en hoja de cálculo.</div>
+      <div class="h-grid">
+        <div class="h-detail">
+          <div class="h-detail-label">Cuándo usarlo</div>
+          <div class="h-detail-val">Antes de crear cualquier producto. Valida primero, construye después.</div>
+        </div>
+        <div class="h-detail">
+          <div class="h-detail-label">Configuración mínima</div>
+          <div class="h-detail-val">5 preguntas: problema, intentos previos, disposición a pagar, precio, email de contacto</div>
+        </div>
+        <div class="h-config amarillo">
+          <div class="h-config-label amarillo">⚙️ Las 5 preguntas clave</div>
+          <div class="h-config-val">1. ¿Cuál es tu mayor dificultad con [tema]? 2. ¿Ya intentaste resolverlo? ¿Cómo? 3. Si existiera una solución para esto, ¿la comprarías? 4. ¿Cuánto pagarías? 5. ¿Quieres que te avise cuando esté lista? (email)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="herramienta-card">
+      <div class="h-top">
+        <div class="h-left">
+          <div class="h-logo">💬</div>
+          <div><div class="h-name">WhatsApp Business</div><div class="h-tipo">Validación directa</div></div>
+        </div>
+        <div class="badge-gratis">GRATIS</div>
+      </div>
+      <div class="h-desc">La herramienta de validación más subestimada. Un mensaje directo a 10 contactos relevantes genera más datos reales que cualquier encuesta. Si 3 dicen "¿cuándo lo lanzas?", tienes validación.</div>
+      <div class="h-grid">
+        <div class="h-detail">
+          <div class="h-detail-label">Cuándo usarlo</div>
+          <div class="h-detail-val">Como primer paso antes de cualquier publicación pública</div>
+        </div>
+        <div class="h-detail">
+          <div class="h-detail-label">Configuración mínima</div>
+          <div class="h-detail-val">Perfil de negocio + mensaje de validación + respuestas rápidas configuradas</div>
+        </div>
+        <div class="h-config amarillo">
+          <div class="h-config-label amarillo">⚙️ Mensaje de validación listo</div>
+          <div class="h-config-val">"Hola [nombre], estoy creando algo para ayudar a [perfil] a [resultado]. ¿Es algo que te haría falta ahora? Te cuento más si te interesa." → Con 5+ "sí" tienes luz verde para construir.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FUNCIÓN 3: COBRAR ===== -->
+  <div class="seccion f3" data-fn="cobrar">
+    <div class="sec-header">
+      <div class="sec-icon">💳</div>
+      <div class="sec-meta">
+        <div class="sec-num">Función 03</div>
+        <div class="sec-nombre">Cobrar</div>
+        <div class="sec-desc">Opciones simples para recibir pagos desde el día uno</div>
+      </div>
+    </div>
+
+    <div class="herramienta-card">
+      <div class="h-top">
+        <div class="h-left">
+          <div class="h-logo">🟠</div>
+          <div><div class="h-name">Hotmart</div><div class="h-tipo">Plataforma de infoproductos</div></div>
+        </div>
+        <div class="badge-gratis">GRATIS para empezar</div>
+      </div>
+      <div class="h-desc">Plataforma líder en Latinoamérica para vender productos digitales. Maneja el cobro, la entrega del archivo y la facturación automáticamente. Cobra comisión solo cuando vendes.</div>
+      <div class="h-grid">
+        <div class="h-detail">
+          <div class="h-detail-label">Cuándo usarlo</div>
+          <div class="h-detail-val">Para vender PDFs, mini-cursos, plantillas o cualquier producto digital</div>
+        </div>
+        <div class="h-detail">
+          <div class="h-detail-label">Comisión</div>
+          <div class="h-detail-val">9.9% + tarifa fija por venta. Sin mensualidad ni costo de alta.</div>
+        </div>
+        <div class="h-config verde">
+          <div class="h-config-label">⚙️ Setup en 30 minutos</div>
+          <div class="h-config-val">Crea cuenta → completa datos fiscales → crea producto (sube PDF o acceso) → define precio → activa página de pago → comparte el link. Listo para vender.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="herramienta-card">
+      <div class="h-top">
+        <div class="h-left">
+          <div class="h-logo">🟣</div>
+          <div><div class="h-name">Gumroad</div><div class="h-tipo">Venta directa de digitales</div></div>
+        </div>
+        <div class="badge-gratis">GRATIS</div>
+      </div>
+      <div class="h-desc">Alternativa internacional, ideal si tienes audiencia fuera de Latinoamérica o quieres cobrar en USD. Permite crear páginas de producto simples en minutos y aceptar tarjetas de todo el mundo.</div>
+      <div class="h-grid">
+        <div class="h-detail">
+          <div class="h-detail-label">Cuándo usarlo</div>
+          <div class="h-detail-val">Si cobras en USD o tienes audiencia internacional</div>
+        </div>
+        <div class="h-detail">
+          <div class="h-detail-label">Comisión</div>
+          <div class="h-detail-val">10% por venta. Sin costo mensual. Paga directo a tu cuenta.</div>
+        </div>
+        <div class="h-config verde">
+          <div class="h-config-label">⚙️ Setup en 20 minutos</div>
+          <div class="h-config-val">Crea cuenta → New Product → sube archivo → escribe descripción y precio → publica → comparte link. Acepta pagos con tarjeta de crédito en más de 190 países.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="herramienta-card">
+      <div class="h-top">
+        <div class="h-left">
+          <div class="h-logo">💸</div>
+          <div><div class="h-name">Mercado Pago / Transferencia</div><div class="h-tipo">Cobro directo</div></div>
+        </div>
+        <div class="badge-gratis">GRATIS</div>
+      </div>
+      <div class="h-desc">Para servicios directos o preventa, no necesitas plataformas. Un link de pago de Mercado Pago o una transferencia bancaria directa es suficiente para cobrar tu primera venta hoy.</div>
+      <div class="h-grid">
+        <div class="h-detail">
+          <div class="h-detail-label">Cuándo usarlo</div>
+          <div class="h-detail-val">Para servicios express, sesiones, validación pagada o preventa</div>
+        </div>
+        <div class="h-detail">
+          <div class="h-detail-label">Comisión</div>
+          <div class="h-detail-val">Varía por país. Transferencias bancarias: sin costo en la mayoría de los casos.</div>
+        </div>
+        <div class="h-config verde">
+          <div class="h-config-label">⚙️ Setup inmediato</div>
+          <div class="h-config-val">Crea tu link de cobro en Mercado Pago (Cobrar → Link de pago → define monto y descripción) → comparte por WhatsApp. Para servicios: acuerda precio, comparte datos bancarios, confirma pago antes de entregar.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FUNCIÓN 4: ORGANIZAR ===== -->
+  <div class="seccion f4" data-fn="organizar">
+    <div class="sec-header">
+      <div class="sec-icon">📋</div>
+      <div class="sec-meta">
+        <div class="sec-num">Función 04</div>
+        <div class="sec-nombre">Organizarse</div>
+        <div class="sec-desc">Recursos para gestionar clientes, tareas y tiempos sin complicaciones</div>
+      </div>
+    </div>
+
+    <div class="herramienta-card">
+      <div class="h-top">
+        <div class="h-left">
+          <div class="h-logo">⬛</div>
+          <div><div class="h-name">Notion</div><div class="h-tipo">Base de operaciones</div></div>
+        </div>
+        <div class="badge-gratis">GRATIS</div>
+      </div>
+      <div class="h-desc">Tu sistema operativo personal. Úsalo para centralizar clientes, tareas, ideas, borradores de oferta y seguimiento de ventas. Una sola herramienta reemplaza CRM, agenda y bloc de notas.</div>
+      <div class="h-grid">
+        <div class="h-detail">
+          <div class="h-detail-label">Cuándo usarlo</div>
+          <div class="h-detail-val">Desde el inicio para no perder información ni dispersar el foco</div>
+        </div>
+        <div class="h-detail">
+          <div class="h-detail-label">Configuración mínima</div>
+          <div class="h-detail-val">3 páginas: Mis ofertas activas · Mis clientes · Tareas de la semana</div>
+        </div>
+        <div class="h-config morado">
+          <div class="h-config-label morado">⚙️ Setup mínimo</div>
+          <div class="h-config-val">Crea workspace → añade página "Clientes" (tabla con nombre, estado, próximo paso) → página "Ofertas" (nombre, precio, canal) → página "Plan semanal" (lunes a viernes con 1 tarea diaria monetizable). No sobrediseñes.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="herramienta-card">
+      <div class="h-top">
+        <div class="h-left">
+          <div class="h-logo">📅</div>
+          <div><div class="h-name">Google Calendar</div><div class="h-tipo">Gestión de tiempo</div></div>
+        </div>
+        <div class="badge-gratis">GRATIS</div>
+      </div>
+      <div class="h-desc">Para quien ofrece sesiones o servicios con entrega en fecha, un calendario compartido elimina el caos de coordinar horarios por mensajes. Calendly (gratis básico) lo conecta y automatiza.</div>
+      <div class="h-grid">
+        <div class="h-detail">
+          <div class="h-detail-label">Cuándo usarlo</div>
+          <div class="h-detail-val">Cuando tienes más de 2 clientes activos o sesiones que coordinar</div>
+        </div>
+        <div class="h-detail">
+          <div class="h-detail-label">Configuración mínima</div>
+          <div class="h-detail-val">Bloquea horarios de trabajo + conecta con Calendly para que el cliente elija su hora solo</div>
+        </div>
+        <div class="h-config morado">
+          <div class="h-config-label morado">⚙️ Flujo recomendado</div>
+          <div class="h-config-val">Google Calendar (bloquea tu disponibilidad) → Calendly gratuito (crea evento de 60 min) → comparte el link de Calendly cuando alguien quiera una sesión → eliminas el ping-pong de "¿cuándo puedes?"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FUNCIÓN 5: CONTENIDO ===== -->
+  <div class="seccion f5" data-fn="contenido">
+    <div class="sec-header">
+      <div class="sec-icon">🎨</div>
+      <div class="sec-meta">
+        <div class="sec-num">Función 05</div>
+        <div class="sec-nombre">Producir Contenido Simple</div>
+        <div class="sec-desc">Apps para crear piezas de contenido sin diseño profesional</div>
+      </div>
+    </div>
+
+    <div class="herramienta-card">
+      <div class="h-top">
+        <div class="h-left">
+          <div class="h-logo">🎨</div>
+          <div><div class="h-name">Canva</div><div class="h-tipo">Diseño visual</div></div>
+        </div>
+        <div class="badge-gratis">GRATIS</div>
+      </div>
+      <div class="h-desc">Diseña publicaciones, portadas de productos, plantillas editables y carruseles sin saber de diseño. La versión gratuita cubre el 90% de lo que necesitas al inicio.</div>
+      <div class="h-grid">
+        <div class="h-detail">
+          <div class="h-detail-label">Cuándo usarlo</div>
+          <div class="h-detail-val">Para crear cualquier pieza visual: oferta, post, portada de PDF, checklist</div>
+        </div>
+        <div class="h-detail">
+          <div class="h-detail-label">Configuración mínima</div>
+          <div class="h-detail-val">Elige 1 paleta de colores + 1 tipografía + crea plantilla base reutilizable</div>
+        </div>
+        <div class="h-config naranja">
+          <div class="h-config-label naranja">⚙️ Kit visual mínimo</div>
+          <div class="h-config-val">Crea 3 plantillas base: 1 post cuadrado (oferta/contenido) + 1 historia vertical (CTA) + 1 portada de PDF (para tu producto). Guárdalas y reutiliza cambiando solo el texto.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="herramienta-card">
+      <div class="h-top">
+        <div class="h-left">
+          <div class="h-logo">🎙️</div>
+          <div><div class="h-name">CapCut</div><div class="h-tipo">Edición de video</div></div>
+        </div>
+        <div class="badge-gratis">GRATIS</div>
+      </div>
+      <div class="h-desc">Para quienes quieren crear reels, shorts o videos de oferta sin curva de aprendizaje. Tiene subtítulos automáticos, plantillas y edición por voz. Resultado profesional en minutos.</div>
+      <div class="h-grid">
+        <div class="h-detail">
+          <div class="h-detail-label">Cuándo usarlo</div>
+          <div class="h-detail-val">Cuando quieras añadir video corto como canal de contenido o presentación de oferta</div>
+        </div>
+        <div class="h-detail">
+          <div class="h-detail-label">Configuración mínima</div>
+          <div class="h-detail-val">Activa subtítulos automáticos + elige plantilla de texto → graba en vertical → exporta a 1080p</div>
+        </div>
+        <div class="h-config naranja">
+          <div class="h-config-label naranja">⚙️ Video de oferta en 20 minutos</div>
+          <div class="h-config-val">Graba 60–90 seg hablando de tu oferta (problema → solución → precio → cómo contratar) → importa a CapCut → activa subtítulos → ajusta cortes → exporta. Sin música ni efectos: el mensaje es suficiente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLA RESUMEN -->
+  <div class="resumen-section">
+    <div class="resumen-title">📊 Resumen del kit completo</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Herramienta</th>
+          <th>Función</th>
+          <th>Tiempo de setup</th>
+          <th>Cuándo activar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="dot dot-b"></span>Linktree</td>
+          <td>Presencia</td>
+          <td>15 min</td>
+          <td>Día 1</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-b"></span>LinkedIn</td>
+          <td>Presencia</td>
+          <td>45 min</td>
+          <td>Día 1–2</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-y"></span>Google Forms</td>
+          <td>Validar</td>
+          <td>20 min</td>
+          <td>Antes de crear</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-y"></span>WhatsApp Business</td>
+          <td>Validar</td>
+          <td>10 min</td>
+          <td>Día 1</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-g"></span>Hotmart / Gumroad</td>
+          <td>Cobrar</td>
+          <td>30 min</td>
+          <td>Cuando tengas producto</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-g"></span>Mercado Pago</td>
+          <td>Cobrar</td>
+          <td>5 min</td>
+          <td>Día 1 para servicios</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-p"></span>Notion</td>
+          <td>Organizar</td>
+          <td>30 min</td>
+          <td>Día 1</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-p"></span>Google Calendar + Calendly</td>
+          <td>Organizar</td>
+          <td>20 min</td>
+          <td>Con primeros clientes</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-o"></span>Canva</td>
+          <td>Contenido</td>
+          <td>30 min</td>
+          <td>Día 1–2</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-o"></span>CapCut</td>
+          <td>Contenido</td>
+          <td>20 min</td>
+          <td>Cuando agregues video</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ERRORES A EVITAR -->
+  <div class="evitar-section">
+    <div class="evitar-title">🚫 Errores tecnológicos que frenan el inicio</div>
+    <div class="evitar-item">Esperar a tener una web propia antes de ofrecer. Un link de WhatsApp + Linktree es suficiente para vender.</div>
+    <div class="evitar-item">Instalar 10 herramientas "por si acaso". Más setup = más distracción. Activa solo lo que vas a usar esta semana.</div>
+    <div class="evitar-item">Buscar la plataforma perfecta. La plataforma correcta es la que te permite cobrar hoy. Lo demás viene después.</div>
+    <div class="evitar-item">Pagar suscripciones antes de tener ingresos. Todo lo de este kit es gratuito. Si necesitas pagar, es porque ya estás vendiendo.</div>
+    <div class="evitar-item">Pasar más tiempo configurando que vendiendo. El setup máximo para empezar: 2 horas. Después, a ejecutar.</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">MONETIZA YA</div>
+    <div class="footer-sub">BONO 3 — Kit Mínimo de Herramientas Gratuitas · Parte del Toolkit Completo</div>
+  </div>
+
+</div>
+
+<script>
+  function filtrar(fn, btn) {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.seccion').forEach(s => {
+      if (fn === 'todas') {
+        s.style.display = 'block';
+      } else {
+        s.style.display = s.dataset.fn === fn ? 'block' : 'none';
+      }
+    });
+  }
+</script>
+</body>
+</html>

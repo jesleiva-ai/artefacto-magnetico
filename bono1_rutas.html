@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BONO 1 — 5 Rutas de Monetización</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .bono-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f5c518, #f0a500);
+    color: #0a0a0a;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .main-title {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .main-title span {
+    background: linear-gradient(135deg, #f5c518, #f0a500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: #888;
+    max-width: 520px;
+    margin: 0 auto 8px;
+    line-height: 1.6;
+  }
+
+  .tag-line {
+    font-size: 13px;
+    color: #f5c518;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  /* COPY PRESENTACIÓN */
+  .copy-box {
+    background: #111;
+    border: 1px solid #222;
+    border-left: 4px solid #f5c518;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+  }
+
+  .copy-box p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #ccc;
+  }
+
+  .copy-box p strong {
+    color: #fff;
+  }
+
+  /* RUTAS */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .ruta-card {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 16px;
+    position: relative;
+    transition: border-color 0.2s;
+    overflow: hidden;
+  }
+
+  .ruta-card:hover {
+    border-color: #333;
+  }
+
+  .ruta-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+  }
+
+  .r1::before { background: linear-gradient(90deg, #f5c518, #f0a500); }
+  .r2::before { background: linear-gradient(90deg, #22c55e, #16a34a); }
+  .r3::before { background: linear-gradient(90deg, #3b82f6, #2563eb); }
+  .r4::before { background: linear-gradient(90deg, #f97316, #ea580c); }
+  .r5::before { background: linear-gradient(90deg, #a855f7, #9333ea); }
+
+  .ruta-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 16px;
+  }
+
+  .ruta-num {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #444;
+    min-width: 28px;
+    padding-top: 4px;
+  }
+
+  .ruta-info { flex: 1; }
+
+  .ruta-name {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .r1 .ruta-name { color: #f5c518; }
+  .r2 .ruta-name { color: #22c55e; }
+  .r3 .ruta-name { color: #3b82f6; }
+  .r4 .ruta-name { color: #f97316; }
+  .r5 .ruta-name { color: #a855f7; }
+
+  .ruta-desc {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.6;
+  }
+
+  .ruta-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #1e1e1e;
+  }
+
+  .ruta-detail {
+    background: #0d0d0d;
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .detail-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #444;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .detail-value {
+    font-size: 13px;
+    color: #ddd;
+    line-height: 1.5;
+  }
+
+  .ruta-actions {
+    grid-column: 1 / -1;
+    background: #0d0d0d;
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .actions-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .actions-list li {
+    font-size: 13px;
+    color: #bbb;
+    padding: 3px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .actions-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #555;
+  }
+
+  /* TABLA COMPARATIVA */
+  .compare-section {
+    margin-top: 48px;
+    margin-bottom: 48px;
+  }
+
+  .compare-title {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead tr {
+    background: #161616;
+  }
+
+  th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #555;
+    text-transform: uppercase;
+    border-bottom: 1px solid #222;
+  }
+
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #151515;
+    color: #bbb;
+    vertical-align: middle;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td:first-child { font-weight: 600; color: #fff; }
+
+  .dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+
+  .dot-y { background: #f5c518; }
+  .dot-g { background: #22c55e; }
+  .dot-b { background: #3b82f6; }
+  .dot-o { background: #f97316; }
+  .dot-p { background: #a855f7; }
+
+  .badge-sm {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .badge-alta { background: #0f2a0f; color: #22c55e; }
+  .badge-media { background: #2a1f0f; color: #f97316; }
+  .badge-baja { background: #1a1a2e; color: #6b7bff; }
+
+  /* CHECKLIST */
+  .checklist-section {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+
+  .checklist-title {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .checklist-sub {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 24px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .check-box {
+    width: 20px; height: 20px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .check-text { font-size: 14px; color: #ccc; line-height: 1.5; }
+  .check-text strong { color: #fff; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 32px 0 8px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .footer-brand {
+    font-size: 20px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #f5c518, #f0a500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 12px;
+    color: #444;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="bono-badge">⭐ BONO 1</div>
+    <h1 class="main-title">Las 5 Rutas de<br><span>Monetización Más Rápidas</span></h1>
+    <p class="subtitle">Para perfiles sin audiencia grande que quieren ingresos reales, no estrategias de 2 años.</p>
+    <p class="tag-line">Úsala junto a tu Mapa de Monetización Exprés</p>
+  </div>
+
+  <!-- COPY DE PRESENTACIÓN -->
+  <div class="copy-box">
+    <p>Obtén claridad inmediata sobre <strong>qué modelos de ingreso están funcionando hoy</strong> para personas que empiezan desde cero. Esta guía te muestra exactamente dónde están las oportunidades reales para que no pierdas tiempo en caminos que se ven bonitos pero no pagan. Con esta referencia, <strong>tu mapa de monetización deja de ser teórico y se convierte en una ruta viable hacia ingresos.</strong></p>
+  </div>
+
+  <!-- RUTAS -->
+  <div class="section-label">Las 5 rutas</div>
+
+  <!-- RUTA 1 -->
+  <div class="ruta-card r1">
+    <div class="ruta-top">
+      <div class="ruta-num">01</div>
+      <div class="ruta-info">
+        <div class="ruta-name">Servicios Express</div>
+        <div class="ruta-desc">Ofreces una habilidad específica con entrega rápida y precio accesible para validar. Es la ruta más directa al dinero real: alguien paga, tú entregas, punto.</div>
+      </div>
+    </div>
+    <div class="ruta-body">
+      <div class="ruta-detail">
+        <div class="detail-label">¿Qué puedes ofrecer?</div>
+        <div class="detail-value">Diseño, copy, edición, automatizaciones, traducciones, gestión de redes, auditorías, investigación</div>
+      </div>
+      <div class="ruta-detail">
+        <div class="detail-label">Rango de precio</div>
+        <div class="detail-value">$30 – $300 USD por entrega. Empieza bajo para validar y sube según demanda.</div>
+      </div>
+      <div class="ruta-actions">
+        <div class="detail-label">Primeros pasos</div>
+        <ul class="actions-list">
+          <li>Define el servicio en una sola oración: "Hago X para Y en Z tiempo"</li>
+          <li>Escribe tu oferta y precio en un mensaje directo</li>
+          <li>Envíalo a 5–10 contactos o publícalo en tu perfil</li>
+          <li>Entrega, pide testimonio, repite</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUTA 2 -->
+  <div class="ruta-card r2">
+    <div class="ruta-top">
+      <div class="ruta-num">02</div>
+      <div class="ruta-info">
+        <div class="ruta-name">Afiliación Simple</div>
+        <div class="ruta-desc">Recomiendas productos o herramientas que ya usas y recibes comisión por cada venta. No creas nada. Solo conectas personas con soluciones que ya conoces.</div>
+      </div>
+    </div>
+    <div class="ruta-body">
+      <div class="ruta-detail">
+        <div class="detail-label">¿Qué puedes recomendar?</div>
+        <div class="detail-value">Herramientas SaaS, cursos de otros creadores, plataformas (Hotmart, Amazon, etc.), apps con programa de referidos</div>
+      </div>
+      <div class="ruta-detail">
+        <div class="detail-label">Rango de comisión</div>
+        <div class="detail-value">20%–50% en infoproductos. 5%–30% en SaaS. Recurrente si el producto tiene suscripción.</div>
+      </div>
+      <div class="ruta-actions">
+        <div class="detail-label">Primeros pasos</div>
+        <ul class="actions-list">
+          <li>Lista 3 herramientas o cursos que ya usas y recomiendas</li>
+          <li>Busca si tienen programa de afiliados (casi todos tienen)</li>
+          <li>Solicita tu link de afiliado</li>
+          <li>Crea una reseña honesta o publicación de uso real</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUTA 3 -->
+  <div class="ruta-card r3">
+    <div class="ruta-top">
+      <div class="ruta-num">03</div>
+      <div class="ruta-info">
+        <div class="ruta-name">Productos Digitales Iniciales</div>
+        <div class="ruta-desc">Empaquetas tu conocimiento en un recurso descargable de bajo costo y alta escalabilidad. Se vende mientras duermes. Lo creas una vez, lo vendes infinitas veces.</div>
+      </div>
+    </div>
+    <div class="ruta-body">
+      <div class="ruta-detail">
+        <div class="detail-label">¿Qué puedes crear?</div>
+        <div class="detail-value">Plantillas, checklists, guías PDF, mini-kits, swipe files, banco de recursos, calculadoras</div>
+      </div>
+      <div class="ruta-detail">
+        <div class="detail-label">Rango de precio</div>
+        <div class="detail-value">$7 – $47 USD. El precio bajo reduce fricción de compra y acelera primeras ventas.</div>
+      </div>
+      <div class="ruta-actions">
+        <div class="detail-label">Primeros pasos</div>
+        <ul class="actions-list">
+          <li>Identifica algo que ya sabes y que otros te preguntan seguido</li>
+          <li>Transfórmalo en una plantilla o guía en Canva o Google Docs</li>
+          <li>Sube a Gumroad, Hotmart o Stan Store en menos de 1 hora</li>
+          <li>Publica en redes con el resultado concreto que entrega</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUTA 4 -->
+  <div class="ruta-card r4">
+    <div class="ruta-top">
+      <div class="ruta-num">04</div>
+      <div class="ruta-info">
+        <div class="ruta-name">Validación Pagada</div>
+        <div class="ruta-desc">Cobras antes de crear. La demanda real financia el producto. Elimina el riesgo de crear algo que nadie quiere. Si no te pagan, no lo construyes.</div>
+      </div>
+    </div>
+    <div class="ruta-body">
+      <div class="ruta-detail">
+        <div class="detail-label">¿Cómo funciona?</div>
+        <div class="detail-value">Presentas la idea, defines el precio, abres un cupo limitado preventa y entregas cuando tienes compradores confirmados</div>
+      </div>
+      <div class="ruta-detail">
+        <div class="detail-label">Precio de preventa</div>
+        <div class="detail-value">30%–50% menos que el precio final. El descuento es el incentivo por confiar primero.</div>
+      </div>
+      <div class="ruta-actions">
+        <div class="detail-label">Primeros pasos</div>
+        <ul class="actions-list">
+          <li>Define el resultado que entregarás (no el producto, el resultado)</li>
+          <li>Abre 5–10 cupos a precio de fundador</li>
+          <li>Escribe un mensaje directo o publicación de preventa</li>
+          <li>Con 3+ pagos confirmados, empieza a crear</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUTA 5 -->
+  <div class="ruta-card r5">
+    <div class="ruta-top">
+      <div class="ruta-num">05</div>
+      <div class="ruta-info">
+        <div class="ruta-name">Monetización de Habilidades Existentes</div>
+        <div class="ruta-desc">Detectas qué sabes hacer que otros pagarían por aprender o delegar. Tu experiencia cotidiana tiene valor de mercado. Solo necesitas verla desde afuera.</div>
+      </div>
+    </div>
+    <div class="ruta-body">
+      <div class="ruta-detail">
+        <div class="detail-label">¿Qué puedes monetizar?</div>
+        <div class="detail-value">Procesos que dominas, métodos que desarrollaste, errores que superaste, sistemas que optimizaste</div>
+      </div>
+      <div class="ruta-detail">
+        <div class="detail-label">Formatos posibles</div>
+        <div class="detail-value">Sesión de consultoría, taller en vivo, mini-curso, mentoría puntual, auditoría</div>
+      </div>
+      <div class="ruta-actions">
+        <div class="detail-label">Primeros pasos</div>
+        <ul class="actions-list">
+          <li>Pregúntate: ¿qué me preguntan seguido que yo resuelvo fácil?</li>
+          <li>Convierte esa respuesta en una sesión de 60 min con precio</li>
+          <li>Ofrécelo directamente a 5 personas de tu red</li>
+          <li>Con 2 sesiones pagas, ya tienes un servicio validado</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLA COMPARATIVA -->
+  <div class="compare-section">
+    <div class="compare-title">📊 Comparativa rápida de las 5 rutas</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Ruta</th>
+          <th>Velocidad de ingreso</th>
+          <th>Audiencia necesaria</th>
+          <th>Esfuerzo de creación</th>
+          <th>Escalabilidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="dot dot-y"></span>Servicios Express</td>
+          <td><span class="badge-sm badge-alta">Muy alta</span></td>
+          <td>Mínima</td>
+          <td>Bajo</td>
+          <td>Media</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-g"></span>Afiliación Simple</td>
+          <td><span class="badge-sm badge-media">Media</span></td>
+          <td>Pequeña</td>
+          <td>Muy bajo</td>
+          <td>Alta</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-b"></span>Productos Digitales</td>
+          <td><span class="badge-sm badge-media">Media</span></td>
+          <td>Pequeña</td>
+          <td>Medio</td>
+          <td>Muy alta</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-o"></span>Validación Pagada</td>
+          <td><span class="badge-sm badge-alta">Alta</span></td>
+          <td>Mínima</td>
+          <td>Bajo</td>
+          <td>Media</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-p"></span>Habilidades Existentes</td>
+          <td><span class="badge-sm badge-alta">Alta</span></td>
+          <td>Mínima</td>
+          <td>Muy bajo</td>
+          <td>Media</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CHECKLIST DE DECISIÓN -->
+  <div class="checklist-section">
+    <div class="checklist-title">✅ ¿Cuál ruta es la tuya ahora?</div>
+    <div class="checklist-sub">Marca lo que aplica para tu situación actual y la ruta recomendada aparecerá sola.</div>
+
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Necesito ingresos esta semana</strong> → Ruta 1 (Servicios Express) o Ruta 5 (Habilidades Existentes)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>No quiero crear nada todavía</strong> → Ruta 2 (Afiliación Simple)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Quiero algo que funcione sin mi tiempo</strong> → Ruta 3 (Productos Digitales)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Tengo una idea pero miedo a crear algo que no se venda</strong> → Ruta 4 (Validación Pagada)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Sé hacer algo bien pero nunca lo cobré</strong> → Ruta 5 (Habilidades Existentes)</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">MONETIZA YA</div>
+    <div class="footer-sub">BONO 1 — Guía de las 5 Rutas de Monetización · Parte del Toolkit Completo</div>
+  </div>
+
+</div>
+</body>
+</html>

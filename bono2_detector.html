@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BONO 2 — Detector de Bloqueos</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .page { max-width: 780px; margin: 0 auto; }
+
+  /* HEADER */
+  .bono-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #a855f7, #7c3aed);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .header { text-align: center; margin-bottom: 40px; }
+
+  .main-title {
+    font-size: clamp(26px, 5vw, 44px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .main-title span {
+    background: linear-gradient(135deg, #a855f7, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle { font-size: 14px; color: #888; max-width: 520px; margin: 0 auto 8px; line-height: 1.7; }
+  .tag-line { font-size: 13px; color: #a855f7; font-weight: 600; letter-spacing: 1px; }
+
+  /* COPY BOX */
+  .copy-box {
+    background: #111;
+    border: 1px solid #222;
+    border-left: 4px solid #a855f7;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 36px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #ccc;
+  }
+  .copy-box strong { color: #fff; }
+
+  /* VALOR */
+  .valor-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1a0f2e;
+    border: 1px solid #3b1f6e;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: #c084fc;
+    font-weight: 700;
+    margin-bottom: 36px;
+  }
+
+  /* INSTRUCCIONES */
+  .instruc {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .instruc-icon { font-size: 24px; flex-shrink: 0; }
+  .instruc-text { font-size: 13px; color: #999; line-height: 1.7; }
+  .instruc-text strong { color: #ddd; }
+
+  /* SECTION */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .section-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-icon { background: #1a0a2e; }
+  .s2 .section-icon { background: #0f1a2e; }
+  .s3 .section-icon { background: #1a1a0a; }
+  .s4 .section-icon { background: #1a0f0a; }
+
+  .section-meta { flex: 1; }
+  .section-num { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #555; text-transform: uppercase; margin-bottom: 2px; }
+  .section-title { font-size: 17px; font-weight: 800; }
+  .s1 .section-title { color: #a855f7; }
+  .s2 .section-title { color: #3b82f6; }
+  .s3 .section-title { color: #f5c518; }
+  .s4 .section-title { color: #f97316; }
+
+  .section-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
+
+  /* PREGUNTA */
+  .pregunta-block {
+    background: #111;
+    border: 1px solid #1a1a1a;
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+  }
+
+  .pregunta-text {
+    font-size: 14px;
+    color: #ddd;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .opcion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #0d0d0d;
+    border: 1px solid #222;
+    border-radius: 10px;
+    padding: 11px 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 13px;
+    color: #aaa;
+  }
+
+  .opcion:hover { border-color: #333; color: #ddd; }
+  .opcion.selected { border-color: #a855f7; background: #1a0f2e; color: #fff; }
+  .opcion.selected .radio { background: #a855f7; border-color: #a855f7; }
+
+  .opcion.selected.score-0 { border-color: #22c55e; background: #0a1f0a; }
+  .opcion.selected.score-0 .radio { background: #22c55e; border-color: #22c55e; }
+  .opcion.selected.score-1 { border-color: #f5c518; background: #1a1a0a; }
+  .opcion.selected.score-1 .radio { background: #f5c518; border-color: #f5c518; }
+  .opcion.selected.score-2 { border-color: #f97316; background: #1a0f0a; }
+  .opcion.selected.score-2 .radio { background: #f97316; border-color: #f97316; }
+  .opcion.selected.score-3 { border-color: #ef4444; background: #1f0a0a; }
+  .opcion.selected.score-3 .radio { background: #ef4444; border-color: #ef4444; }
+
+  .radio {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+
+  /* SEPARADOR */
+  .divider { border: none; border-top: 1px solid #1a1a1a; margin: 36px 0; }
+
+  /* BOTÓN VER RESULTADOS */
+  .btn-wrap { text-align: center; margin: 36px 0; }
+
+  .btn-resultado {
+    background: linear-gradient(135deg, #a855f7, #7c3aed);
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-resultado:hover { opacity: 0.9; }
+
+  /* PROGRESO */
+  .progreso-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .progreso-bar {
+    flex: 1;
+    height: 4px;
+    background: #1a1a1a;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progreso-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #a855f7, #c084fc);
+    border-radius: 4px;
+    transition: width 0.3s;
+    width: 0%;
+  }
+
+  .progreso-label { font-size: 12px; color: #555; min-width: 60px; text-align: right; }
+
+  /* RESULTADOS */
+  #resultados { display: none; }
+
+  .resultado-header {
+    text-align: center;
+    padding: 40px 24px;
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+
+  .resultado-emoji { font-size: 48px; margin-bottom: 16px; }
+  .resultado-titulo { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+  .resultado-sub { font-size: 14px; color: #888; line-height: 1.6; max-width: 480px; margin: 0 auto; }
+
+  .bloqueo-card {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .bloqueo-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .bloqueo-nivel {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .nivel-alto { background: #ef4444; }
+  .nivel-medio { background: #f97316; }
+  .nivel-bajo { background: #22c55e; }
+
+  .bloqueo-nombre { font-size: 15px; font-weight: 800; flex: 1; }
+  .bloqueo-score { font-size: 12px; color: #555; }
+
+  .bloqueo-desc { font-size: 13px; color: #999; line-height: 1.6; margin-bottom: 16px; }
+
+  .reencuadre {
+    background: #0d0d0d;
+    border-left: 3px solid #a855f7;
+    border-radius: 0 10px 10px 0;
+    padding: 14px 16px;
+  }
+
+  .reencuadre-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #a855f7;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .reencuadre-text { font-size: 13px; color: #ddd; line-height: 1.6; }
+
+  .barra-bloqueo {
+    height: 4px;
+    background: #1a1a1a;
+    border-radius: 4px;
+    margin: 10px 0 14px;
+    overflow: hidden;
+  }
+
+  .barra-fill { height: 100%; border-radius: 4px; transition: width 0.6s; }
+
+  .cierre-card {
+    background: #111;
+    border: 1px solid #2a1f3e;
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+    margin-top: 32px;
+  }
+
+  .cierre-card h3 { font-size: 18px; font-weight: 900; margin-bottom: 10px; }
+  .cierre-card p { font-size: 14px; color: #999; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 32px 0 8px;
+    border-top: 1px solid #1a1a1a;
+    margin-top: 48px;
+  }
+
+  .footer-brand {
+    font-size: 20px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #a855f7, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .footer-sub { font-size: 12px; color: #444; }
+
+  @media (max-width: 480px) {
+    .instruc { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="bono-badge">🧠 BONO 2</div>
+    <h1 class="main-title">Detector de<br><span>Bloqueos de Monetización</span></h1>
+    <p class="subtitle">El enemigo más silencioso no está afuera. Está en los patrones mentales que te hacen abandonar procesos antes de ver resultados.</p>
+    <p class="tag-line">Diagnóstico personal en menos de 10 minutos</p>
+  </div>
+
+  <div style="text-align:center">
+    <div class="valor-pill">💜 Valor individual: USD 19</div>
+  </div>
+
+  <!-- COPY -->
+  <div class="copy-box">
+    Descubre en minutos <strong>qué patrón interno está frenando tu capacidad de generar ingresos</strong> y cómo neutralizarlo antes de que vuelva a sabotearte. Este diagnóstico te permite avanzar con más seguridad y menos sobrepensamiento, incluso si antes te costó sostener procesos.
+  </div>
+
+  <!-- INSTRUCCIONES -->
+  <div class="instruc">
+    <div class="instruc-icon">📋</div>
+    <div class="instruc-text">
+      <strong>Cómo usar esta autoevaluación:</strong><br>
+      Lee cada afirmación y selecciona la opción que más se acerque a tu experiencia real — no la que te gustaría que fuera. No hay respuestas correctas ni incorrectas. La honestidad es la que produce el diagnóstico más útil. Al terminar, haz clic en <strong>"Ver mi diagnóstico"</strong>.
+    </div>
+  </div>
+
+  <!-- PROGRESO -->
+  <div class="progreso-wrap">
+    <div class="progreso-bar"><div class="progreso-fill" id="progresoFill"></div></div>
+    <div class="progreso-label" id="progresoLabel">0 / 12</div>
+  </div>
+
+  <!-- ===================== BLOQUE 1 ===================== -->
+  <div class="s1">
+    <div class="section-header">
+      <div class="section-icon">💭</div>
+      <div class="section-meta">
+        <div class="section-num">Área 01</div>
+        <div class="section-title">Sabotajes Mentales</div>
+      </div>
+    </div>
+    <div class="section-desc">Pensamientos recurrentes que interrumpen tu avance justo cuando estás a punto de avanzar.</div>
+
+    <div class="pregunta-block" data-area="sabotaje">
+      <div class="pregunta-text">Cuando estoy a punto de publicar algo o hacer una oferta, aparece una voz interna que me dice que no estoy lista/listo o que falta algo.</div>
+      <div class="opciones">
+        <div class="opcion score-0" onclick="seleccionar(this, 0, 'sabotaje')"><div class="radio"></div>Casi nunca me pasa</div>
+        <div class="opcion score-1" onclick="seleccionar(this, 1, 'sabotaje')"><div class="radio"></div>A veces lo siento pero igual avanzo</div>
+        <div class="opcion score-2" onclick="seleccionar(this, 2, 'sabotaje')"><div class="radio"></div>Me frena con frecuencia</div>
+        <div class="opcion score-3" onclick="seleccionar(this, 3, 'sabotaje')"><div class="radio"></div>Es constante y casi siempre me detiene</div>
+      </div>
+    </div>
+
+    <div class="pregunta-block" data-area="sabotaje">
+      <div class="pregunta-text">Pienso que otras personas que hacen lo mismo que yo lo hacen mejor, tienen más credenciales o más experiencia.</div>
+      <div class="opciones">
+        <div class="opcion score-0" onclick="seleccionar(this, 0, 'sabotaje')"><div class="radio"></div>No suelo compararme de esa forma</div>
+        <div class="opcion score-1" onclick="seleccionar(this, 1, 'sabotaje')"><div class="radio"></div>Lo pienso pero no me paraliza</div>
+        <div class="opcion score-2" onclick="seleccionar(this, 2, 'sabotaje')"><div class="radio"></div>Me genera inseguridad frecuente</div>
+        <div class="opcion score-3" onclick="seleccionar(this, 3, 'sabotaje')"><div class="radio"></div>Siento que nunca seré suficientemente buena/o</div>
+      </div>
+    </div>
+
+    <div class="pregunta-block" data-area="sabotaje">
+      <div class="pregunta-text">Cuando algo sale mal (poca respuesta, sin ventas, crítica), tiendo a interpretar que el problema soy yo o que no sirvo para esto.</div>
+      <div class="opciones">
+        <div class="opcion score-0" onclick="seleccionar(this, 0, 'sabotaje')"><div class="radio"></div>Lo analizo sin dramatismo y ajusto</div>
+        <div class="opcion score-1" onclick="seleccionar(this, 1, 'sabotaje')"><div class="radio"></div>Me afecta un poco pero sigo</div>
+        <div class="opcion score-2" onclick="seleccionar(this, 2, 'sabotaje')"><div class="radio"></div>Me genera dudas profundas sobre si puedo</div>
+        <div class="opcion score-3" onclick="seleccionar(this, 3, 'sabotaje')"><div class="radio"></div>Un solo fracaso me convence de que no es para mí</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ===================== BLOQUE 2 ===================== -->
+  <div class="s2">
+    <div class="section-header">
+      <div class="section-icon">🔄</div>
+      <div class="section-meta">
+        <div class="section-num">Área 02</div>
+        <div class="section-title">Patrones de Dispersión</div>
+      </div>
+    </div>
+    <div class="section-desc">Por qué empiezas muchas cosas y completas pocas. El problema no es falta de disciplina, es un patrón que tiene lógica propia.</div>
+
+    <div class="pregunta-block" data-area="dispersion">
+      <div class="pregunta-text">Tengo cursos o materiales comprados que empecé y no terminé, o recursos que pensé usar y nunca activé.</div>
+      <div class="opciones">
+        <div class="opcion score-0" onclick="seleccionar(this, 0, 'dispersion')"><div class="radio"></div>Tengo uno o dos, nada preocupante</div>
+        <div class="opcion score-1" onclick="seleccionar(this, 1, 'dispersion')"><div class="radio"></div>Varios, pero lo reconozco y estoy trabajando en eso</div>
+        <div class="opcion score-2" onclick="seleccionar(this, 2, 'dispersion')"><div class="radio"></div>Muchos. Es un patrón que se repite</div>
+        <div class="opcion score-3" onclick="seleccionar(this, 3, 'dispersion')"><div class="radio"></div>Es mi forma habitual. Compro, empiezo, abandono</div>
+      </div>
+    </div>
+
+    <div class="pregunta-block" data-area="dispersion">
+      <div class="pregunta-text">Cuando encuentro una idea nueva (nicho, estrategia, plataforma), siento el impulso de seguirla aunque aún no haya terminado lo anterior.</div>
+      <div class="opciones">
+        <div class="opcion score-0" onclick="seleccionar(this, 0, 'dispersion')"><div class="radio"></div>Evalúo bien antes de cambiar el foco</div>
+        <div class="opcion score-1" onclick="seleccionar(this, 1, 'dispersion')"><div class="radio"></div>A veces, pero logro quedarme en el camino</div>
+        <div class="opcion score-2" onclick="seleccionar(this, 2, 'dispersion')"><div class="radio"></div>Con frecuencia me desvío hacia lo nuevo</div>
+        <div class="opcion score-3" onclick="seleccionar(this, 3, 'dispersion')"><div class="radio"></div>El brillo de lo nuevo siempre gana</div>
+      </div>
+    </div>
+
+    <div class="pregunta-block" data-area="dispersion">
+      <div class="pregunta-text">Cuando siento que algo se pone difícil o los resultados tardan, tiendo a pensar que quizás el problema es la estrategia o el nicho.</div>
+      <div class="opciones">
+        <div class="opcion score-0" onclick="seleccionar(this, 0, 'dispersion')"><div class="radio"></div>Distingo bien entre ajuste necesario y escapar de la incomodidad</div>
+        <div class="opcion score-1" onclick="seleccionar(this, 1, 'dispersion')"><div class="radio"></div>A veces lo confundo pero lo identifico</div>
+        <div class="opcion score-2" onclick="seleccionar(this, 2, 'dispersion')"><div class="radio"></div>Frecuentemente cambio de estrategia antes de tiempo</div>
+        <div class="opcion score-3" onclick="seleccionar(this, 3, 'dispersion')"><div class="radio"></div>La incomodidad casi siempre me hace pivotar</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ===================== BLOQUE 3 ===================== -->
+  <div class="s3">
+    <div class="section-header">
+      <div class="section-icon">💸</div>
+      <div class="section-meta">
+        <div class="section-num">Área 03</div>
+        <div class="section-title">Miedos a Vender</div>
+      </div>
+    </div>
+    <div class="section-desc">Qué te hace sentir incómodo/a al ofrecer lo que sabes. El malestar con vender casi siempre tiene raíz emocional, no estratégica.</div>
+
+    <div class="pregunta-block" data-area="vender">
+      <div class="pregunta-text">Siento incomodidad o vergüenza al poner un precio a lo que ofrezco o al pedirle explícitamente a alguien que me pague.</div>
+      <div class="opciones">
+        <div class="opcion score-0" onclick="seleccionar(this, 0, 'vender')"><div class="radio"></div>Cobro con naturalidad y sin culpa</div>
+        <div class="opcion score-1" onclick="seleccionar(this, 1, 'vender')"><div class="radio"></div>Me incomoda un poco pero lo hago igual</div>
+        <div class="opcion score-2" onclick="seleccionar(this, 2, 'vender')"><div class="radio"></div>Me cuesta mucho, suelo ofrecer descuentos o vacilar</div>
+        <div class="opcion score-3" onclick="seleccionar(this, 3, 'vender')"><div class="radio"></div>Prefiero no cobrar antes que sentirme mal al pedirlo</div>
+      </div>
+    </div>
+
+    <div class="pregunta-block" data-area="vender">
+      <div class="pregunta-text">Me preocupa que si publico mi oferta, las personas me vean como alguien "que solo quiere dinero" o que pierdan confianza en mí.</div>
+      <div class="opciones">
+        <div class="opcion score-0" onclick="seleccionar(this, 0, 'vender')"><div class="radio"></div>No me preocupa, vender es parte de ayudar</div>
+        <div class="opcion score-1" onclick="seleccionar(this, 1, 'vender')"><div class="radio"></div>Lo pienso pero no me frena</div>
+        <div class="opcion score-2" onclick="seleccionar(this, 2, 'vender')"><div class="radio"></div>Me hace publicar con mucha cautela o poco seguido</div>
+        <div class="opcion score-3" onclick="seleccionar(this, 3, 'vender')"><div class="radio"></div>Por eso evito hacer ofertas directas</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ===================== BLOQUE 4 ===================== -->
+  <div class="s4">
+    <div class="section-header">
+      <div class="section-icon">🔒</div>
+      <div class="section-meta">
+        <div class="section-num">Área 04</div>
+        <div class="section-title">Frenos Invisibles</div>
+      </div>
+    </div>
+    <div class="section-desc">Creencias sobre el dinero, el mérito o la visibilidad que operan en piloto automático sin que las notes.</div>
+
+    <div class="pregunta-block" data-area="frenos">
+      <div class="pregunta-text">En algún nivel, siento que ganar mucho dinero haciendo algo que disfruto no está bien, o que el éxito económico viene siempre con un costo personal alto.</div>
+      <div class="opciones">
+        <div class="opcion score-0" onclick="seleccionar(this, 0, 'frenos')"><div class="radio"></div>No, asocio el dinero con libertad y bienestar</div>
+        <div class="opcion score-1" onclick="seleccionar(this, 1, 'frenos')"><div class="radio"></div>A veces lo pienso pero no lo creo del todo</div>
+        <div class="opcion score-2" onclick="seleccionar(this, 2, 'frenos')"><div class="radio"></div>Tengo esa creencia instalada aunque sé que no es racional</div>
+        <div class="opcion score-3" onclick="seleccionar(this, 3, 'frenos')"><div class="radio"></div>Claramente opero desde esa creencia sin poder soltarla</div>
+      </div>
+    </div>
+
+    <div class="pregunta-block" data-area="frenos">
+      <div class="pregunta-text">Siento que no me he "ganado" el derecho a cobrar bien o a posicionarme como experta/o porque aún me falta experiencia, certificación o resultados.</div>
+      <div class="opciones">
+        <div class="opcion score-0" onclick="seleccionar(this, 0, 'frenos')"><div class="radio"></div>Reconozco mi valor sin necesitar validación externa</div>
+        <div class="opcion score-1" onclick="seleccionar(this, 1, 'frenos')"><div class="radio"></div>Lo pienso pero no me impide avanzar</div>
+        <div class="opcion score-2" onclick="seleccionar(this, 2, 'frenos')"><div class="radio"></div>Me hace postergar hasta tener más títulos o resultados</div>
+        <div class="opcion score-3" onclick="seleccionar(this, 3, 'frenos')"><div class="radio"></div>Nunca siento que es suficiente para empezar a cobrar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTÓN -->
+  <div class="btn-wrap">
+    <button class="btn-resultado" onclick="verResultados()">Ver mi diagnóstico →</button>
+  </div>
+
+  <!-- ===================== RESULTADOS ===================== -->
+  <div id="resultados">
+
+    <div class="resultado-header" id="resultadoHeader"></div>
+
+    <div style="margin-bottom:12px; font-size:11px; font-weight:700; letter-spacing:3px; color:#555; text-transform:uppercase;">Tu mapa de bloqueos</div>
+
+    <div id="resultadoCards"></div>
+
+    <div class="cierre-card" id="cierreCard"></div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">MONETIZA YA</div>
+    <div class="footer-sub">BONO 2 — Detector de Bloqueos de Monetización · Parte del Toolkit Completo</div>
+  </div>
+
+</div>
+
+<script>
+  const puntajes = { sabotaje: [], dispersion: [], vender: [], frenos: [] };
+  const totalPreguntas = 12;
+  let respondidas = 0;
+
+  function seleccionar(el, score, area) {
+    const bloque = el.closest('.pregunta-block');
+    const prevSelected = bloque.querySelector('.opcion.selected');
+    const yaRespondida = !!prevSelected;
+
+    bloque.querySelectorAll('.opcion').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+
+    // Actualizar puntajes
+    const idx = [...document.querySelectorAll('.pregunta-block[data-area="' + area + '"]')].indexOf(bloque);
+    if (!puntajes[area][idx] && puntajes[area][idx] !== 0) puntajes[area][idx] = null;
+
+    if (!yaRespondida) respondidas++;
+    puntajes[area][idx] = score;
+
+    actualizarProgreso();
+  }
+
+  function actualizarProgreso() {
+    const pct = Math.round((respondidas / totalPreguntas) * 100);
+    document.getElementById('progresoFill').style.width = pct + '%';
+    document.getElementById('progresoLabel').textContent = respondidas + ' / ' + totalPreguntas;
+  }
+
+  function sumar(arr) { return arr.reduce((a, b) => a + (b || 0), 0); }
+
+  const DATA = {
+    sabotaje: {
+      nombre: 'Sabotajes Mentales',
+      icon: '💭',
+      desc: 'Tus patrones de autocrítica y comparación son activos y te generan frenos reales antes de actuar.',
+      reencuadres: [
+        'El 90% de los negocios exitosos empezaron desde la imperfección. "Listo" es una ilusión; lo que importa es que funciona.',
+        'Tienes señales de autocrítica moderada. Úsala como brújula, no como juez: sirve para mejorar, no para detenerte.',
+        'Tu autocrítica está calibrada. Sigue validando con datos reales, no con percepciones internas.'
+      ]
+    },
+    dispersion: {
+      nombre: 'Patrones de Dispersión',
+      icon: '🔄',
+      desc: 'Cambias de dirección antes de que los resultados lleguen. El problema no es el nicho ni la estrategia — es el tiempo que le das a cada intento.',
+      reencuadres: [
+        'La dispersión alta tiene solución concreta: comprometerte con UNA sola acción por 30 días antes de evaluar cambios.',
+        'Tienes tendencia a pivotar cuando la incomodidad sube. Ponle nombre a ese impulso y espera 48h antes de actuar.',
+        'Tu foco es bueno. Mantén el criterio de terminar antes de empezar algo nuevo.'
+      ]
+    },
+    vender: {
+      nombre: 'Miedos a Vender',
+      icon: '💸',
+      desc: 'Tienes incomodidad real con el acto de cobrar y ofrecer. Esto hace que tu ejecución se vea afectada aunque tu propuesta sea sólida.',
+      reencuadres: [
+        'Vender es transferir entusiasmo por algo que resuelve un problema real. No es pedir — es ofrecer una solución. Practica con personas de confianza primero.',
+        'La incomodidad al cobrar suele bajar con la repetición. Haz una oferta esta semana, aunque sea pequeña.',
+        'Tu relación con la venta es sana. Sigue desarrollando esa confianza con consistencia.'
+      ]
+    },
+    frenos: {
+      nombre: 'Frenos Invisibles',
+      icon: '🔒',
+      desc: 'Operas con creencias profundas sobre el dinero y el mérito que limitan cuánto puedes pedir y cuánto crees merecer.',
+      reencuadres: [
+        'Las creencias sobre el dinero se instalaron antes de los 12 años. Identificarlas es el primer paso para elegir otras. Pregúntate: ¿esta creencia me la enseñaron o la elegí?',
+        'El "síndrome del impostor" no desaparece esperando — desaparece actuando y viendo resultados. Empieza pequeño.',
+        'Tu relación con el dinero y el mérito es equilibrada. Sigue reforzando esa perspectiva con acción consistente.'
+      ]
+    }
+  };
+
+  function verResultados() {
+    if (respondidas < totalPreguntas) {
+      alert('Por favor responde todas las preguntas antes de ver tu diagnóstico.');
+      return;
+    }
+
+    const scores = {
+      sabotaje: sumar(puntajes.sabotaje),
+      dispersion: sumar(puntajes.dispersion),
+      vender: sumar(puntajes.vender),
+      frenos: sumar(puntajes.frenos)
+    };
+
+    const total = Object.values(scores).reduce((a, b) => a + b, 0);
+    const pctTotal = Math.round((total / 36) * 100);
+
+    // Header
+    let emoji, titulo, sub;
+    if (pctTotal <= 25) {
+      emoji = '🟢'; titulo = 'Perfil con bajo nivel de bloqueo'; sub = 'Tus principales barreras son menores o están bien gestionadas. El foco ahora debe ser ejecución consistente, no más trabajo interno.';
+    } else if (pctTotal <= 55) {
+      emoji = '🟡'; titulo = 'Perfil con bloqueos moderados activos'; sub = 'Tienes patrones que frenan tu avance de forma intermitente. Son manejables con ajustes concretos. Los reencuadres de abajo son tu herramienta inmediata.';
+    } else {
+      emoji = '🔴'; titulo = 'Perfil con bloqueos de alto impacto'; sub = 'Tus patrones internos están teniendo un efecto directo en tu capacidad de monetizar. La buena noticia: ahora los ves. Y lo que se ve, se puede cambiar.';
+    }
+
+    document.getElementById('resultadoHeader').innerHTML = `
+      <div class="resultado-emoji">${emoji}</div>
+      <div class="resultado-titulo">${titulo}</div>
+      <div class="resultado-sub">${sub}</div>
+    `;
+
+    // Cards ordenadas por score desc
+    const orden = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    let cardsHTML = '';
+
+    orden.forEach(([key, score]) => {
+      const max = key === 'vender' ? 6 : 9;
+      const pct = Math.round((score / max) * 100);
+      const nivel = pct >= 66 ? 'alto' : pct >= 33 ? 'medio' : 'bajo';
+      const labelNivel = nivel === 'alto' ? 'Bloqueo alto' : nivel === 'medio' ? 'Bloqueo moderado' : 'Bloqueo bajo';
+      const d = DATA[key];
+
+      let reencuadreIdx = nivel === 'alto' ? 0 : nivel === 'medio' ? 1 : 2;
+      let barColor = nivel === 'alto' ? '#ef4444' : nivel === 'medio' ? '#f97316' : '#22c55e';
+
+      cardsHTML += `
+        <div class="bloqueo-card">
+          <div class="bloqueo-top">
+            <div class="bloqueo-nivel nivel-${nivel}"></div>
+            <div class="bloqueo-nombre">${d.icon} ${d.nombre}</div>
+            <div class="bloqueo-score">${labelNivel} · ${score}/${max}</div>
+          </div>
+          <div class="barra-bloqueo"><div class="barra-fill" style="width:${pct}%;background:${barColor}"></div></div>
+          ${nivel !== 'bajo' ? `<div class="bloqueo-desc">${d.desc}</div>` : ''}
+          <div class="reencuadre">
+            <div class="reencuadre-label">⚡ Micro-reencuadre accionable</div>
+            <div class="reencuadre-text">${d.reencuadres[reencuadreIdx]}</div>
+          </div>
+        </div>
+      `;
+    });
+
+    document.getElementById('resultadoCards').innerHTML = cardsHTML;
+
+    // Cierre
+    const masAlto = orden[0];
+    document.getElementById('cierreCard').innerHTML = `
+      <h3>Tu próximo paso concreto 🎯</h3>
+      <p style="margin-top:12px">Tu bloqueo más activo es <strong>${DATA[masAlto[0]].nombre}</strong>. No necesitas resolverlo todo antes de avanzar. Solo necesitas <strong>una acción pequeña esta semana</strong> que demuestre que ese patrón no tiene el control. Elige la más pequeña posible y hazla hoy.</p>
+    `;
+
+    document.getElementById('resultados').style.display = 'block';
+    document.getElementById('resultados').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+</body>
+</html>
