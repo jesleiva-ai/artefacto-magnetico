@@ -425,8 +425,11 @@ Sí, en Mi plan (3 tareas principales, 2 de apoyo y 1 microacción). Se guarda s
 **¿Tiene modo oscuro?**
 Sí. Se activa sola si tu celular está en modo oscuro.
 
+**¿Cuánto cuesta?**
+Está en precio de lanzamiento: $9.999 ARS, un solo pago. Incluye la app con el camino de 28 días, las 5 guías y los 10 bonos.
+
 **¿Es una suscripción?**
-No. Es un pago único (según la página de venta).
+No. Es un pago único.
 
 **¿Reemplaza a un psicólogo o médico?**
 No. Es material educativo para organizarte y cuidarte en el día a día. Si estás atravesando un momento muy difícil, buscá ayuda profesional.
@@ -452,7 +455,8 @@ Está hecha para abrirse en cualquier navegador de celular. *(Pendiente de prueb
 - Modo oscuro automático; sin errores de JavaScript en la prueba.
 - Sin cuenta, sin notificaciones, sin sonido, sin modo offline.
 - Aviso de que es material educativo y no reemplaza a un profesional.
-- Página de venta: precio **$20.000 ARS**, **pago único** con **Mercado Pago**, entrega del enlace **manual por WhatsApp**.
+- **Precio vigente: $9.999 ARS, precio de lanzamiento** (confirmado por la dueña el 18/10/2026). Pago único, sin suscripción. Entrega del enlace **manual por WhatsApp**.
+- Atención: la página "Acceso" (artifact de Claude) todavía muestra $20.000 ARS. Si una clienta la menciona, el precio que vale es el de lanzamiento, $9.999 ARS.
 
 ### 7.2 ⏳ Pendiente de prueba
 - Apertura del enlace de la app (claude.ai) por una persona **sin cuenta de Claude**, en Android e iPhone reales.
@@ -465,7 +469,7 @@ Está hecha para abrirse en cualquier navegador de celular. *(Pendiente de prueb
 
 ### 7.3 🧭 Decisiones comerciales que debe definir la propietaria
 1. **Enlace oficial de entrega:** ¿la compradora recibe el enlace de claude.ai o una página de systeme.io? Definir uno solo y confirmar que se abre sin cuenta.
-2. **Precio vigente** y si hay promociones, cuotas o precio en otras monedas (la página dice $20.000 ARS).
+2. **Precio:** definido en **$9.999 ARS (lanzamiento)**. Falta definir hasta cuándo dura el precio de lanzamiento, cuál será el precio después y si hay cuotas. Hasta que se defina, la agente no debe inventar fechas de vencimiento ni urgencia ("solo hoy", "últimas horas").
 3. **Medios de pago aceptados** además del enlace de Mercado Pago (transferencia, alias, etc.).
 4. **Tiempo de entrega prometido** (hoy: "apenas veo tu mensaje"; de madrugada, "a primera hora") y horario de atención.
 5. **Política de devolución o garantía**: la página de acceso **no menciona ninguna**. Definirla antes de que la agente responda sobre reembolsos.
