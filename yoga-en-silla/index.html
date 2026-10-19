@@ -1,0 +1,1111 @@
+<title>Yoga en Silla</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#2E6F62">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Young+Serif&display=swap">
+<style>
+/* Layout: una columna tipo app de celular (máx. 560px), barra de pestañas fija abajo, reproductor a pantalla completa. */
+:root {
+  --bg: #F1F4F1;
+  --surface: #FFFFFF;
+  --ink: #1D2A27;
+  --muted: #56655F;
+  --line: #D9E1DC;
+  --accent: #2E6F62;
+  --accent-soft: #DCEBE4;
+  --on-accent: #FFFFFF;
+  --breath: #B5698F;
+  --breath-soft: #F4E3EC;
+  --ok: #3E7F4F;
+  --skin: #E0B194;
+  --hair: #4B3330;
+  --top: #2E6F62;
+  --legs: #3E4C5E;
+  --chair: #C7B39A;
+  --chair-dark: #A8937A;
+  --font-display: "Young Serif", Georgia, "Times New Roman", serif;
+  --font-body: "Lexend", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --radius: 18px;
+  --fs: 17px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111816; --surface: #1A2421; --ink: #E7EFEB; --muted: #A0B3AC; --line: #2C3934;
+    --accent: #7FC4B2; --accent-soft: #1E3832; --on-accent: #0D1C18;
+    --breath: #E0A3C2; --breath-soft: #3A2632; --ok: #8BCB99;
+    --skin: #D7A788; --hair: #6B4A44; --top: #4E9A88; --legs: #6C7D92; --chair: #6F604F; --chair-dark: #8A7962;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111816; --surface: #1A2421; --ink: #E7EFEB; --muted: #A0B3AC; --line: #2C3934;
+  --accent: #7FC4B2; --accent-soft: #1E3832; --on-accent: #0D1C18;
+  --breath: #E0A3C2; --breath-soft: #3A2632; --ok: #8BCB99;
+  --skin: #D7A788; --hair: #6B4A44; --top: #4E9A88; --legs: #6C7D92; --chair: #6F604F; --chair-dark: #8A7962;
+  color-scheme: dark;
+}
+:root.fs-l { --fs: 19px; }
+:root.fs-xl { --fs: 21px; }
+
+html, body { height: 100%; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--fs); line-height: 1.5; font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--breath); outline-offset: 2px; border-radius: 8px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: 1.75em; }
+h2 { font-size: 1.3em; }
+h3 { font-size: 1.08em; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.label { font-size: .74em; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.num { font-variant-numeric: tabular-nums; }
+
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+
+.app {
+  max-width: 560px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px calc(110px + env(safe-area-inset-bottom, 0px));
+}
+.view { display: grid; gap: 22px; }
+
+/* Barra de pestañas */
+.tabs {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--surface); border-top: 1px solid var(--line);
+  padding: 8px max(16px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.tabs-inner { max-width: 560px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.tab {
+  display: grid; justify-items: center; gap: 2px; padding: 8px 4px; border: 0; background: none;
+  border-radius: 14px; color: var(--muted); font-size: .78em; font-weight: 500; min-height: 58px;
+}
+.tab svg { width: 26px; height: 26px; }
+.tab[aria-current="page"] { color: var(--accent); background: var(--accent-soft); }
+
+/* Botones */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 56px; padding: 0 26px; border-radius: 999px; border: 0;
+  background: var(--accent); color: var(--on-accent); font-weight: 500; font-size: 1em;
+}
+.btn.block { width: 100%; }
+.btn.ghost { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+.btn.soft { background: var(--accent-soft); color: var(--accent); }
+.btn.danger { background: #A33B3B; color: #fff; }
+.btn svg { width: 22px; height: 22px; }
+.linkbtn { background: none; border: 0; color: var(--accent); font-weight: 500; padding: 6px 0; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Encabezado de Hoy */
+.hello { display: grid; gap: 4px; }
+.hello .date { color: var(--muted); font-size: .9em; }
+
+/* Tarjeta del reto */
+.today {
+  background: var(--surface); border-radius: 26px; padding: 22px; display: grid; gap: 18px;
+  border: 1px solid var(--line);
+}
+.today-head { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; }
+.today-head > div { min-width: 0; }
+.ring { width: 76px; height: 76px; position: relative; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring .ring-txt { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; line-height: 1.05; }
+.ring .ring-txt b { font-family: var(--font-display); font-weight: 400; font-size: 1.35em; display: block; }
+.ring .ring-txt small { font-size: .62em; color: var(--muted); }
+.today-figure { background: var(--accent-soft); border-radius: 20px; display: grid; place-items: center; padding: 8px; }
+.today-figure svg { width: 150px; height: 170px; }
+.focus { font-family: var(--font-display); font-size: 1.08em; color: var(--ink); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px;
+  background: var(--bg); color: var(--muted); font-size: .82em; font-weight: 500; border: 1px solid var(--line);
+}
+.chip.done { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+
+/* Semana */
+.week { display: grid; gap: 10px; }
+.week-row { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.day {
+  display: grid; justify-items: center; gap: 6px; font-size: .8em; color: var(--muted);
+}
+.day i {
+  width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--line); display: grid; place-items: center;
+}
+.day.on i { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.day.on i::after { content: ""; width: 10px; height: 6px; border: solid currentColor; border-width: 0 0 2.5px 2.5px; transform: translateY(-2px) rotate(-45deg); }
+.day.now { color: var(--ink); font-weight: 600; }
+.day.now i { border-color: var(--accent); }
+
+/* Atajos */
+.moods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mood {
+  text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 14px 16px; display: grid; gap: 2px; min-height: 84px;
+}
+.mood b { font-weight: 500; }
+.mood span { font-size: .82em; color: var(--muted); }
+
+.tip { border-left: 4px solid var(--breath); padding: 4px 0 4px 16px; display: grid; gap: 4px; }
+
+/* Lista de rutinas */
+.section { display: grid; gap: 12px; }
+.rlist { display: grid; gap: 12px; }
+.rcard {
+  display: grid; grid-template-columns: 84px 1fr; gap: 14px; align-items: center; text-align: left;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px 10px 10px;
+  width: 100%;
+}
+.rcard > div { min-width: 0; display: grid; gap: 4px; }
+.rcard .thumb { background: var(--accent-soft); border-radius: 14px; aspect-ratio: 1; display: grid; place-items: center; overflow: hidden; }
+.rcard .thumb svg { width: 100%; height: 100%; }
+.rcard .sub { font-size: .84em; color: var(--muted); }
+.seg { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.seg button {
+  flex: none; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 8px 16px; font-size: .88em; font-weight: 500;
+}
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+.exgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.excard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 8px 12px; display: grid; gap: 6px; text-align: left; }
+.excard .thumb { background: var(--accent-soft); border-radius: 12px; aspect-ratio: 1; display: grid; place-items: center; }
+.excard .thumb svg { width: 100%; height: 100%; }
+.excard b { font-weight: 500; font-size: .92em; padding: 0 4px; }
+
+/* Progreso */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 12px; display: grid; gap: 2px; }
+.stat b { font-family: var(--font-display); font-weight: 400; font-size: 1.7em; line-height: 1.1; }
+.stat span { font-size: .78em; color: var(--muted); }
+.challenge { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.cday {
+  aspect-ratio: 1; border-radius: 12px; display: grid; place-items: center; font-size: .9em; font-weight: 500;
+  background: var(--surface); border: 1px solid var(--line); color: var(--muted);
+}
+.cday.done { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.cday.next { border: 2px dashed var(--accent); color: var(--accent); }
+.weeklabel { grid-column: 1 / -1; font-size: .8em; color: var(--muted); margin-top: 4px; }
+.cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; font-size: .85em; }
+.cal .h { color: var(--muted); font-size: .8em; padding-bottom: 4px; }
+.cal .d { aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; }
+.cal .d.on { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.cal .d.today { outline: 2px solid var(--ink); outline-offset: -2px; }
+.feel { display: grid; gap: 8px; }
+.feelrow { display: grid; grid-template-columns: 9em 1fr 2em; gap: 10px; align-items: center; font-size: .88em; }
+.bar { height: 10px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--breath); border-radius: 999px; }
+.empty { background: var(--surface); border: 1px dashed var(--line); border-radius: var(--radius); padding: 20px; display: grid; gap: 8px; text-align: center; justify-items: center; }
+.hist { display: grid; gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.hist div { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--line); }
+.hist div:first-child { border-top: 0; }
+
+/* Perfil */
+.field { display: grid; gap: 8px; }
+.field input[type="text"], .field input[type="time"] {
+  font: inherit; min-height: 52px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 0 16px;
+}
+.opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.opts button { min-height: 52px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); font-weight: 500; }
+.opts button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.switch { display: flex; justify-content: space-between; align-items: center; gap: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; }
+.switch button { width: 58px; height: 34px; border-radius: 999px; border: 0; background: var(--line); position: relative; flex: none; }
+.switch button::after { content: ""; position: absolute; top: 4px; left: 4px; width: 26px; height: 26px; border-radius: 50%; background: #fff; transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.switch button[aria-checked="true"] { background: var(--accent); }
+.switch button[aria-checked="true"]::after { transform: translateX(24px); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; display: grid; gap: 12px; }
+.card > *, .section > * { min-width: 0; }
+
+/* Hoja inferior (modales) */
+.sheet-wrap { position: fixed; inset: 0; z-index: 40; background: rgba(10, 18, 16, .45); display: grid; align-items: end; }
+.sheet {
+  background: var(--bg); border-radius: 26px 26px 0 0; max-height: 92%; overflow-y: auto; width: 100%; max-width: 600px; margin: 0 auto;
+  padding: 22px max(20px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));
+  display: grid; gap: 18px; animation: up .28s ease-out;
+}
+@keyframes up { from { transform: translateY(30px); opacity: .6; } to { transform: none; opacity: 1; } }
+.sheet-top { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+.x { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--surface); display: grid; place-items: center; flex: none; }
+.x svg { width: 22px; height: 22px; }
+.steps { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; }
+.safety { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.safety li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start; }
+.safety li::before { content: ""; width: 12px; height: 12px; margin-top: .45em; border-radius: 50%; background: var(--breath); justify-self: center; }
+.check { display: flex; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.check input { width: 26px; height: 26px; accent-color: var(--accent); flex: none; }
+.exrow { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 6px 0; border-top: 1px solid var(--line); }
+.exrow:first-child { border-top: 0; }
+.exrow .thumb { width: 56px; height: 56px; border-radius: 12px; background: var(--accent-soft); }
+.exrow .thumb svg { width: 100%; height: 100%; }
+.preview-stage { background: var(--accent-soft); border-radius: 22px; display: grid; place-items: center; padding: 10px; }
+.preview-stage svg { width: 200px; height: 230px; max-width: 100%; }
+.soft-note { background: var(--breath-soft); border-radius: 14px; padding: 12px 16px; font-size: .92em; display: grid; gap: 2px; }
+
+/* Reproductor */
+.player {
+  position: fixed; inset: 0; z-index: 50; background: var(--bg); overflow-y: auto;
+  padding: calc(12px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.player-in { max-width: 520px; margin: 0 auto; min-height: 100%; display: grid; grid-template-rows: auto auto 1fr auto; gap: 14px; }
+.p-top { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
+.p-prog { height: 6px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.p-prog i { display: block; height: 100%; background: var(--accent); transition: width .3s; }
+.p-count { font-size: .82em; color: var(--muted); text-align: center; margin-top: 6px; }
+.stage { position: relative; display: grid; place-items: center; }
+.stage .halo { position: absolute; width: min(78vw, 300px); aspect-ratio: 1; border-radius: 50%; background: var(--breath-soft); transform: scale(.82); }
+.stage svg { position: relative; width: min(70vw, 260px); height: auto; aspect-ratio: 200 / 235; }
+.p-info { display: grid; gap: 8px; text-align: center; justify-items: center; }
+.p-kind { font-size: .78em; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.p-cue { font-family: var(--font-display); font-size: 1.9em; color: var(--breath); min-height: 1.3em; line-height: 1.2; }
+.p-time { font-size: 1.05em; color: var(--muted); }
+.p-steps { text-align: left; background: var(--surface); border-radius: 18px; padding: 14px 18px; width: 100%; display: grid; gap: 8px; font-size: .95em; }
+.p-ctrl { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
+.round { width: 60px; height: 60px; border-radius: 50%; border: 0; background: var(--surface); display: grid; place-items: center; justify-self: center; }
+.round svg { width: 26px; height: 26px; }
+.round.big { width: 84px; height: 84px; background: var(--accent); color: var(--on-accent); }
+.round.big svg { width: 36px; height: 36px; }
+.round[disabled] { opacity: .35; cursor: default; }
+.done-screen { display: grid; gap: 18px; text-align: center; justify-items: center; align-content: center; padding: 30px 0; }
+.done-mark { width: 96px; height: 96px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; }
+.done-mark svg { width: 48px; height: 48px; }
+.feelpick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+.feelpick button { min-height: 56px; border-radius: 16px; border: 1px solid var(--line); background: var(--surface); font-weight: 500; }
+.feelpick button[aria-pressed="true"] { background: var(--breath-soft); border-color: var(--breath); }
+
+.toast { position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 12px 20px; border-radius: 999px; z-index: 60; font-size: .9em; max-width: calc(100% - 32px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet { animation: none; }
+  .switch button::after { transition: none; }
+}
+@media (max-width: 380px) {
+  .stats { grid-template-columns: 1fr 1fr; }
+  .feelrow { grid-template-columns: 7.5em 1fr 2em; }
+}
+</style>
+
+<div class="app">
+  <main id="view" class="view" aria-live="polite"></main>
+</div>
+
+<nav class="tabs" aria-label="Secciones">
+  <div class="tabs-inner">
+    <button class="tab" data-tab="hoy" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      Hoy
+    </button>
+    <button class="tab" data-tab="rutinas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2"/><path d="M7 21v-6h10v6M7 15V11M9 9l3 1 3-1M12 10v5"/></svg>
+      Rutinas
+    </button>
+    <button class="tab" data-tab="progreso">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M8.5 15l2.3 2.2L15.5 13"/></svg>
+      Progreso
+    </button>
+    <button class="tab" data-tab="perfil">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+      Mi espacio
+    </button>
+  </div>
+</nav>
+
+<div id="sheet" class="sheet-wrap" hidden></div>
+<div id="player" class="player" hidden></div>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script>
+(function () {
+"use strict";
+
+/* ===================== Figura en silla (SVG paramétrico) ===================== */
+const BASE = { tilt: 0, fold: 0, twist: 0, ht: 0, hturn: 0, nod: 0, sh: 0, la: [10, -22], ra: [10, -22], ll: [0, 0, 0], rl: [0, 0, 0], eyes: 1 };
+function P(o) { return Object.assign({}, BASE, JSON.parse(JSON.stringify(o || {}))); }
+function lerp(a, b, t) {
+  if (Array.isArray(a)) return a.map((v, i) => lerp(v, b[i], t));
+  if (typeof a === "number") return a + (b - a) * t;
+  return t < .5 ? a : b;
+}
+function lerpPose(a, b, t) { const o = {}; for (const k in a) o[k] = lerp(a[k], b[k], t); return o; }
+const rad = d => d * Math.PI / 180;
+const f1 = n => Math.round(n * 10) / 10;
+
+function figureMarkup(p) {
+  const H = { x: 100, y: 146 };
+  const L = 64 * (1 - 0.42 * p.fold);
+  const tl = rad(p.tilt);
+  const dir = { x: Math.sin(tl), y: -Math.cos(tl) };
+  const perp = { x: Math.cos(tl), y: Math.sin(tl) };
+  const N = { x: H.x + dir.x * L, y: H.y + dir.y * L };
+  const SPd = L - 9;
+  const SP = { x: H.x + dir.x * SPd, y: H.y + dir.y * SPd - p.sh };
+  const W = 24 * (1 - 0.42 * Math.abs(p.twist));
+  const SL = { x: SP.x - perp.x * W, y: SP.y - perp.y * W };
+  const SR = { x: SP.x + perp.x * W, y: SP.y + perp.y * W };
+  const ha = rad(p.tilt + p.ht);
+  const HC = { x: N.x + Math.sin(ha) * 15 + p.hturn * 2, y: N.y - Math.cos(ha) * 15 + p.nod * 4 + p.fold * 6 };
+
+  function arm(S, ang, side) {
+    const [a, e] = ang;
+    const u = rad(a), f = rad(a + e);
+    const r = (vx, vy) => ({ x: vx * Math.cos(tl) - vy * Math.sin(tl), y: vx * Math.sin(tl) + vy * Math.cos(tl) });
+    const v1 = r(side * Math.sin(u), Math.cos(u));
+    const v2 = r(side * Math.sin(f), Math.cos(f));
+    const E = { x: S.x + v1.x * 31, y: S.y + v1.y * 31 };
+    const Hd = { x: E.x + v2.x * 29, y: E.y + v2.y * 29 };
+    return { E, Hd };
+  }
+  const aL = arm(SL, p.la, -1), aR = arm(SR, p.ra, 1);
+
+  function leg(side, l) {
+    const [lift, ext, rot] = l;
+    const hip = { x: H.x + side * 13, y: H.y + 2 };
+    const K = { x: H.x + side * 20, y: 158 - 24 * lift };
+    const F = { x: K.x + side * 2, y: 222 - 24 * lift - 46 * ext };
+    return { hip, K, F, rot: rot * side, big: ext };
+  }
+  const gL = leg(-1, p.ll), gR = leg(1, p.rl);
+
+  const line = (a, b, cls, w) => `<line x1="${f1(a.x)}" y1="${f1(a.y)}" x2="${f1(b.x)}" y2="${f1(b.y)}" stroke="var(${cls})" stroke-width="${w}" stroke-linecap="round"/>`;
+  const foot = g => `<ellipse cx="${f1(g.F.x)}" cy="${f1(g.F.y + 3)}" rx="${f1(10 + 3 * g.big)}" ry="${f1(5 + 4 * g.big)}" transform="rotate(${f1(g.rot)} ${f1(g.F.x)} ${f1(g.F.y + 3)})" fill="var(--legs)"/>`;
+
+  // cara
+  const ex = p.hturn * 4, ey = p.nod * 2.5;
+  let eyes;
+  if (p.eyes > .5) {
+    eyes = `<circle cx="${f1(HC.x - 4.6 + ex)}" cy="${f1(HC.y + 1 + ey)}" r="1.5" fill="var(--hair)"/><circle cx="${f1(HC.x + 4.6 + ex)}" cy="${f1(HC.y + 1 + ey)}" r="1.5" fill="var(--hair)"/>`;
+  } else {
+    eyes = `<path d="M${f1(HC.x - 7 + ex)} ${f1(HC.y + 1.5 + ey)} q2.4 1.8 4.8 0 M${f1(HC.x + 2.2 + ex)} ${f1(HC.y + 1.5 + ey)} q2.4 1.8 4.8 0" stroke="var(--hair)" stroke-width="1.4" fill="none" stroke-linecap="round"/>`;
+  }
+  const smile = `<path d="M${f1(HC.x - 3 + ex)} ${f1(HC.y + 6 + ey)} q3 2.4 6 0" stroke="var(--hair)" stroke-width="1.4" fill="none" stroke-linecap="round"/>`;
+  const bun = { x: HC.x - Math.sin(ha) * -2 + Math.sin(ha) * 14 - p.hturn * 3, y: HC.y - Math.cos(ha) * 14 };
+
+  return [
+    // piernas
+    line(gL.hip, gL.K, "--legs", 15), line(gR.hip, gR.K, "--legs", 15),
+    line(gL.K, gL.F, "--legs", 12), line(gR.K, gR.F, "--legs", 12),
+    foot(gL), foot(gR),
+    line({ x: H.x - 13, y: H.y + 2 }, { x: H.x + 13, y: H.y + 2 }, "--legs", 18),
+    // torso
+    line(H, SP, "--top", 30),
+    line(SL, SR, "--top", 15),
+    // cuello y cabeza
+    line({ x: SP.x, y: SP.y }, N, "--skin", 9),
+    `<circle cx="${f1(bun.x)}" cy="${f1(bun.y)}" r="6.5" fill="var(--hair)"/>`,
+    `<circle cx="${f1(HC.x)}" cy="${f1(HC.y)}" r="13.5" fill="var(--skin)"/>`,
+    `<path d="M${f1(HC.x - 13.5)} ${f1(HC.y - 1)} a13.5 13.5 0 0 1 27 0 q-13.5 -7 -27 0z" fill="var(--hair)" transform="rotate(${f1(p.tilt + p.ht)} ${f1(HC.x)} ${f1(HC.y)})"/>`,
+    eyes, smile,
+    // brazos
+    line(SL, aL.E, "--skin", 9.5), line(aL.E, aL.Hd, "--skin", 8.5),
+    line(SR, aR.E, "--skin", 9.5), line(aR.E, aR.Hd, "--skin", 8.5),
+    `<circle cx="${f1(aL.Hd.x)}" cy="${f1(aL.Hd.y)}" r="5.2" fill="var(--skin)"/>`,
+    `<circle cx="${f1(aR.Hd.x)}" cy="${f1(aR.Hd.y)}" r="5.2" fill="var(--skin)"/>`
+  ].join("");
+}
+const CHAIR_BACK = `<rect x="64" y="58" width="72" height="94" rx="10" fill="var(--chair)"/><rect x="74" y="68" width="52" height="74" rx="6" fill="var(--chair-dark)" opacity=".35"/>`;
+const CHAIR_FRONT = `<rect x="66" y="152" width="8" height="78" rx="3" fill="var(--chair-dark)"/><rect x="126" y="152" width="8" height="78" rx="3" fill="var(--chair-dark)"/><rect x="56" y="144" width="88" height="14" rx="7" fill="var(--chair)"/>`;
+function figureSVG(pose, label) {
+  return `<svg viewBox="0 0 200 235" role="img" aria-label="${label || "Figura en silla"}"><ellipse cx="100" cy="230" rx="62" ry="5" fill="var(--line)"/>${CHAIR_BACK}${CHAIR_FRONT}<g class="fig">${figureMarkup(pose)}</g></svg>`;
+}
+
+/* ===================== Movimientos (texto original) ===================== */
+const REST = P();
+const ARMS_UP = { la: [168, 4], ra: [168, 4] };
+const EX = {
+  base: {
+    name: "Sentada de base", area: "Postura", beat: 4, cues: ["Inhala", "Exhala"],
+    frames: [P(), P({ sh: -1 })],
+    steps: ["Siéntate en la mitad delantera de la silla, sin apoyar la espalda.", "Pies apoyados, separados al ancho de tus caderas, rodillas sobre los tobillos.", "Manos sobre los muslos. Crece suave desde la coronilla y afloja los hombros."],
+    soft: "Si te resulta cómodo, apoya la espalda en el respaldo con un almohadón detrás de la cintura.",
+    voice: "Siéntate en la mitad de la silla, con los pies apoyados. Crece desde la coronilla y suelta los hombros."
+  },
+  "resp-vientre": {
+    name: "Respiración en el vientre", area: "Respiración", beat: 4.5, cues: ["Inhala", "Exhala"],
+    frames: [P({ la: [-18, -118], ra: [8, -70] }), P({ la: [-18, -118], ra: [8, -70], sh: -2 })],
+    steps: ["Una mano en el pecho y otra sobre el ombligo.", "Al inhalar por la nariz, deja que la mano de abajo se eleve.", "Al exhalar, el vientre vuelve hacia adentro sin esfuerzo."],
+    soft: "Si contar te tensiona, respira a tu ritmo y solo observa cómo se mueve la mano.",
+    voice: "Una mano en el pecho y otra en el vientre. Inhala y deja que el vientre se eleve."
+  },
+  "resp-cuadrada": {
+    name: "Respiración en cuadrado", area: "Respiración", beat: 4, cues: ["Inhala 4", "Sostén 4", "Exhala 4", "Pausa 4"],
+    frames: [P({ eyes: 0 }), P({ eyes: 0, sh: -2 }), P({ eyes: 0, sh: -2 }), P({ eyes: 0 }), P({ eyes: 0 })],
+    steps: ["Inhala contando hasta cuatro.", "Sostén el aire cuatro tiempos, sin apretar.", "Exhala en cuatro tiempos y quédate vacía otros cuatro."],
+    soft: "Si sostener el aire te incomoda, omite las pausas y haz solo inhalar 4, exhalar 4.",
+    voice: "Respiración en cuadrado. Inhala en cuatro, sostén cuatro, exhala en cuatro, pausa cuatro."
+  },
+  "resp-larga": {
+    name: "Exhalación larga", area: "Respiración", beat: 5, cues: ["Inhala 4", "Exhala 6"],
+    frames: [P({ eyes: 0 }), P({ eyes: 0, sh: -2 })],
+    steps: ["Inhala por la nariz contando hasta cuatro.", "Exhala lento, como si empañaras un vidrio, contando hasta seis.", "Deja que cada exhalación afloje un poco la mandíbula y los hombros."],
+    soft: "Acorta los números a 3 y 4 si te falta el aire.",
+    voice: "Inhala en cuatro tiempos. Exhala lento en seis."
+  },
+  "cuello-lado": {
+    name: "Oreja hacia el hombro", area: "Cuello", beat: 4, cues: ["Inclina", "Al centro", "Al otro lado", "Al centro"],
+    frames: [P(), P({ ht: 26 }), P(), P({ ht: -26 })],
+    steps: ["Con los hombros quietos, lleva la oreja derecha hacia el hombro derecho.", "Vuelve al centro con una inhalación.", "Repite hacia la izquierda. El movimiento es pequeño y lento."],
+    soft: "Haz solo la mitad del recorrido. Nunca gires la cabeza en círculos completos si te marea.",
+    voice: "Lleva la oreja hacia el hombro, despacio, y vuelve al centro."
+  },
+  "cuello-si": {
+    name: "Sí y no lentos", area: "Cuello", beat: 3, cues: ["Mira abajo", "Al centro", "Mira a un lado", "Al otro lado"],
+    frames: [P(), P({ nod: 1.4 }), P(), P({ hturn: 1 }), P({ hturn: -1 })],
+    steps: ["Baja el mentón hacia el pecho y vuelve, como un sí muy lento.", "Luego gira la mirada hacia un lado y hacia el otro, como un no tranquilo.", "Respira con calma durante todo el movimiento."],
+    soft: "Mueve solo los ojos y un poquito la cabeza.",
+    voice: "Asiente lento, como diciendo sí. Luego gira suave, como diciendo no."
+  },
+  hombros: {
+    name: "Círculos de hombros", area: "Hombros", beat: 2.5, cues: ["Sube", "Atrás y abajo"],
+    frames: [P(), P({ sh: 7, la: [6, -18], ra: [6, -18] })],
+    steps: ["Sube los hombros hacia las orejas al inhalar.", "Llévalos hacia atrás y abajo al exhalar.", "Dibuja círculos amplios y lentos."],
+    soft: "Haz círculos más pequeños o mueve un hombro por vez.",
+    voice: "Sube los hombros al inhalar. Llévalos atrás y abajo al exhalar."
+  },
+  "brazos-cielo": {
+    name: "Brazos al cielo", area: "Hombros", beat: 4, cues: ["Inhala y sube", "Exhala y baja"],
+    frames: [P(), P(ARMS_UP)],
+    steps: ["Inhala y sube los brazos por los costados hasta donde llegues.", "Mira tus manos sin tirar el cuello hacia atrás.", "Exhala y baja despacio, como si apoyaras una pluma."],
+    soft: "Sube los brazos solo hasta la altura de los hombros o con los codos doblados.",
+    voice: "Inhala y sube los brazos. Exhala y bájalos despacio."
+  },
+  "abrir-abrazar": {
+    name: "Abrir y abrazar", area: "Pecho", beat: 3.5, cues: ["Inhala y abre", "Exhala y abraza"],
+    frames: [P({ la: [88, 2], ra: [88, 2], sh: -2 }), P({ la: [-38, -80], ra: [-38, -80], nod: .5 })],
+    steps: ["Abre los brazos en cruz, palmas al frente, y siente el pecho amplio.", "Al exhalar, crúzalos y date un abrazo.", "Alterna qué brazo queda arriba."],
+    soft: "Abre los brazos más abajo, a la altura de la cintura.",
+    voice: "Abre los brazos al inhalar. Abrázate al exhalar."
+  },
+  munecas: {
+    name: "Muñecas y dedos", area: "Manos", beat: 2, cues: ["Abre", "Cierra"],
+    frames: [P({ la: [-8, 92], ra: [-8, 92] }), P({ la: [-8, 74], ra: [-8, 74] })],
+    steps: ["Codos cerca del cuerpo, antebrazos al frente.", "Abre bien los dedos y luego cierra los puños con suavidad.", "Después dibuja círculos con las muñecas hacia ambos lados."],
+    soft: "Apoya los antebrazos en los muslos mientras mueves las manos.",
+    voice: "Abre los dedos, cierra los puños suave. Luego círculos con las muñecas."
+  },
+  "gato-vaca": {
+    name: "Gato y vaca sentada", area: "Espalda", beat: 4, cues: ["Inhala, pecho al frente", "Exhala, espalda redonda"],
+    frames: [P({ nod: -1, sh: -3, la: [6, -10], ra: [6, -10] }), P({ fold: .28, nod: 1.5, la: [2, -6], ra: [2, -6] })],
+    steps: ["Manos sobre las rodillas.", "Al inhalar, lleva el pecho hacia adelante y mira apenas arriba.", "Al exhalar, redondea la espalda y lleva el mentón al pecho."],
+    soft: "Haz el movimiento más chico, sobre todo al mirar hacia arriba.",
+    voice: "Inhala y abre el pecho. Exhala y redondea la espalda."
+  },
+  lateral: {
+    name: "Media luna sentada", area: "Costados", beat: 4, cues: ["Inclina a un lado", "Al centro", "Al otro lado", "Al centro"],
+    frames: [P(), P({ tilt: 17, ht: 6, la: [158, 18], ra: [6, -8] }), P(), P({ tilt: -17, ht: -6, ra: [158, 18], la: [6, -8] })],
+    steps: ["Apoya bien las dos caderas en la silla.", "Sube un brazo e inclínate hacia el lado contrario, sin caer hacia adelante.", "Vuelve al centro y cambia de lado."],
+    soft: "Deja la mano en la cintura en lugar de subir el brazo.",
+    voice: "Sube un brazo e inclínate hacia el otro lado. Vuelve al centro."
+  },
+  giro: {
+    name: "Giro suave", area: "Espalda", beat: 4, cues: ["Crece", "Gira", "Al centro", "Al otro lado"],
+    frames: [P(), P({ twist: 1, hturn: 1, la: [-30, -18], ra: [42, 40] }), P(), P({ twist: -1, hturn: -1, ra: [-30, -18], la: [42, 40] })],
+    steps: ["Inhala y crece desde la coronilla.", "Al exhalar, gira el pecho hacia un lado; una mano en la rodilla contraria, la otra en el respaldo o la silla.", "Gira primero la panza, después el pecho y al final la mirada."],
+    soft: "Gira solo el pecho, sin usar las manos para empujar.",
+    voice: "Crece al inhalar. Gira suave al exhalar, sin forzar."
+  },
+  flexion: {
+    name: "Pliegue hacia adelante", area: "Espalda", beat: 5, cues: ["Inhala", "Exhala y baja", "Quédate", "Sube despacio"],
+    frames: [P(), P({ fold: 1, nod: 2, la: [-4, 0], ra: [-4, 0] }), P({ fold: 1, nod: 2, la: [-4, 0], ra: [-4, 0] }), P()],
+    steps: ["Separa un poco los pies.", "Al exhalar, inclínate desde la cadera y deja colgar los brazos.", "Para subir, apoya las manos en los muslos y sube vértebra por vértebra."],
+    soft: "Baja solo hasta apoyar los antebrazos en los muslos. Si tienes presión alta o te mareas, quédate en esta versión.",
+    voice: "Inclínate desde la cadera y deja colgar los brazos. Sube despacio, con las manos en los muslos."
+  },
+  tobillos: {
+    name: "Círculos de tobillos", area: "Pies", beat: 2, cues: ["Gira", "Gira"],
+    frames: [P({ rl: [0, .5, -25] }), P({ rl: [0, .5, 25] })],
+    steps: ["Estira un poco una pierna con el talón apoyado o elevado.", "Dibuja círculos con el pie hacia un lado y hacia el otro.", "Cambia de pierna a mitad del tiempo."],
+    soft: "Deja el talón apoyado en el piso y mueve solo la punta.",
+    voice: "Círculos con el tobillo, hacia un lado y hacia el otro. A mitad de tiempo, cambia de pie."
+  },
+  marcha: {
+    name: "Marcha sentada", area: "Piernas", beat: 1.5, cues: ["Derecha", "Izquierda"],
+    frames: [P({ rl: [1, 0, 0], la: [16, -26], ra: [6, -16] }), P({ ll: [1, 0, 0], ra: [16, -26], la: [6, -16] })],
+    steps: ["Sostente del asiento si lo necesitas.", "Levanta una rodilla y luego la otra, como si caminaras.", "Mantén la espalda larga y respira a tu ritmo."],
+    soft: "Levanta solo los talones, dejando la punta de los pies en el piso.",
+    voice: "Marcha sentada. Una rodilla, la otra, a tu ritmo."
+  },
+  "pierna-larga": {
+    name: "Pierna larga", area: "Piernas", beat: 4, cues: ["Estira", "Baja", "La otra", "Baja"],
+    frames: [P(), P({ rl: [.15, 1, 0], fold: .12 }), P(), P({ ll: [.15, 1, 0], fold: .12 })],
+    steps: ["Estira una pierna al frente con el talón apoyado y la punta del pie hacia arriba.", "Inclínate apenas hacia adelante con la espalda larga.", "Quédate tres respiraciones y cambia."],
+    soft: "No te inclines: solo estira la pierna y sostén.",
+    voice: "Estira una pierna, talón al piso y punta arriba. Inclínate apenas, con la espalda larga."
+  },
+  talones: {
+    name: "Talones y puntas", area: "Pies", beat: 1.8, cues: ["Puntas arriba", "Talones arriba"],
+    frames: [P({ ll: [0, .3, 0], rl: [0, .3, 0] }), P({ ll: [.25, 0, 0], rl: [.25, 0, 0] })],
+    steps: ["Pies apoyados al ancho de las caderas.", "Eleva las puntas dejando los talones abajo.", "Luego eleva los talones dejando las puntas abajo."],
+    soft: "Hazlo con un pie por vez.",
+    voice: "Puntas arriba. Talones arriba. Alterna a tu ritmo."
+  },
+  autoabrazo: {
+    name: "Abrazo largo", area: "Calma", beat: 4.5, cues: ["Inhala", "Exhala"],
+    frames: [P({ la: [-38, -84], ra: [-38, -84], eyes: 0, nod: .5 }), P({ la: [-38, -84], ra: [-38, -84], eyes: 0, nod: .8, sh: -2 })],
+    steps: ["Cruza los brazos y apoya las manos en los hombros o los brazos.", "Cierra los ojos si te sientes cómoda.", "Puedes mecerte apenas de lado a lado."],
+    soft: "Apoya las manos en los antebrazos, sin llegar a los hombros.",
+    voice: "Date un abrazo. Respira lento y quédate aquí."
+  },
+  guerrera: {
+    name: "Guerrera sentada", area: "Fuerza suave", beat: 4, cues: ["Inhala", "Exhala, sostén"],
+    frames: [P({ la: [90, 0], ra: [90, 0] }), P({ la: [90, 0], ra: [90, 0], sh: -2, hturn: .6 })],
+    steps: ["Abre los brazos en cruz, a la altura de los hombros.", "Empuja suave con los pies hacia el piso.", "Sostén con respiración tranquila y baja los brazos si se cansan."],
+    soft: "Abre un solo brazo por vez o dobla los codos.",
+    voice: "Abre los brazos en cruz y sostén, con los pies firmes en el piso."
+  },
+  cactus: {
+    name: "Brazos en cactus", area: "Pecho", beat: 4, cues: ["Inhala, abre", "Exhala, cierra"],
+    frames: [P({ la: [88, 88], ra: [88, 88], sh: -3, nod: -.4 }), P({ la: [70, 100], ra: [70, 100], nod: .3 })],
+    steps: ["Codos a la altura de los hombros, antebrazos hacia arriba.", "Al inhalar, lleva los codos un poco hacia atrás y abre el pecho.", "Al exhalar, acerca los antebrazos frente a la cara."],
+    soft: "Baja los codos hasta donde te resulte cómodo.",
+    voice: "Brazos en cactus. Abre el pecho al inhalar, cierra al exhalar."
+  },
+  corazon: {
+    name: "Manos en el corazón", area: "Calma", beat: 4.5, cues: ["Inhala", "Exhala"],
+    frames: [P({ la: [-20, -128], ra: [-20, -128], eyes: 0 }), P({ la: [-20, -128], ra: [-20, -128], eyes: 0, sh: -2 })],
+    steps: ["Apoya las dos manos en el centro del pecho.", "Siente el calor de tus manos y el ritmo de tu respiración.", "Termina con una frase amable para ti."],
+    soft: "Apoya una sola mano y deja la otra sobre el muslo.",
+    voice: "Manos en el corazón. Siente tu respiración."
+  },
+  sacudir: {
+    name: "Sacudir y soltar", area: "Energía", beat: .6, cues: ["Suelta", "Suelta"],
+    frames: [P({ la: [18, -6], ra: [6, -4], sh: 2 }), P({ la: [6, -4], ra: [18, -6] })],
+    steps: ["Sacude suave las manos, después los brazos.", "Mueve también los pies, como si te sacudieras el agua.", "Termina quieta, con los ojos cerrados, sintiendo el cosquilleo."],
+    soft: "Sacude solo las manos.",
+    voice: "Sacude las manos, los brazos y los pies. Suelta todo."
+  },
+  automasaje: {
+    name: "Masaje de hombros", area: "Hombros", beat: 3, cues: ["Masajea", "Respira"],
+    frames: [P({ la: [-40, -150], ht: -10 }), P({ ra: [-40, -150], ht: 10 })],
+    steps: ["Con la mano derecha toma el hombro izquierdo y apriétalo suave.", "Haz pequeños círculos con los dedos subiendo hacia la nuca.", "Cambia de lado a mitad del tiempo."],
+    soft: "Apoya el codo en la mesa mientras masajeas.",
+    voice: "Toma el hombro contrario y masajea con círculos pequeños."
+  },
+  mirada: {
+    name: "Descanso de la mirada", area: "Ojos", beat: 2.5, cues: ["Mira a un lado", "Al otro"],
+    frames: [P({ hturn: 1 }), P({ hturn: -1 })],
+    steps: ["Con la cabeza quieta, lleva la mirada a la derecha y a la izquierda.", "Luego arriba y abajo.", "Termina mirando a lo lejos, por una ventana si puedes."],
+    soft: "Haz movimientos más cortos y parpadea seguido.",
+    voice: "Cabeza quieta. Lleva la mirada a un lado y al otro."
+  },
+  final: {
+    name: "Descanso final", area: "Calma", beat: 5, cues: ["Inhala", "Exhala"],
+    frames: [P({ eyes: 0, nod: .6, la: [8, -18], ra: [8, -18] }), P({ eyes: 0, nod: .6, sh: -1, la: [8, -18], ra: [8, -18] })],
+    steps: ["Apoya la espalda y las manos sobre los muslos, palmas hacia arriba.", "Cierra los ojos y deja que el cuerpo pese sobre la silla.", "Nota cómo te sientes ahora."],
+    soft: "Si cerrar los ojos te incomoda, apoya la mirada en un punto del piso.",
+    voice: "Apoya la espalda. Cierra los ojos y deja que el cuerpo descanse."
+  }
+};
+
+/* ===================== Rutinas ===================== */
+const R = {
+  despertar: { name: "Despertar suave", moment: "Mañana", desc: "Movimientos lentos para salir de la rigidez de la mañana y arrancar el día con energía.",
+    seq: [["base", 40], ["resp-vientre", 54], ["cuello-lado", 48], ["hombros", 45], ["brazos-cielo", 48], ["lateral", 64], ["giro", 64], ["marcha", 45], ["tobillos", 40], ["corazon", 30]] },
+  cuello: { name: "Cuello y hombros livianos", moment: "Cualquier momento", desc: "Para soltar la zona que más carga cuando pasas tiempo con el celular, la compu o la costura.",
+    seq: [["base", 30], ["resp-larga", 50], ["cuello-lado", 64], ["cuello-si", 45], ["hombros", 50], ["automasaje", 60], ["abrir-abrazar", 49], ["cactus", 48], ["corazon", 30]] },
+  espalda: { name: "Espalda que se estira", moment: "Cualquier momento", desc: "Estiramientos en todas las direcciones para que la espalda se sienta más larga y móvil.",
+    seq: [["base", 30], ["gato-vaca", 64], ["lateral", 64], ["giro", 64], ["flexion", 60], ["cactus", 48], ["guerrera", 48], ["final", 50]] },
+  piernas: { name: "Piernas activas", moment: "Tarde", desc: "Para despertar piernas y pies después de estar mucho tiempo sentada.",
+    seq: [["base", 30], ["marcha", 60], ["talones", 54], ["pierna-larga", 64], ["tobillos", 50], ["guerrera", 48], ["sacudir", 30], ["resp-vientre", 45]] },
+  calma: { name: "Respirar y bajar el ritmo", moment: "Cualquier momento", desc: "Cinco minutos de respiración guiada para pausar cuando el día viene cargado.",
+    seq: [["base", 30], ["resp-vientre", 63], ["resp-cuadrada", 80], ["resp-larga", 70], ["corazon", 45], ["final", 60]] },
+  noche: { name: "Antes de dormir", moment: "Noche", desc: "Una secuencia lenta para cerrar el día y preparar el cuerpo para el descanso.",
+    seq: [["resp-larga", 60], ["cuello-lado", 48], ["hombros", 40], ["flexion", 60], ["giro", 48], ["autoabrazo", 45], ["corazon", 45], ["final", 90]] },
+  dificil: { name: "Para días difíciles", moment: "Cuando cuesta", desc: "Tres minutos para cuando no tienes ganas de nada. Hacer esto ya cuenta.",
+    seq: [["resp-larga", 40], ["sacudir", 30], ["autoabrazo", 40], ["corazon", 40]] },
+  pausa: { name: "Pausa de 3 minutos", moment: "Cualquier momento", desc: "Una pausa corta frente a la tele o la compu, sin levantarte.",
+    seq: [["hombros", 30], ["cuello-si", 30], ["munecas", 30], ["giro", 40], ["mirada", 30]] },
+  completa: { name: "Práctica completa", moment: "Cuando tengas tiempo", desc: "Un recorrido por todo el cuerpo, de la respiración a las piernas.",
+    seq: [["base", 30], ["resp-vientre", 45], ["cuello-lado", 48], ["hombros", 40], ["brazos-cielo", 48], ["gato-vaca", 56], ["lateral", 64], ["giro", 64], ["guerrera", 40], ["cactus", 40], ["marcha", 45], ["pierna-larga", 64], ["tobillos", 40], ["flexion", 50], ["final", 60]] }
+};
+const PREP = 6;
+function routineSecs(id) { return R[id].seq.reduce((s, x) => s + x[1] + PREP, 0); }
+function routineMin(id) { return Math.max(1, Math.round(routineSecs(id) / 60)); }
+
+const PLAN = [
+  ["despertar", "Hoy solo se trata de llegar. Lo demás viene solo."],
+  ["calma", "Respirar más lento también es moverse."],
+  ["cuello", "Suelta lo que cargas en los hombros."],
+  ["piernas", "Tus piernas también merecen atención."],
+  ["despertar", "Repetir es como el cuerpo aprende."],
+  ["espalda", "Crece un centímetro desde la coronilla."],
+  ["noche", "Cierra tu primera semana con calma."],
+  ["despertar", "Semana dos: ya conoces el camino."],
+  ["cuello", "Nota qué cambió desde el día 3."],
+  ["piernas", "Pies firmes, mente tranquila."],
+  ["espalda", "Ningún movimiento tiene que doler."],
+  ["calma", "Hoy la práctica es respirar."],
+  ["completa", "Tu primera práctica completa."],
+  ["noche", "Dos semanas. Date el crédito."],
+  ["despertar", "Semana tres: haz tuyo este espacio."],
+  ["espalda", "Muévete como si nadie te mirara."],
+  ["piernas", "Un poco más de tiempo en cada postura."],
+  ["cuello", "Hombros abajo, mandíbula suelta."],
+  ["completa", "Practica a tu ritmo, sin apuro."],
+  ["calma", "Respira y mira todo lo que hiciste."],
+  ["completa", "Día 21. Esto ya es un hábito tuyo."]
+];
+const WEEKS = ["Semana 1 · Llegar", "Semana 2 · Sostener", "Semana 3 · Hacerlo tuyo"];
+
+const TIPS = [
+  "Usa una silla firme, sin ruedas ni apoyabrazos, apoyada contra la pared.",
+  "Si un movimiento molesta, hazlo más chico. Moverte nunca debería doler.",
+  "Practicar a la misma hora todos los días hace que sea más fácil sostenerlo.",
+  "Ten un vaso de agua cerca y ropa que te deje respirar.",
+  "Tres minutos en un día difícil valen tanto como una práctica larga.",
+  "Respira por la nariz cuando puedas. Si te falta el aire, abre la boca sin culpa.",
+  "Avisa a tu médico que estás haciendo yoga en silla, sobre todo si tomas medicación o tienes alguna condición de salud."
+];
+const FEELS = ["Más liviana", "Más tranquila", "Con energía", "Igual que antes"];
+
+/* ===================== Estado ===================== */
+const KEY = "yoga-silla-v1";
+const DEF = { name: "", fs: "m", voice: true, goal: 4, reminder: "09:00", safetyOk: false, sessions: [], challenge: [] };
+let S = load();
+function load() {
+  try { const raw = localStorage.getItem(KEY); if (raw) return Object.assign({}, DEF, JSON.parse(raw)); } catch (e) {}
+  return JSON.parse(JSON.stringify(DEF));
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+
+function dkey(d) { d = d || new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function practicedDays() { return new Set(S.sessions.map(s => s.date)); }
+function challengeDayToday() {
+  const done = S.challenge.length;
+  const doneToday = S.challenge.some(c => c.date === dkey());
+  return { day: Math.min(done + (doneToday ? 0 : 1), 21), doneToday, done };
+}
+function streak() {
+  const days = practicedDays(); let n = 0; const d = new Date();
+  if (!days.has(dkey(d))) d.setDate(d.getDate() - 1);
+  while (days.has(dkey(d))) { n++; d.setDate(d.getDate() - 1); }
+  return n;
+}
+function weekDates() {
+  const d = new Date(); const wd = (d.getDay() + 6) % 7; d.setDate(d.getDate() - wd);
+  return Array.from({ length: 7 }, (_, i) => { const x = new Date(d); x.setDate(d.getDate() + i); return x; });
+}
+function applyFs() {
+  const r = document.documentElement;
+  r.classList.toggle("fs-l", S.fs === "l"); r.classList.toggle("fs-xl", S.fs === "xl");
+}
+applyFs();
+
+/* ===================== Utilidades UI ===================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const ICON = {
+  x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
+  pause: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4.5" height="14" rx="1.5"/><rect x="13.5" y="5" width="4.5" height="14" rx="1.5"/></svg>',
+  prev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',
+  next: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  sound: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>',
+  mute: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>'
+};
+let toastT;
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2600); }
+function thumb(exId, i) { const e = EX[exId]; return figureSVG(e.frames[Math.min(i == null ? 1 : i, e.frames.length - 1)], e.name); }
+function routineThumb(id) { const s = R[id].seq; const pick = s[Math.min(4, s.length - 1)][0]; return thumb(pick); }
+
+/* ===================== Vistas ===================== */
+let tab = "hoy", rutFilter = "Todas";
+function greet() { const h = new Date().getHours(); return h < 12 ? "Buenos días" : h < 20 ? "Buenas tardes" : "Buenas noches"; }
+const DOW = ["L", "M", "M", "J", "V", "S", "D"];
+
+function viewHoy() {
+  const c = challengeDayToday();
+  const finished = c.done >= 21;
+  const [rid, focus] = PLAN[Math.min(c.day, 21) - 1];
+  const r = R[rid];
+  const pct = c.done / 21;
+  const days = practicedDays();
+  const wk = weekDates();
+  const wkCount = wk.filter(d => days.has(dkey(d))).length;
+  const today = dkey();
+  const dateTxt = new Date().toLocaleDateString("es", { weekday: "long", day: "numeric", month: "long" });
+  const nameTxt = S.name ? ", " + esc(S.name) : "";
+  const circ = 2 * Math.PI * 32;
+  let todayBody;
+  if (finished) {
+    todayBody = `<p class="focus">Completaste el reto de 21 días.</p><p class="muted">Ahora elige la rutina que más te guste para cada día, o empieza el reto otra vez desde Mi espacio.</p><button class="btn block" data-go="rutinas">Ver rutinas</button>`;
+  } else if (c.doneToday) {
+    todayBody = `<p class="focus">Hecho por hoy. Mañana sigue el día ${Math.min(c.done + 1, 21)}.</p>
+      <div class="meta"><span class="chip done">${ICON.check.replace("<svg", '<svg width="16" height="16"')} Día ${c.done} completo</span></div>
+      <div style="display:grid;gap:10px"><button class="btn soft block" data-start="${PLAN[c.done - 1][0]}" data-cday="0">Repetir la práctica de hoy</button></div>`;
+  } else {
+    todayBody = `<div class="today-figure">${routineThumb(rid)}</div>
+      <div style="display:grid;gap:6px"><h2>${r.name}</h2><p class="focus muted">“${focus}”</p></div>
+      <div class="meta"><span class="chip num">${routineMin(rid)} min</span><span class="chip">${R[rid].seq.length} movimientos</span><span class="chip">${r.moment}</span></div>
+      <button class="btn block" data-start="${rid}" data-cday="${c.day}">${ICON.play} Empezar práctica</button>
+      <button class="linkbtn" data-routine="${rid}">Ver los movimientos antes</button>`;
+  }
+  return `
+  <section class="hello">
+    <p class="date">${dateTxt.charAt(0).toUpperCase() + dateTxt.slice(1)}</p>
+    <h1>${greet()}${nameTxt}</h1>
+  </section>
+  ${!S.name ? `<section class="card"><label class="field" for="hoy-name"><span><b>¿Cómo te llamas?</b> <span class="muted">Así te saludamos cada día.</span></span></label><div style="display:grid;grid-template-columns:1fr auto;gap:8px"><input id="hoy-name" type="text" autocomplete="given-name" placeholder="Tu nombre" style="font:inherit;min-height:52px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:0 16px;min-width:0"><button class="btn" data-act="savename">Listo</button></div></section>` : ""}
+  <section class="today" aria-label="Práctica de hoy">
+    <div class="today-head">
+      <div><p class="label">Reto 21 días</p><h3 style="margin-top:4px">${finished ? "Completado" : WEEKS[Math.floor((c.day - 1) / 7)]}</h3></div>
+      <div class="ring" aria-label="${c.done} de 21 días">
+        <svg viewBox="0 0 76 76"><circle cx="38" cy="38" r="32" fill="none" stroke="var(--line)" stroke-width="7"/><circle cx="38" cy="38" r="32" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-dasharray="${f1(circ)}" stroke-dashoffset="${f1(circ * (1 - pct))}"/></svg>
+        <div class="ring-txt"><span><b class="num">${finished ? 21 : c.day}</b><small>de 21</small></span></div>
+      </div>
+    </div>
+    ${todayBody}
+  </section>
+  <section class="week" aria-label="Esta semana">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap"><h3>Tu semana</h3><span class="muted num" style="font-size:.9em">${wkCount} de ${S.goal} días</span></div>
+    <div class="week-row">${wk.map((d, i) => `<div class="day ${days.has(dkey(d)) ? "on" : ""} ${dkey(d) === today ? "now" : ""}"><i></i>${DOW[i]}</div>`).join("")}</div>
+  </section>
+  <section class="section">
+    <h3>¿Cómo estás hoy?</h3>
+    <div class="moods">
+      <button class="mood" data-routine="pausa"><b>Tengo 3 minutos</b><span>Pausa sin levantarte</span></button>
+      <button class="mood" data-routine="dificil"><b>Me cuesta arrancar</b><span>Para días difíciles</span></button>
+      <button class="mood" data-routine="calma"><b>Necesito calma</b><span>Respiración guiada</span></button>
+      <button class="mood" data-routine="noche"><b>Ya es de noche</b><span>Antes de dormir</span></button>
+    </div>
+  </section>
+  <section class="tip"><p class="label">Consejo del día</p><p>${TIPS[new Date().getDate() % TIPS.length]}</p></section>`;
+}
+
+function viewRutinas() {
+  const moments = ["Todas", "Mañana", "Tarde", "Noche", "Cuando cuesta", "Movimientos"];
+  let body;
+  if (rutFilter === "Movimientos") {
+    body = `<p class="muted">Toca un movimiento para verlo en acción y leer cómo hacerlo.</p><div class="exgrid">${Object.keys(EX).map(id => `<button class="excard" data-ex="${id}"><div class="thumb">${thumb(id)}</div><b>${EX[id].name}</b><span class="label" style="padding:0 4px">${EX[id].area}</span></button>`).join("")}</div>`;
+  } else {
+    const ids = Object.keys(R).filter(id => rutFilter === "Todas" || R[id].moment === rutFilter);
+    body = `<div class="rlist">${ids.map(id => `<button class="rcard" data-routine="${id}"><div class="thumb">${routineThumb(id)}</div><div><span class="label">${R[id].moment}</span><h3>${R[id].name}</h3><span class="sub num">${routineMin(id)} min · ${R[id].seq.length} movimientos</span></div></button>`).join("") || `<div class="empty"><p>No hay rutinas para este momento todavía.</p></div>`}</div>`;
+  }
+  return `<section class="hello"><h1>Rutinas</h1><p class="muted">Elige según el momento del día o cómo te sientes.</p></section>
+    <div class="seg" role="group" aria-label="Filtrar">${moments.map(m => `<button data-filter="${m}" aria-pressed="${m === rutFilter}">${m}</button>`).join("")}</div>
+    ${body}`;
+}
+
+function viewProgreso() {
+  const days = practicedDays();
+  const mins = S.sessions.reduce((s, x) => s + x.min, 0);
+  const c = S.challenge.length;
+  const now = new Date();
+  const first = new Date(now.getFullYear(), now.getMonth(), 1);
+  const lead = (first.getDay() + 6) % 7;
+  const dim = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  let monthName = now.toLocaleDateString("es", { month: "long", year: "numeric" }); monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+  let cal = DOW.map(d => `<div class="h">${d}</div>`).join("");
+  for (let i = 0; i < lead; i++) cal += "<div></div>";
+  for (let d = 1; d <= dim; d++) {
+    const k = dkey(new Date(now.getFullYear(), now.getMonth(), d));
+    cal += `<div class="d num ${days.has(k) ? "on" : ""} ${k === dkey() ? "today" : ""}">${d}</div>`;
+  }
+  let grid = "";
+  for (let w = 0; w < 3; w++) {
+    grid += `<p class="weeklabel">${WEEKS[w]}</p>`;
+    for (let i = 1; i <= 7; i++) { const n = w * 7 + i; grid += `<div class="cday num ${n <= c ? "done" : n === c + 1 ? "next" : ""}" title="Día ${n}">${n}</div>`; }
+  }
+  const feelCounts = FEELS.map(f => S.sessions.filter(s => s.feel === f).length);
+  const feelMax = Math.max(1, ...feelCounts);
+  const anyFeel = feelCounts.some(n => n > 0);
+  const recent = S.sessions.slice(-6).reverse();
+  return `<section class="hello"><h1>Tu progreso</h1><p class="muted">Cada día que practicas queda guardado aquí.</p></section>
+  <div class="stats">
+    <div class="stat"><b class="num">${days.size}</b><span>días practicados</span></div>
+    <div class="stat"><b class="num">${mins}</b><span>minutos en total</span></div>
+    <div class="stat"><b class="num">${streak()}</b><span>días seguidos</span></div>
+  </div>
+  <section class="section"><h3>Reto 21 días</h3><div class="challenge">${grid}</div></section>
+  <section class="section card"><h3>${monthName}</h3><div class="cal">${cal}</div></section>
+  <section class="section"><h3>Cómo te sentiste después</h3>
+    ${anyFeel ? `<div class="feel">${FEELS.map((f, i) => `<div class="feelrow"><span>${f}</span><div class="bar"><i style="width:${(feelCounts[i] / feelMax) * 100}%"></i></div><span class="num muted">${feelCounts[i]}</span></div>`).join("")}</div>`
+      : `<div class="empty"><p><b>Todavía no hay registros.</b></p><p class="muted">Al terminar cada práctica te preguntamos cómo te sientes. Tus respuestas aparecen aquí.</p><button class="btn soft" data-go="hoy">Ir a la práctica de hoy</button></div>`}
+  </section>
+  ${recent.length ? `<section class="section"><h3>Últimas prácticas</h3><div class="hist">${recent.map(s => `<div><span>${esc(R[s.r] ? R[s.r].name : s.r)}<br><span class="muted" style="font-size:.85em">${new Date(s.date + "T12:00").toLocaleDateString("es", { weekday: "short", day: "numeric", month: "short" })}${s.feel ? " · " + s.feel : ""}</span></span><span class="num muted">${s.min} min</span></div>`).join("")}</div></section>` : ""}`;
+}
+
+function viewPerfil() {
+  return `<section class="hello"><h1>Mi espacio</h1><p class="muted">Ajusta la app a tu medida.</p></section>
+  <div class="field"><label for="p-name"><b>Tu nombre</b></label><input id="p-name" type="text" value="${esc(S.name)}" placeholder="Tu nombre" autocomplete="given-name"></div>
+  <div class="field"><b>Tamaño de la letra</b><div class="opts" role="group" aria-label="Tamaño de la letra">
+    <button data-fs="m" aria-pressed="${S.fs === "m"}">Normal</button><button data-fs="l" aria-pressed="${S.fs === "l"}" style="font-size:1.1em">Grande</button><button data-fs="xl" aria-pressed="${S.fs === "xl"}" style="font-size:1.22em">Muy grande</button></div></div>
+  <div class="switch"><span><b>Voz que te guía</b><br><span class="muted" style="font-size:.88em">Lee en voz alta cada movimiento.</span></span><button role="switch" aria-checked="${S.voice}" aria-label="Voz que te guía" data-act="voice"></button></div>
+  <div class="field"><b>Meta semanal</b><div class="opts" role="group" aria-label="Días por semana">${[3, 4, 5].map(n => `<button data-goal="${n}" aria-pressed="${S.goal === n}">${n} días</button>`).join("")}</div></div>
+  <div class="field"><label for="p-rem"><b>Mi horario para practicar</b></label><input id="p-rem" type="time" value="${esc(S.reminder)}"><span class="muted" style="font-size:.86em">Elegir siempre la misma hora ayuda a crear el hábito.</span></div>
+  <section class="card"><h3>Practica con cuidado</h3><p class="muted">Lee las recomendaciones de seguridad cuando quieras.</p><button class="btn soft" data-act="safety">Ver recomendaciones</button></section>
+  <section class="card"><h3>Empezar de nuevo</h3><p class="muted">Borra tu historial y vuelve al día 1 del reto.</p><button class="btn ghost" data-act="reset">Reiniciar mi progreso</button></section>
+  <p class="muted" style="font-size:.82em">Yoga en Silla ofrece movimientos suaves de bienestar general. No es un tratamiento médico ni reemplaza la consulta con un profesional de la salud.</p>`;
+}
+
+function render() {
+  const v = $("#view");
+  v.innerHTML = tab === "hoy" ? viewHoy() : tab === "rutinas" ? viewRutinas() : tab === "progreso" ? viewProgreso() : viewPerfil();
+  document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-current", t.dataset.tab === tab ? "page" : "false"));
+}
+function go(t) { tab = t; render(); window.scrollTo(0, 0); }
+
+/* ===================== Hojas (modales) ===================== */
+let sheetAnim = null;
+function openSheet(html) { const w = $("#sheet"); w.innerHTML = `<div class="sheet" role="dialog" aria-modal="true">${html}</div>`; w.hidden = false; const b = w.querySelector("button, input"); if (b) b.focus({ preventScroll: true }); }
+function closeSheet() { $("#sheet").hidden = true; $("#sheet").innerHTML = ""; if (sheetAnim) { cancelAnimationFrame(sheetAnim); sheetAnim = null; } }
+const sheetTop = (title, sub) => `<div class="sheet-top"><div style="display:grid;gap:4px;min-width:0">${sub ? `<span class="label">${sub}</span>` : ""}<h2>${title}</h2></div><button class="x" data-act="close" aria-label="Cerrar">${ICON.x}</button></div>`;
+
+function routineSheet(id, cday) {
+  const r = R[id];
+  openSheet(`${sheetTop(r.name, r.moment + " · " + routineMin(id) + " min")}
+    <p>${r.desc}</p>
+    <div class="card" style="gap:0;padding:8px 16px">${r.seq.map(([e, s]) => `<button class="exrow" data-ex="${e}" style="background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;width:100%"><div class="thumb">${thumb(e)}</div><span>${EX[e].name}</span><span class="muted num" style="font-size:.88em">${s} s</span></button>`).join("")}</div>
+    <button class="btn block" data-start="${id}" data-cday="${cday || 0}">${ICON.play} Empezar</button>`);
+}
+
+function exSheet(id) {
+  const e = EX[id];
+  openSheet(`${sheetTop(e.name, e.area)}
+    <div class="preview-stage">${figureSVG(e.frames[0], e.name)}</div>
+    <ol class="steps">${e.steps.map(s => `<li>${s}</li>`).join("")}</ol>
+    <div class="soft-note"><b>Versión más suave</b><span>${e.soft}</span></div>`);
+  const g = document.querySelector("#sheet .fig");
+  const t0 = performance.now();
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || e.frames.length < 2) { g.innerHTML = figureMarkup(e.frames[1] || e.frames[0]); return; }
+  const tick = now => {
+    const el = (now - t0) / 1000, seg = Math.floor(el / e.beat), loc = (el % e.beat) / e.beat;
+    const a = e.frames[seg % e.frames.length], b = e.frames[(seg + 1) % e.frames.length];
+    g.innerHTML = figureMarkup(lerpPose(a, b, .5 - .5 * Math.cos(Math.PI * loc)));
+    sheetAnim = requestAnimationFrame(tick);
+  };
+  sheetAnim = requestAnimationFrame(tick);
+}
+
+function safetySheet(thenStart) {
+  openSheet(`${sheetTop("Antes de empezar", "Practica con cuidado")}
+    <ul class="safety">
+      <li>Usa una silla firme, sin ruedas, apoyada contra una pared.</li>
+      <li>Moverte no debería doler. Si algo molesta, haz el movimiento más chico o detente.</li>
+      <li>Si tienes una condición de salud, una cirugía reciente, mareos o dolor que no se va, consulta a tu médico antes de empezar.</li>
+      <li>Detente y pide ayuda si sientes dolor en el pecho, falta de aire fuerte o mareo.</li>
+      <li>Estos son movimientos suaves de bienestar. No reemplazan un tratamiento médico ni kinesiológico.</li>
+    </ul>
+    ${thenStart ? `<label class="check" for="safe-ok"><input id="safe-ok" type="checkbox"><span>Leí las recomendaciones y practico bajo mi responsabilidad.</span></label>
+    <button class="btn block" data-act="safe-go" data-r="${thenStart.r}" data-cday="${thenStart.cday}" disabled>Empezar</button>` : `<button class="btn block" data-act="close">Entendido</button>`}`);
+}
+
+function resetSheet() {
+  openSheet(`${sheetTop("¿Reiniciar tu progreso?")}
+    <p>Se borran tus días practicados y el reto vuelve al día 1. Tu nombre y tus ajustes se mantienen.</p>
+    <div style="display:grid;gap:10px"><button class="btn danger block" data-act="reset-ok">Sí, reiniciar</button><button class="btn ghost block" data-act="close">Cancelar</button></div>`);
+}
+
+/* ===================== Reproductor ===================== */
+let PL = null;
+function speak(text) {
+  if (!S.voice || !("speechSynthesis" in window)) return;
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    const vs = speechSynthesis.getVoices();
+    const v = vs.find(x => /^es[-_](AR|MX|US|419)/i.test(x.lang)) || vs.find(x => /^es/i.test(x.lang));
+    if (v) u.voice = v;
+    u.lang = v ? v.lang : "es-ES"; u.rate = .92; u.pitch = 1;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+let wakeLock = null;
+async function keepAwake(on) {
+  try {
+    if (on && "wakeLock" in navigator && !wakeLock) { wakeLock = await navigator.wakeLock.request("screen"); wakeLock.addEventListener("release", () => wakeLock = null); }
+    if (!on && wakeLock) { await wakeLock.release(); wakeLock = null; }
+  } catch (e) { wakeLock = null; }
+}
+
+function startRoutine(id, cday) {
+  const items = [];
+  R[id].seq.forEach(([e, s], i) => { items.push({ kind: "prep", ex: e, dur: i === 0 ? 8 : PREP }); items.push({ kind: "ex", ex: e, dur: s }); });
+  PL = { id, cday: +cday || 0, items, idx: 0, el: 0, playing: true, last: performance.now(), seg: -1, raf: 0, showSoft: false, done: false, feel: null, scale: .82 };
+  closeSheet();
+  const p = $("#player"); p.hidden = false; document.body.style.overflow = "hidden";
+  drawPlayer(); enterItem();
+  keepAwake(true);
+  PL.raf = requestAnimationFrame(loop);
+}
+function exCount() { return PL.items.filter(x => x.kind === "ex").length; }
+function exIndex() { return PL.items.slice(0, PL.idx + 1).filter(x => x.kind === "ex").length || 1; }
+
+function drawPlayer() {
+  const it = PL.items[PL.idx], e = EX[it.ex];
+  $("#player").innerHTML = `<div class="player-in">
+    <div>
+      <div class="p-top">
+        <button class="x" data-act="pl-close" aria-label="Terminar">${ICON.x}</button>
+        <div class="p-prog" aria-hidden="true"><i id="pl-bar"></i></div>
+        <button class="x" data-act="pl-voice" aria-label="${S.voice ? "Silenciar la voz" : "Activar la voz"}">${S.voice ? ICON.sound : ICON.mute}</button>
+      </div>
+      <p class="p-count num">${R[PL.id].name} · ${exIndex()} de ${exCount()}</p>
+    </div>
+    <div class="stage"><div class="halo" id="pl-halo"></div>${figureSVG(e.frames[0], e.name)}</div>
+    <div class="p-info">
+      <span class="p-kind">${it.kind === "prep" ? "Prepárate" : e.area}</span>
+      <h2>${e.name}</h2>
+      <div class="p-cue" id="pl-cue" aria-live="polite"></div>
+      <div class="p-time num" id="pl-time"></div>
+      <div class="p-steps">
+        ${PL.showSoft ? `<p><b>Versión más suave:</b> ${e.soft}</p>` : `<ol class="steps">${e.steps.map(s => `<li>${s}</li>`).join("")}</ol>`}
+        <button class="linkbtn" data-act="pl-soft" style="justify-self:start">${PL.showSoft ? "Ver la versión completa" : "Necesito una versión más suave"}</button>
+      </div>
+    </div>
+    <div class="p-ctrl">
+      <button class="round" data-act="pl-prev" aria-label="Anterior" ${PL.idx < 2 ? "disabled" : ""}>${ICON.prev}</button>
+      <button class="round big" data-act="pl-toggle" aria-label="${PL.playing ? "Pausar" : "Seguir"}">${PL.playing ? ICON.pause : ICON.play}</button>
+      <button class="round" data-act="pl-next" aria-label="Siguiente">${ICON.next}</button>
+    </div>
+  </div>`;
+  PL.g = $("#player .fig"); PL.cueEl = $("#pl-cue"); PL.timeEl = $("#pl-time"); PL.bar = $("#pl-bar"); PL.halo = $("#pl-halo");
+  updateFrame();
+}
+function enterItem() {
+  const it = PL.items[PL.idx], e = EX[it.ex];
+  PL.el = 0; PL.seg = -1;
+  if (it.kind === "prep") speak((PL.idx === 0 ? "Empezamos. " : "Ahora: ") + e.name + ".");
+  else speak(e.voice);
+}
+function totalLeft() { let s = PL.items[PL.idx].dur - PL.el; for (let i = PL.idx + 1; i < PL.items.length; i++) s += PL.items[i].dur; return s; }
+function fmt(s) { s = Math.max(0, Math.ceil(s)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+function updateFrame() {
+  const it = PL.items[PL.idx], e = EX[it.ex];
+  let pose, cue = "", scale = PL.scale;
+  if (it.kind === "prep") {
+    pose = e.frames[0];
+    cue = String(Math.max(1, Math.ceil(it.dur - PL.el)));
+    scale = .82;
+  } else {
+    const seg = Math.floor(PL.el / e.beat), loc = (PL.el % e.beat) / e.beat;
+    const n = e.frames.length;
+    const a = e.frames[seg % n], b = e.frames[(seg + 1) % n];
+    const ease = .5 - .5 * Math.cos(Math.PI * loc);
+    pose = reduceMotion.matches ? e.frames[Math.min(1, n - 1)] : lerpPose(a, b, ease);
+    cue = e.cues[seg % e.cues.length];
+    if (/^Inhala/.test(cue)) scale = .82 + .18 * ease; else if (/^Exhala/.test(cue)) scale = 1 - .18 * ease;
+    PL.scale = scale;
+  }
+  PL.g.innerHTML = figureMarkup(pose);
+  if (PL.cueEl.textContent !== cue) PL.cueEl.textContent = cue;
+  PL.timeEl.textContent = it.kind === "prep" ? "Empieza en un momento" : fmt(it.dur - PL.el) + " · quedan " + fmt(totalLeft()) + " en total";
+  const tot = PL.items.reduce((s, x) => s + x.dur, 0);
+  PL.bar.style.width = ((tot - totalLeft()) / tot * 100).toFixed(1) + "%";
+  PL.halo.style.transform = "scale(" + (reduceMotion.matches ? .9 : scale).toFixed(3) + ")";
+}
+function loop(now) {
+  if (!PL || PL.done) return;
+  const dt = Math.min(.25, (now - PL.last) / 1000); PL.last = now;
+  if (PL.playing) {
+    PL.el += dt;
+    if (PL.el >= PL.items[PL.idx].dur) {
+      if (PL.idx + 1 >= PL.items.length) { finish(); return; }
+      PL.idx++; enterItem(); drawPlayer();
+    }
+  }
+  updateFrame();
+  PL.raf = requestAnimationFrame(loop);
+}
+function jump(d) {
+  // items alternan: preparación (par) y movimiento (impar)
+  let i;
+  if (d > 0) { i = PL.idx + 1; if (i >= PL.items.length) { finish(); return; } }
+  else { i = Math.max(0, (PL.idx % 2 ? PL.idx - 1 : PL.idx) - 2); }
+  PL.idx = i; enterItem(); drawPlayer();
+}
+function finish() {
+  PL.done = true; cancelAnimationFrame(PL.raf); keepAwake(false);
+  const min = Math.max(1, Math.round(PL.items.slice(0, PL.idx + 1).reduce((s, x) => s + x.dur, 0) / 60));
+  const today = dkey();
+  const session = { date: today, r: PL.id, min, feel: null };
+  S.sessions.push(session);
+  let msg = "Te regalaste " + min + " minutos de movimiento.";
+  if (PL.cday && !S.challenge.some(c => c.date === today) && PL.cday === S.challenge.length + 1) {
+    S.challenge.push({ day: PL.cday, date: today });
+    msg = "Día " + PL.cday + " de 21 completo. " + msg;
+  }
+  save();
+  speak("Muy bien. Terminaste tu práctica.");
+  PL.session = session;
+  $("#player").innerHTML = `<div class="player-in" style="grid-template-rows:1fr"><div class="done-screen">
+    <div class="done-mark">${ICON.check}</div>
+    <h1>Práctica completa</h1>
+    <p class="muted">${msg}</p>
+    <div style="display:grid;gap:10px;width:100%"><b>¿Cómo te sientes ahora?</b>
+      <div class="feelpick" role="group" aria-label="Cómo te sientes">${FEELS.map(f => `<button data-feel="${f}" aria-pressed="false">${f}</button>`).join("")}</div></div>
+    <button class="btn block" data-act="pl-exit">Volver al inicio</button>
+  </div></div>`;
+}
+function closePlayer() {
+  if (PL) { cancelAnimationFrame(PL.raf); }
+  try { speechSynthesis.cancel(); } catch (e) {}
+  keepAwake(false);
+  PL = null; $("#player").hidden = true; $("#player").innerHTML = ""; document.body.style.overflow = "";
+  render();
+}
+
+/* ===================== Eventos ===================== */
+function requestStart(r, cday) {
+  if (!S.safetyOk) { safetySheet({ r, cday }); return; }
+  startRoutine(r, cday);
+}
+document.addEventListener("click", ev => {
+  const b = ev.target.closest("button, [data-act]");
+  if (!b) { if (ev.target.id === "sheet") closeSheet(); return; }
+  const d = b.dataset;
+  if (d.tab) return go(d.tab);
+  if (d.go) { closeSheet(); return go(d.go); }
+  if (d.start) return requestStart(d.start, d.cday);
+  if (d.routine) return routineSheet(d.routine);
+  if (d.ex) return exSheet(d.ex);
+  if (d.filter) { rutFilter = d.filter; return render(); }
+  if (d.fs) { S.fs = d.fs; save(); applyFs(); return render(); }
+  if (d.goal) { S.goal = +d.goal; save(); return render(); }
+  if (d.feel && PL && PL.session) {
+    PL.session.feel = d.feel; save();
+    document.querySelectorAll("[data-feel]").forEach(x => x.setAttribute("aria-pressed", x.dataset.feel === d.feel));
+    return;
+  }
+  switch (d.act) {
+    case "close": return closeSheet();
+    case "savename": { const v = ($("#hoy-name").value || "").trim(); if (v) { S.name = v.slice(0, 30); save(); render(); toast("Hola, " + S.name); } return; }
+    case "voice": S.voice = !S.voice; save(); return render();
+    case "safety": return safetySheet(null);
+    case "safe-go": S.safetyOk = true; save(); return startRoutine(d.r, d.cday);
+    case "reset": return resetSheet();
+    case "reset-ok": S.sessions = []; S.challenge = []; save(); closeSheet(); render(); return toast("Listo, empiezas de nuevo en el día 1");
+    case "pl-close": return closePlayer();
+    case "pl-exit": return closePlayer();
+    case "pl-toggle": PL.playing = !PL.playing; PL.last = performance.now(); if (!PL.playing) { try { speechSynthesis.cancel(); } catch (e) {} } return drawPlayer();
+    case "pl-next": return jump(1);
+    case "pl-prev": return jump(-1);
+    case "pl-soft": PL.showSoft = !PL.showSoft; return drawPlayer();
+    case "pl-voice": S.voice = !S.voice; save(); if (!S.voice) { try { speechSynthesis.cancel(); } catch (e) {} } return drawPlayer();
+  }
+});
+document.addEventListener("change", ev => {
+  const t = ev.target;
+  if (t.id === "safe-ok") { const btn = document.querySelector('[data-act="safe-go"]'); if (btn) btn.disabled = !t.checked; }
+  if (t.id === "p-name") { S.name = t.value.trim().slice(0, 30); save(); toast("Guardado"); }
+  if (t.id === "p-rem") { S.reminder = t.value; save(); toast("Horario guardado"); }
+});
+document.addEventListener("keydown", ev => {
+  if (ev.key === "Enter" && ev.target.id === "hoy-name") { ev.preventDefault(); document.querySelector('[data-act="savename"]').click(); }
+  if (ev.key === "Escape") { if (!$("#sheet").hidden) closeSheet(); else if (PL) closePlayer(); }
+  if (ev.key === " " && PL && !PL.done && ev.target.tagName !== "BUTTON") { ev.preventDefault(); PL.playing = !PL.playing; PL.last = performance.now(); drawPlayer(); }
+});
+document.addEventListener("visibilitychange", () => { if (PL && !PL.done && document.visibilityState === "visible" && PL.playing) keepAwake(true); });
+if ("speechSynthesis" in window) { try { speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices(); } catch (e) {} }
+
+render();
+})();
+</script>
