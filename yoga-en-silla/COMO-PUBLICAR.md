@@ -47,8 +47,16 @@ en la sección *Domains*. El dominio cuesta unos USD 10 a 15 por año. Da más c
 
 ## Cómo distribuirla
 
-1. **Cobro**: Mercado Pago (link de pago, ARS 9.999) para Argentina; Hotmart, PayPal o Stripe (USD 7) para el resto.
-2. **Entrega**: al confirmarse el pago, envías por WhatsApp (o automático por mail desde Hotmart) el link de la app y este mensaje:
+| Canal | Cobro | Cuenta | Entrega |
+|---|---|---|---|
+| WhatsApp (Argentina) | Transferencia, ARS 9.999 | Naranja X o Ualá | Manual, por WhatsApp |
+| Hotmart (internacional) | Checkout de Hotmart, USD 7 | Macro | Automática, por el área de miembros |
+
+### Venta por WhatsApp (Argentina)
+
+1. Pasa los datos de la cuenta con un **alias propio del producto** (por ejemplo `yoga.silla.biblio`). Ayuda a identificar los pagos y da confianza.
+2. **Confirma el pago dentro de la app del banco**, nunca solo por la captura que te envía la compradora: los comprobantes falsos son comunes.
+3. Envía la bienvenida:
 
 > ¡Bienvenida a Yoga en Silla! Tu app: [LINK]
 > Para tenerla como app en tu celular:
@@ -56,7 +64,11 @@ en la sección *Domains*. El dominio cuesta unos USD 10 a 15 por año. Da más c
 > • **iPhone**: ábrela en Safari → botón *Compartir* → *Agregar a inicio*.
 > Después la abres desde el ícono, como cualquier app.
 
-3. **Área de miembros (opcional)**: si vendes con Hotmart o Kiwify, pega el link dentro de una lección del curso. Así queda guardado en su cuenta.
+### Venta por Hotmart (internacional)
+
+1. Crea el producto como **curso en línea** (área de miembros), no como archivo descargable.
+2. En la primera lección: el link de la app, las instrucciones de instalación y el aviso de seguridad.
+3. Hotmart da acceso automático al aprobarse el pago, en cualquier horario.
 
 ## Protección del acceso: qué esperar
 
