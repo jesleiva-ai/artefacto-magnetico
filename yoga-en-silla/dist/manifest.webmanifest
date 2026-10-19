@@ -1,0 +1,30 @@
+{
+  "name": "Yoga en Silla · Tu espacio de bienestar",
+  "short_name": "Yoga en Silla",
+  "description": "Reto de 21 días de yoga en silla con rutinas guiadas.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F1F4F1",
+  "theme_color": "#2E6F62",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
