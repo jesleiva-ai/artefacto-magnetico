@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>30 Días con Dios</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* A5, una sección = una página. Tokens: marfil, salvia, verde profundo, dorado. */
+:root{
+  --marfil:#FAF7F0; --salvia:#5E7A63; --salvia-claro:#E6ECE3; --tinta:#24352B; --dorado:#A9853A; --linea:#D9D2C2;
+  --f-titulo:"Cormorant Garamond", Georgia, serif;
+  --f-texto:"Source Serif 4", Georgia, serif;
+  --f-rotulo:"Inter", Arial, sans-serif;
+}
+@page{size:148mm 210mm;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--marfil);color:var(--tinta);font-family:var(--f-texto);font-size:9.6pt;line-height:1.5}
+body{counter-reset:pag}
+.pag{position:relative;width:148mm;height:210mm;overflow:hidden;padding:16mm 15mm 18mm;page-break-after:always;counter-increment:pag;display:flex;flex-direction:column}
+footer{position:absolute;left:15mm;right:15mm;bottom:8mm;display:flex;justify-content:space-between;font-family:var(--f-rotulo);font-size:6.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--salvia)}
+.folio::after{content:counter(pag)}
+h1,h2{font-family:var(--f-titulo);font-weight:600;margin:0;line-height:1.05;text-wrap:balance}
+h2{font-size:24pt;margin-bottom:5mm}
+p{margin:0 0 3mm}
+.eyebrow{font-family:var(--f-rotulo);font-size:7pt;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado);margin-bottom:3mm}
+.eyebrow.claro{color:#F1DFB1}
+.caja{margin-top:auto;background:var(--salvia-claro);border-radius:2mm;padding:4mm 5mm;font-size:9pt}
+
+/* Portada */
+.portada{padding:0;color:#fff}
+.portada-foto,.foto-plena{position:absolute;inset:0;background-size:cover;background-position:center}
+.sin-foto{background:linear-gradient(160deg,#C9B88E 0%,#7F977F 55%,#33493A 100%)}
+.portada-velo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,40,31,.72) 0%,rgba(26,40,31,.25) 45%,rgba(26,40,31,.75) 100%)}
+.portada-texto{position:relative;height:100%;display:flex;flex-direction:column;padding:18mm 14mm 12mm;text-align:center;align-items:center}
+.sello{font-family:var(--f-rotulo);font-size:7pt;letter-spacing:.24em;text-transform:uppercase;border:1px solid rgba(255,255,255,.7);padding:1.5mm 4mm;border-radius:10mm}
+.portada h1{font-size:46pt;margin-top:8mm}
+.portada .sub{font-family:var(--f-titulo);font-style:italic;font-size:14pt;margin-top:3mm;max-width:100mm}
+.badges{list-style:none;padding:0;margin:auto 0 6mm;display:flex;gap:2mm;flex-wrap:wrap;justify-content:center}
+.badges li{font-family:var(--f-rotulo);font-size:6.8pt;letter-spacing:.06em;background:rgba(250,247,240,.92);color:var(--tinta);padding:1.6mm 3mm;border-radius:10mm}
+.marca{font-family:var(--f-rotulo);font-size:7.5pt;letter-spacing:.3em;text-transform:uppercase}
+
+.centrada{justify-content:center;text-align:center}
+.creditos h2{font-size:20pt}
+.creditos .chico{font-size:7.4pt;color:#5a6a60;margin-top:6mm}
+.texto p{font-size:10pt}
+.firma{font-family:var(--f-titulo);font-style:italic;font-size:13pt;margin-top:4mm}
+.pasos{padding-left:5mm;margin:0}
+.pasos li{margin-bottom:3mm}
+
+/* Aperturas con foto */
+.apertura{padding:0;color:#fff}
+.velo-abajo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,40,31,0) 35%,rgba(26,40,31,.85) 100%)}
+.apertura-texto{position:relative;margin-top:auto;padding:0 15mm 16mm}
+.apertura-texto h2{font-size:30pt;margin-bottom:3mm}
+.marca-cierre{font-family:var(--f-rotulo);font-size:7.5pt;letter-spacing:.3em;text-transform:uppercase;margin-top:6mm}
+
+/* Semanas */
+.semana{background:var(--salvia);color:var(--marfil);justify-content:center;align-items:center;text-align:center}
+.semana-num{font-family:var(--f-rotulo);font-size:8pt;letter-spacing:.3em;text-transform:uppercase;color:#F1DFB1}
+.semana-titulo{font-size:38pt;margin:4mm 0}
+.semana-rango{font-style:italic;max-width:90mm}
+
+/* Días */
+.dia-cabecera{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--linea);padding-bottom:2mm;margin-bottom:3mm}
+.dia-num{font-family:var(--f-rotulo);font-size:7.5pt;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado)}
+.check{font-family:var(--f-rotulo);font-size:7pt;color:var(--salvia)}
+.dia-titulo{font-size:22pt;margin-bottom:3mm}
+.versiculo{margin:0 0 3.5mm;padding:3mm 4mm;border-left:2.5px solid var(--dorado);background:#F3EEE2}
+.versiculo p{font-family:var(--f-titulo);font-style:italic;font-size:12pt;line-height:1.3;margin:0 0 1mm}
+.versiculo cite{font-family:var(--f-rotulo);font-style:normal;font-size:7pt;letter-spacing:.08em;color:var(--salvia)}
+.lectura p{margin-bottom:2.2mm}
+.rotulo{display:block;font-family:var(--f-rotulo);font-size:6.8pt;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--salvia);margin-bottom:1mm}
+.oracion{margin-top:1.5mm}
+.oracion p{font-style:italic}
+.diario{margin-top:auto}
+.diario p{font-weight:600;margin-bottom:2mm}
+.lineas{height:16mm;background:repeating-linear-gradient(180deg,transparent 0 7.6mm,var(--linea) 7.6mm 8mm)}
+
+/* Tarjetas */
+.tarjetas{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:0;height:100%;border:1px dashed #b9b09b}
+.tarjeta{border:1px dashed #b9b09b;padding:6mm 5mm;display:flex;flex-direction:column;justify-content:center;text-align:center;background:linear-gradient(180deg,#FBF8F1,#F1ECDD)}
+.tarjeta p{font-family:var(--f-titulo);font-style:italic;font-size:11pt;line-height:1.3;margin-bottom:3mm}
+.tarjeta cite{font-family:var(--f-rotulo);font-style:normal;font-size:6.5pt;letter-spacing:.1em;color:var(--dorado);text-transform:uppercase}
+.t-num{font-family:var(--f-rotulo);font-size:6pt;color:var(--salvia);margin-bottom:2mm}
+.tarjetas-pag{padding:12mm 12mm 16mm}
+
+/* Hijos */
+.hijos-pag{gap:5mm}
+.hijo{border-bottom:1px solid var(--linea);padding-bottom:4mm}
+.hijo:last-of-type{border-bottom:0}
+.notas{margin-top:auto}
+.hijo-cab{font-family:var(--f-titulo);font-size:15pt;font-weight:600;margin-bottom:1.5mm}
+.hijo-vers{font-style:italic;color:#3c5446}
+.hijo-vers cite{font-style:normal;font-family:var(--f-rotulo);font-size:6.8pt;color:var(--dorado)}
+
+/* Plan */
+.plan{width:100%;border-collapse:collapse;font-size:8.2pt}
+.plan th{font-family:var(--f-rotulo);font-size:6.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--salvia);text-align:left;border-bottom:1.5px solid var(--salvia);padding:1.5mm 1mm}
+.plan td{border-bottom:1px solid var(--linea);padding:1.9mm 1mm;vertical-align:top}
+.plan .sem,.plan .cap{font-family:var(--f-rotulo);font-size:7pt;color:var(--dorado);width:9mm;font-variant-numeric:tabular-nums}
+.plan .box{width:6mm;color:var(--salvia)}
+</style>
+</head>
+<body>
+<section class="pag portada">
+<div class="portada-foto sin-foto"></div>
+<div class="portada-velo"></div>
+<div class="portada-texto">
+  <div class="sello">Devocional para mujeres</div>
+  <h1>30 Días con Dios</h1>
+  <p class="sub">Un devocional para mujeres que quieren volver a encontrarse con Él</p>
+  <ul class="badges"><li>30 lecturas diarias</li><li>Oración y diario</li><li>3 bonos incluidos</li></ul>
+  <div class="marca">Raíces de Fe</div>
+</div></section>
+<section class="pag centrada">
+<div class="creditos">
+  <h2>30 Días con Dios</h2>
+  <p>Un devocional para mujeres que quieren volver a encontrarse con Él</p>
+  <p class="chico">© Raíces de Fe. Todos los derechos reservados. Este material es de uso personal. No está permitida su reventa ni su distribución total o parcial sin autorización.</p>
+  <p class="chico">Texto bíblico tomado de la Santa Biblia, versión Reina-Valera © 1960 Sociedades Bíblicas en América Latina; © renovado 1988 Sociedades Bíblicas Unidas. Utilizado con permiso. Reina-Valera 1960™ es una marca registrada de la American Bible Society y puede ser usada solamente bajo licencia.</p>
+</div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag texto">
+<div class="eyebrow">Bienvenida</div>
+<h2>Un lugar para volver a encontrarte con Dios</h2>
+<p>Querida amiga: si tenés este devocional en tus manos, es porque algo en vos está buscando volver. Volver a la paz, volver a la oración, volver a ese lugar donde el alma descansa.</p>
+<p>No importa si hace años que no abrís la Biblia o si la leés todos los días. Estos treinta días fueron pensados para mujeres reales, con agendas llenas, cansancio acumulado y muchas preguntas. No hace falta tener todo resuelto. Solo hace falta aparecer.</p>
+<p>Cada día vas a encontrar una lectura corta, un versículo para guardar en el corazón, una oración para hacer tuya y una pregunta para escribir en tu diario. Diez o quince minutos alcanzan.</p>
+<p class="firma">Con cariño,<br>el equipo de Raíces de Fe</p><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag texto">
+<div class="eyebrow">Antes de empezar</div>
+<h2>Cómo usar este devocional</h2>
+<ol class="pasos">
+  <li><b>Elegí un momento fijo.</b> A la mañana con el primer mate, en la siesta o antes de dormir. Lo importante es que sea siempre el mismo.</li>
+  <li><b>Leé sin apuro.</b> Primero la lectura del día, después el versículo. Si podés, leelo dos veces en voz alta.</li>
+  <li><b>Hacé tuya la oración.</b> Es una guía: cambiá las palabras, agregá nombres, contale a Dios lo que te pasa.</li>
+  <li><b>Escribí.</b> Respondé la pregunta del día en las líneas o en un cuaderno. Al final de los 30 días vas a poder ver tu recorrido.</li>
+  <li><b>Si te salteás un día, seguí.</b> No es una carrera. Retomá donde quedaste, sin culpa.</li>
+</ol>
+<div class="caja"><b>Tus bonos:</b> al final encontrás 30 tarjetas de versículos para imprimir, 21 días de oración por tus hijos y un plan para leer la Biblia completa en un año.</div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag apertura">
+<div class="foto-plena sin-foto"></div>
+<div class="velo-abajo"></div>
+<div class="apertura-texto"><div class="eyebrow claro">Parte 1</div><h2>Los 30 días</h2><p>Cuatro semanas para descansar, soltar, recordar quién sos y seguir con fuerza.</p></div></section>
+<section class="pag semana">
+<div class="semana-num">Semana 1</div>
+<h2 class="semana-titulo">Volver a casa</h2>
+<p class="semana-rango">Días 1 al 7 · Descanso, presencia y nuevos comienzos</p></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 1</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Nuevas cada mañana</h2>
+<blockquote class="versiculo"><p>“Por la misericordia de Jehová no hemos sido consumidos, porque nunca decayeron sus misericordias. Nuevas son cada mañana; grande es tu fidelidad.”</p><cite>Lamentaciones 3:22-23</cite></blockquote>
+<div class="lectura"><p>Hay días en los que te despertás y ya te sentís cansada. Pensás en todo lo que no hiciste ayer, en lo que salió mal, en lo que dijiste de más. Arrancás el día con una mochila llena antes de poner los pies en el piso.</p><p>Dios no te espera con esa mochila. Te espera con algo nuevo. Su misericordia no es un resto que sobró de ayer: se renueva cada mañana, fresca, como el pan recién hecho. No importa cómo terminó el día anterior. Hoy Él vuelve a empezar con vos.</p><p>Este devocional es eso: treinta mañanas para volver a empezar. No necesitás tener todo resuelto ni saber orar “bien”. Solo necesitás aparecer, con lo que tengas.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, hoy vengo como estoy. Te entrego lo que pasó ayer y te pido que me ayudes a recibir tu misericordia nueva. Gracias porque tu fidelidad no depende de la mía. Quiero caminar estos treinta días cerca tuyo. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué cosa de ayer necesitás dejar en manos de Dios para empezar este día liviana?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 2</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Quedate quieta</h2>
+<blockquote class="versiculo"><p>“Estad quietos, y conoced que yo soy Dios.”</p><cite>Salmos 46:10</cite></blockquote>
+<div class="lectura"><p>Vivimos corriendo. El celular, el trabajo, la casa, los chicos, los mensajes que no paran. Hasta cuando nos sentamos, la cabeza sigue andando a mil.</p><p>Dios no te pide que hagas más. A veces te pide que hagas menos. “Estad quietos” no es una orden para castigarte: es una invitación a soltar el control un rato y recordar quién es Dios. Cuando dejás de correr, empezás a escuchar.</p><p>Hoy regalate cinco minutos sin pantalla. Sentate, respirá hondo y no le pidas nada. Solo quedate con Él. Es en la quietud donde el alma se acomoda.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Padre, mi cabeza no para. Hoy elijo quedarme quieta en tu presencia. Calmá mi corazón, ordená mis pensamientos y recordame que vos sos Dios y yo no. Descanso en vos. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿En qué momento del día podés regalarle a Dios cinco minutos de silencio?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 3</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">No estás sola</h2>
+<blockquote class="versiculo"><p>“No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia.”</p><cite>Isaías 41:10</cite></blockquote>
+<div class="lectura"><p>La soledad no siempre es estar sin gente. A veces estás rodeada de personas y aun así sentís que nadie entiende lo que te pasa por dentro.</p><p>Dios conoce esa soledad, y no te deja en ella. En este versículo Él repite “yo” una y otra vez: yo estoy contigo, yo soy tu Dios, yo te esfuerzo, yo te ayudaré. No es una promesa lejana. Es su forma de decirte: “Estoy acá, ahora, con vos”.</p><p>Cuando el miedo te diga que estás sola en esto, contestale con esta Palabra. Leela en voz alta si hace falta. La presencia de Dios es más real que el silencio que sentís.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, hay días en que me siento muy sola. Gracias porque vos estás conmigo aunque no te vea. Sostenéme con tu mano, dame fuerzas y sacame el miedo. Confío en que nunca me soltás. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿En qué situación de tu vida necesitás recordar hoy que Dios está con vos?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 4</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Descanso para el alma</h2>
+<blockquote class="versiculo"><p>“Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar.”</p><cite>Mateo 11:28</cite></blockquote>
+<div class="lectura"><p>Hay un cansancio que no se va durmiendo. Es el cansancio de cargar con todo: con lo que esperan de vos, con las preocupaciones de los demás, con la exigencia de no fallar nunca.</p><p>Jesús no les habla a las personas que tienen todo bajo control. Les habla a las cansadas y cargadas. Es decir, te habla a vos. Y no te promete más tareas, te promete descanso.</p><p>Venir a Jesús es soltar la idea de que todo depende de vos. Es dejar que Él lleve lo que no podés. Hoy, en vez de hacer una lista de pendientes, hacé una lista de cargas y entregáselas una por una.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Jesús, estoy cansada. Vengo a vos con todo lo que cargo. Tomá lo que no me corresponde llevar y enseñame a descansar en vos. Gracias por tu invitación. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>Escribí tres cargas que hoy le entregás a Jesús.</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 5</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Pedir con gratitud</h2>
+<blockquote class="versiculo"><p>“Por nada estéis afanosos, sino sean conocidas vuestras peticiones delante de Dios en toda oración y ruego, con acción de gracias. Y la paz de Dios, que sobrepasa todo entendimiento, guardará vuestros corazones y vuestros pensamientos en Cristo Jesús.”</p><cite>Filipenses 4:6-7</cite></blockquote>
+<div class="lectura"><p>La ansiedad tiene una forma de adelantarse a todo. Imagina lo peor, repasa conversaciones que todavía no pasaron, arma problemas que quizás nunca lleguen.</p><p>Pablo, que escribió esto desde la cárcel, propone otro camino: llevar cada preocupación a Dios en oración y hacerlo con gratitud. No es ignorar el problema, es ponerlo en las manos correctas. Y la promesa es enorme: una paz que no tiene lógica, que no depende de que todo se resuelva.</p><p>Probá hoy este ejercicio: por cada cosa que te preocupa, nombrá una por la que estás agradecida. La gratitud abre espacio para la paz.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Dios, te entrego lo que me preocupa: [nombrálo]. Y te agradezco por [nombrá algo bueno]. Llená mi corazón de tu paz, esa que no entiendo pero que necesito. Cuidá mis pensamientos hoy. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Cuáles son tus tres preocupaciones de hoy y tus tres motivos de gratitud?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 6</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Hecha con amor</h2>
+<blockquote class="versiculo"><p>“Te alabaré; porque formidables, maravillosas son tus obras; estoy maravillado, y mi alma lo sabe muy bien.”</p><cite>Salmos 139:14</cite></blockquote>
+<div class="lectura"><p>Nos miramos al espejo y aparece la lista de defectos. Nos comparamos en redes con vidas que parecen perfectas. Y de a poco nos convencemos de que no somos suficientes.</p><p>David miró su propia vida y dijo otra cosa: “maravillosas son tus obras”. No porque fuera perfecto, sino porque sabía quién lo había formado. Vos no sos un error ni un borrador. Sos obra de las manos de Dios.</p><p>Hoy, cuando aparezca un pensamiento duro sobre vos misma, frená y preguntate: ¿esto lo diría Dios de mí? Si la respuesta es no, no le des lugar.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, perdoname por las veces que hablo mal de lo que vos hiciste. Ayudame a mirarme como vos me mirás. Gracias porque me formaste con amor y con propósito. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué pensamiento sobre vos misma necesitás cambiar por la verdad de Dios?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 7</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Él tiene un plan</h2>
+<blockquote class="versiculo"><p>“Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis.”</p><cite>Jeremías 29:11</cite></blockquote>
+<div class="lectura"><p>Cuando las cosas no salen como esperabas, es fácil pensar que Dios se olvidó de vos. Que tu historia quedó trabada en un capítulo feo.</p><p>Este versículo fue escrito para un pueblo que estaba lejos de su casa, en el exilio, con años de espera por delante. Y aun así Dios les dijo: tengo pensamientos de paz para ustedes. Su plan no se cancela porque estés en una etapa difícil.</p><p>No sabés cómo termina esta parte de tu historia, pero conocés al que la escribe. Hoy podés soltar la necesidad de entender todo y descansar en que Él sí sabe.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Padre, no entiendo todo lo que me está pasando, pero confío en que tenés pensamientos de paz para mí. Ayudame a esperar sin perder la fe. Mi futuro está en tus manos. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué área de tu vida te cuesta confiarle a Dios? Escribíla y entregásela.</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag semana">
+<div class="semana-num">Semana 2</div>
+<h2 class="semana-titulo">Soltar lo que pesa</h2>
+<p class="semana-rango">Días 8 al 14 · Ansiedad, miedo y confianza</p></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 8</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Nada me faltará</h2>
+<blockquote class="versiculo"><p>“Jehová es mi pastor; nada me faltará.”</p><cite>Salmos 23:1</cite></blockquote>
+<div class="lectura"><p>Empezamos la segunda semana con el salmo más conocido de la Biblia, y no es casualidad. Cuando la ansiedad aprieta, volvemos a lo básico: Dios es nuestro pastor.</p><p>Un pastor no deja a sus ovejas solas. Las guía, las protege, sabe dónde hay agua y dónde hay pasto. “Nada me faltará” no significa que vas a tener todo lo que querés, sino que no te va a faltar lo que necesitás, porque Él está atento.</p><p>Esta semana vamos a aprender a soltar lo que pesa. Y el primer paso es recordar quién nos cuida.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, vos sos mi pastor. Cuando siento que me falta algo, recordame que vos me cuidás. Guiame hoy por caminos de paz. Confío en tu provisión. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué te preocupa que te falte? ¿Cómo te cuidó Dios en el pasado en algo parecido?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 9</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Confiar más que entender</h2>
+<blockquote class="versiculo"><p>“Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia. Reconócelo en todos tus caminos, y él enderezará tus veredas.”</p><cite>Proverbios 3:5-6</cite></blockquote>
+<div class="lectura"><p>Somos expertas en analizar. Damos vueltas a las cosas hasta encontrarles explicación. Y cuando no la encontramos, nos angustiamos.</p><p>La Biblia no te pide que dejes de pensar, te pide que no te apoyes solo en tu propia prudencia. Hay cosas que no vas a entender hoy, y está bien. Confiar es dar un paso aunque no veas toda la escalera.</p><p>Cuando reconocés a Dios en tus caminos, en las decisiones grandes y en las chiquitas, Él va enderezando el camino. No siempre de golpe, pero siempre de verdad.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Dios, quiero confiar en vos con todo mi corazón. Hay cosas que no entiendo y me dan miedo. Te reconozco en mis decisiones de hoy. Enderezá mi camino. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué decisión tenés por delante en la que necesitás confiar más que entender?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 10</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Fuerte en la debilidad</h2>
+<blockquote class="versiculo"><p>“Bástate mi gracia; porque mi poder se perfecciona en la debilidad.”</p><cite>2 Corintios 12:9</cite></blockquote>
+<div class="lectura"><p>Nos enseñaron a mostrarnos fuertes. A no llorar delante de nadie, a poder con todo, a no pedir ayuda. Pero hay días en que simplemente no podés.</p><p>Pablo le pidió a Dios tres veces que le sacara algo que lo debilitaba. Y la respuesta de Dios fue sorprendente: “Bástate mi gracia”. En lugar de sacar la debilidad, Dios la usó para mostrar su poder.</p><p>Tu cansancio no te descalifica. Tu límite es justamente el lugar donde Dios empieza a obrar. Hoy no tenés que fingir fortaleza. Podés apoyarte en la suya.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, hoy me siento débil y no quiero fingir lo contrario. Que tu gracia me alcance. Mostrá tu poder en lo que yo no puedo. Me apoyo en vos. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿En qué área te estás exigiendo fortaleza cuando en realidad necesitás la gracia de Dios?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 11</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Cerca del corazón roto</h2>
+<blockquote class="versiculo"><p>“Cercano está Jehová a los quebrantados de corazón; y salva a los contritos de espíritu.”</p><cite>Salmos 34:18</cite></blockquote>
+<div class="lectura"><p>Hay dolores que no se ven. Una pérdida, una traición, un sueño que no se cumplió, una relación que terminó. Y muchas veces seguimos funcionando por fuera mientras por dentro estamos rotas.</p><p>Dios no se aleja del dolor. Se acerca. Este versículo dice que Él está cercano a los quebrantados de corazón. No dice “a los que ya sanaron”, sino a los que todavía están rotos.</p><p>No necesitás estar bien para acercarte a Dios. Podés venir con las piezas en la mano. Él sabe qué hacer con ellas.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Padre, hay dolor en mi corazón que no le cuento a nadie. Te lo traigo a vos. Gracias porque te acercás a mi herida. Sanáme a tu tiempo y a tu manera. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué herida tenés guardada que todavía no le contaste a Dios?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 12</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Todo ayuda a bien</h2>
+<blockquote class="versiculo"><p>“Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien, esto es, a los que conforme a su propósito son llamados.”</p><cite>Romanos 8:28</cite></blockquote>
+<div class="lectura"><p>Este versículo no dice que todo lo que pasa es bueno. Hay cosas que duelen, que son injustas, que no tienen sentido. Lo que dice es que Dios es capaz de hacer que todo, incluso lo malo, termine sirviendo para tu bien.</p><p>Es como un tejido: de un lado se ven nudos e hilos sueltos; del otro, un dibujo hermoso. Hoy vos ves el revés. Dios ve el diseño completo.</p><p>Pensá en algo difícil que viviste hace años. ¿Podés ver ahora algo bueno que salió de ahí? Esa misma fidelidad está obrando en lo que vivís hoy.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, no entiendo por qué pasan ciertas cosas, pero creo que podés transformarlas. Tomá lo que hoy me duele y usalo para bien. Confío en tu diseño. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué situación difícil del pasado terminó trayendo algo bueno a tu vida?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 13</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Valiente, no sin miedo</h2>
+<blockquote class="versiculo"><p>“Mira que te mando que te esfuerces y seas valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo en dondequiera que vayas.”</p><cite>Josué 1:9</cite></blockquote>
+<div class="lectura"><p>Ser valiente no es no tener miedo. Es avanzar con miedo, sabiendo que no vas sola.</p><p>Josué tenía que liderar a todo un pueblo después de Moisés. Imaginate la presión. Y Dios no le dijo “no vas a sentir miedo”, le dijo “esforzate, sé valiente, porque yo estoy con vos en todo lugar”.</p><p>¿Qué paso te está dando miedo dar? Una conversación pendiente, un cambio de trabajo, poner un límite, empezar algo nuevo. Hoy podés darlo con miedo y con Dios.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Dios, tengo miedo de [nombrá tu paso]. Dame valentía para avanzar sabiendo que vos vas conmigo. No quiero que el miedo decida por mí. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Cuál es el paso valiente que Dios te está pidiendo dar?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 14</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Mi ayuda viene de Él</h2>
+<blockquote class="versiculo"><p>“Alzaré mis ojos a los montes; ¿De dónde vendrá mi socorro? Mi socorro viene de Jehová, que hizo los cielos y la tierra.”</p><cite>Salmos 121:1-2</cite></blockquote>
+<div class="lectura"><p>Cuando tenemos un problema, buscamos ayuda en todos lados: en una amiga, en internet, en alguien que nos dé la respuesta. Y está bien pedir ayuda. Pero hay una ayuda que viene de más alto.</p><p>El salmista levanta la mirada a los montes y se pregunta de dónde vendrá su socorro. La respuesta es clara: del que hizo los cielos y la tierra. Si Dios pudo crear el universo, puede con lo que hoy te quita el sueño.</p><p>Cerramos la semana de soltar lo que pesa levantando la mirada. Hoy no mires solo el problema: mirá al que es más grande.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, levanto mis ojos hacia vos. Mi ayuda viene de vos. Te entrego eso que me quita el sueño. Gracias porque nada es demasiado grande para vos. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>Mirando esta semana, ¿qué cargas lograste soltar? ¿Cuál todavía te cuesta?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag semana">
+<div class="semana-num">Semana 3</div>
+<h2 class="semana-titulo">Quién soy en Él</h2>
+<p class="semana-rango">Días 15 al 21 · Identidad, valor y perdón</p></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 15</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Él cuida de vos</h2>
+<blockquote class="versiculo"><p>“echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.”</p><cite>1 Pedro 5:7</cite></blockquote>
+<div class="lectura"><p>Empezamos la tercera semana con una verdad simple: Dios cuida de vos. No de manera general, como quien cuida un jardín grande. Te cuida a vos, con tu nombre y tu historia.</p><p>Pedro nos invita a echar toda la ansiedad sobre Él. Echar es un verbo fuerte: es tirar, soltar con fuerza, no dejar apoyado por si después lo quiero recuperar.</p><p>Esta semana vamos a hablar de quién sos en Dios. Y no hay mejor punto de partida que este: sos alguien que Dios cuida. Eso define tu valor más que cualquier logro o fracaso.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Padre, hoy echo sobre vos toda mi ansiedad. No quiero volver a cargarla. Gracias porque me cuidás con nombre y apellido. Ayudame a vivir como alguien amada. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué ansiedad estás lista para “echar” hoy sobre Dios, sin volver a levantarla?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 16</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Nuevas fuerzas</h2>
+<blockquote class="versiculo"><p>“pero los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las águilas; correrán, y no se cansarán; caminarán, y no se fatigarán.”</p><cite>Isaías 40:31</cite></blockquote>
+<div class="lectura"><p>Hay temporadas en las que corrés y te cansás, caminás y te fatigás. Dar, dar y dar, hasta quedar vacía.</p><p>Isaías promete algo distinto para los que esperan en Dios: nuevas fuerzas. Esperar en Dios no es quedarse quieta sin hacer nada; es poner tu confianza en Él mientras seguís caminando. Y en esa espera, Él renueva lo que se gastó.</p><p>Como el águila que aprovecha las corrientes de aire para volar sin agotarse, vos podés aprender a moverte con la fuerza de Dios y no solo con la tuya.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, estoy gastada. Renová mis fuerzas mientras espero en vos. Enseñame a vivir con tu energía y no solo con la mía. Gracias por levantarme. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué cosas te recargan y cuáles te vacían? ¿Cómo podés hacer más lugar para Dios en tu rutina?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 17</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Perdonar para ser libre</h2>
+<blockquote class="versiculo"><p>“Antes sed benignos unos con otros, misericordiosos, perdonándoos unos a otros, como Dios también os perdonó a vosotros en Cristo.”</p><cite>Efesios 4:32</cite></blockquote>
+<div class="lectura"><p>Perdonar no es decir que lo que te hicieron estuvo bien. No es olvidar ni volver a confiar ciegamente. Perdonar es soltar la deuda para que deje de tenerte atada a vos.</p><p>El modelo del perdón es Dios mismo. Él nos perdonó en Cristo, sin que lo mereciéramos. Desde ese lugar de haber sido perdonadas, podemos empezar a perdonar a otros.</p><p>A veces el perdón es un proceso largo, y está bien. Hoy podés dar el primer paso: nombrar a esa persona delante de Dios y pedirle que te ayude a soltar.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Dios, me cuesta perdonar a [nombre]. No quiero seguir atada a ese dolor. Ayudame a soltar la deuda como vos soltaste la mía. Sanáme y liberáme. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿A quién necesitás empezar a perdonar? ¿Y necesitás perdonarte a vos misma por algo?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 18</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Encomendar el camino</h2>
+<blockquote class="versiculo"><p>“Encomienda a Jehová tu camino, y confía en él; y él hará.”</p><cite>Salmos 37:5</cite></blockquote>
+<div class="lectura"><p>Encomendar es entregar algo valioso a alguien de confianza. Como cuando dejás a tus hijos con alguien que querés, o le pasás un trabajo importante a una persona que sabés que lo va a hacer bien.</p><p>Dios te invita a encomendarle tu camino: tus planes, tus proyectos, tus sueños. Y la promesa es simple: “y él hará”. No dice cómo ni cuándo, pero dice que va a actuar.</p><p>Hoy escribí un sueño o un proyecto que tengas y encomendáselo a Dios. Hacé tu parte y dejale a Él la suya.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, te encomiendo mi camino y mis sueños. Te entrego [nombrá tu proyecto]. Confío en que vas a obrar a tu tiempo. Ayudame a hacer mi parte con paz. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué sueño o proyecto le encomendás hoy a Dios?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 19</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Un día a la vez</h2>
+<blockquote class="versiculo"><p>“Así que, no os afanéis por el día de mañana, porque el día de mañana traerá su afán. Basta a cada día su propio mal.”</p><cite>Mateo 6:34</cite></blockquote>
+<div class="lectura"><p>La ansiedad vive en el futuro. Se adelanta a la semana que viene, al mes que viene, al año que viene. Y nos roba la fuerza que necesitamos para hoy.</p><p>Jesús nos enseña a vivir un día a la vez. No porque el futuro no importe, sino porque Dios nos da la gracia justa para cada día. La gracia de mañana llega mañana.</p><p>Hoy concentrate solo en hoy. ¿Qué necesitás hacer hoy? ¿Qué podés disfrutar hoy? Lo demás, dejalo en manos de Dios.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Jesús, me preocupo demasiado por el futuro. Enseñame a vivir hoy, con la gracia que me das para este día. Te entrego el mañana. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué preocupación del futuro podés soltar hoy para disfrutar el presente?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 20</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Dios se alegra por vos</h2>
+<blockquote class="versiculo"><p>“Jehová está en medio de ti, poderoso, él salvará; se gozará sobre ti con alegría, callará de amor, se regocijará sobre ti con cánticos.”</p><cite>Sofonías 3:17</cite></blockquote>
+<div class="lectura"><p>¿Alguna vez pensaste que Dios se alegra cuando te ve? No que te tolera, ni que te soporta, sino que se goza por vos.</p><p>Sofonías describe a un Dios que está en medio tuyo, que se alegra con alegría, que calla de amor y que canta sobre vos. Es la imagen de una madre que mira a su hijo dormir y se le llena el pecho de ternura.</p><p>Así te mira Dios. No por lo que hacés, sino por quién sos: su hija. Hoy dejá que esta verdad te abrace.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Padre, me cuesta creer que te alegrás por mí. Ayudame a recibir tu amor sin condiciones. Gracias por mirarme con ternura. Quiero vivir como tu hija amada. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Cómo cambiaría tu día si creyeras de verdad que Dios se alegra por vos?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 21</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">No te canses de hacer el bien</h2>
+<blockquote class="versiculo"><p>“No nos cansemos, pues, de hacer bien; porque a su tiempo segaremos, si no desmayamos.”</p><cite>Gálatas 6:9</cite></blockquote>
+<div class="lectura"><p>Cerramos la semana de identidad con una palabra para las que dan mucho. Las que cuidan, sostienen, acompañan y a veces sienten que nadie lo ve.</p><p>Pablo sabe que hacer el bien cansa. Por eso nos anima: no te canses, porque a su tiempo vas a cosechar. Lo que sembrás con amor no se pierde, aunque hoy no veas el fruto.</p><p>Dios ve cada cosa que hacés en silencio. La comida que preparaste, la paciencia que tuviste, la oración que hiciste por alguien. Nada de eso es en vano.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, a veces me canso de dar sin ver resultados. Recordame que vos ves todo lo que hago. Renová mi amor y mi paciencia. Confío en la cosecha. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué bien estás sembrando que todavía no ves dar fruto?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag semana">
+<div class="semana-num">Semana 4</div>
+<h2 class="semana-titulo">Fuerza para seguir</h2>
+<p class="semana-rango">Días 22 al 30 · Esperanza, gratitud y propósito</p></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 22</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Una luz para el camino</h2>
+<blockquote class="versiculo"><p>“Lámpara es a mis pies tu palabra, y lumbrera a mi camino.”</p><cite>Salmos 119:105</cite></blockquote>
+<div class="lectura"><p>Empezamos la última etapa: fuerza para seguir. Y para seguir necesitamos luz.</p><p>Una lámpara en tiempos bíblicos no iluminaba toda la ruta. Alumbraba lo justo para dar el próximo paso. Así funciona muchas veces la Palabra de Dios: no te muestra todo el mapa de tu vida, pero sí el siguiente paso.</p><p>Estos días de leer la Biblia van dejando algo en vos. Seguí volviendo a la Palabra después de este devocional. Es la luz que vas a necesitar en cada etapa.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Dios, gracias por tu Palabra. Iluminá mi próximo paso. Dame hambre de leerte cada día. Quiero caminar con tu luz. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué versículo de estos días te quedó grabado? Escribilo y ponelo donde lo veas seguido.</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 23</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Dar gracias en todo</h2>
+<blockquote class="versiculo"><p>“Estad siempre gozosos. Orad sin cesar. Dad gracias en todo, porque esta es la voluntad de Dios para con vosotros en Cristo Jesús.”</p><cite>1 Tesalonicenses 5:16-18</cite></blockquote>
+<div class="lectura"><p>Dar gracias en todo no es lo mismo que dar gracias por todo. No tenés que agradecer el dolor, pero sí podés encontrar motivos de gratitud en medio de él.</p><p>La gratitud cambia la mirada. Cuando agradecés, tu atención se mueve de lo que falta a lo que hay. Y eso abre lugar para el gozo, incluso en días difíciles.</p><p>Hoy hacé una lista de diez cosas por las que estás agradecida. Pueden ser grandes o chiquitas: un mate caliente, una charla, la salud, un abrazo. Vas a ver cómo cambia tu día.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Padre, gracias por [nombrá tres cosas]. Enseñame a ver tus regalos en medio de lo cotidiano. Que mi corazón sea agradecido aun en los días difíciles. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>Escribí diez cosas por las que hoy estás agradecida.</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 24</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Fuerza y honor</h2>
+<blockquote class="versiculo"><p>“Fuerza y honor son su vestidura; y se ríe de lo por venir.”</p><cite>Proverbios 31:25</cite></blockquote>
+<div class="lectura"><p>La mujer de Proverbios 31 a veces nos asusta: parece hacer todo perfecto. Pero hay una frase que vale la pena mirar con atención: “se ríe de lo por venir”.</p><p>No se ríe porque sabe todo lo que va a pasar, sino porque sabe en quién confía. Su seguridad no está en tener el futuro controlado, sino en estar vestida de fuerza y honor que vienen de Dios.</p><p>No tenés que ser perfecta. Pero podés vestirte cada mañana con la fuerza que Dios te da y mirar el futuro sin miedo.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, quiero vestirme hoy con tu fuerza y tu honor. Sacame el miedo al futuro. Que mi seguridad esté en vos y no en tener todo bajo control. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué te da miedo del futuro? ¿Cómo sería mirarlo con la confianza de esta mujer?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 25</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Su paz no es como la del mundo</h2>
+<blockquote class="versiculo"><p>“La paz os dejo, mi paz os doy; yo no os la doy como el mundo la da. No se turbe vuestro corazón, ni tenga miedo.”</p><cite>Juan 14:27</cite></blockquote>
+<div class="lectura"><p>El mundo ofrece paz cuando todo está bien: cuando se pagan las cuentas, cuando la familia está tranquila, cuando el trabajo funciona. Pero esa paz se va apenas algo se mueve.</p><p>Jesús ofrece otra paz. Una que no depende de las circunstancias. Una que puede estar presente en medio de la tormenta. Él la llama “mi paz”, y te la regala.</p><p>Hoy, cuando algo te altere, frená un segundo y decí en voz baja: “Jesús, dame tu paz”. Repetilo las veces que haga falta.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Jesús, recibo tu paz. No la que depende de que todo salga bien, sino la tuya. Cuidá mi corazón de la turbación y del miedo. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué situación de hoy necesita la paz de Jesús más que una solución?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 26</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">La alegría llega a la mañana</h2>
+<blockquote class="versiculo"><p>“Por la noche durará el lloro, y a la mañana vendrá la alegría.”</p><cite>Salmos 30:5</cite></blockquote>
+<div class="lectura"><p>Hay noches largas. Noches de llanto, de preguntas sin respuesta, de esperar algo que no llega. Y la Biblia no niega esas noches.</p><p>Pero promete que no duran para siempre. “Por la noche durará el lloro, y a la mañana vendrá la alegría”. El llanto tiene fecha de vencimiento. La alegría de Dios va a volver a tu vida.</p><p>Si estás atravesando una noche, aferrate a esta promesa. Y si ya pasaste una, agradecé la mañana que llegó.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, sostenéme en mis noches largas. Creo que la mañana va a llegar. Devolveme la alegría que viene de vos. Gracias por no dejarme en la oscuridad. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Estás atravesando una noche o ya llegó tu mañana? Escribile a Dios sobre eso.</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 27</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Creer sin ver</h2>
+<blockquote class="versiculo"><p>“Es, pues, la fe la certeza de lo que se espera, la convicción de lo que no se ve.”</p><cite>Hebreos 11:1</cite></blockquote>
+<div class="lectura"><p>La fe no es tener todas las pruebas. Es la certeza de lo que se espera y la convicción de lo que todavía no se ve.</p><p>Vivimos en una época que quiere ver para creer. Dios nos invita a creer aunque todavía no veamos. Así vivieron muchos hombres y mujeres de la Biblia: confiando en promesas que tardaron en cumplirse.</p><p>¿Qué estás esperando de Dios? Seguí creyendo. La fe no es negar la realidad, es mirar más allá de ella.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Padre, aumentá mi fe. Ayudame a creer en tus promesas aunque todavía no las vea. Sostené mi esperanza mientras espero. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué promesa de Dios estás esperando ver cumplida?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 28</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Dios hace algo nuevo</h2>
+<blockquote class="versiculo"><p>“He aquí que yo hago cosa nueva; pronto saldrá a luz; ¿no la conoceréis? Otra vez abriré camino en el desierto, y ríos en la soledad.”</p><cite>Isaías 43:19</cite></blockquote>
+<div class="lectura"><p>A veces nos quedamos mirando atrás: lo que fue, lo que perdimos, lo que podría haber sido. Y nos cuesta ver lo que Dios está haciendo ahora.</p><p>Isaías dice: “He aquí que yo hago cosa nueva”. Dios abre caminos donde parecía no haber salida, y ríos donde todo estaba seco. Lo nuevo de Dios ya está brotando, aunque todavía sea chiquito.</p><p>Hoy preguntale a Dios: ¿qué cosa nueva estás haciendo en mi vida? Y abrí los ojos para verla.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, ayudame a soltar lo que quedó atrás. Abrí mis ojos para ver lo nuevo que estás haciendo. Gracias por abrir caminos en mi desierto. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>¿Qué cosa nueva ves que Dios está empezando en tu vida?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 29</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Llena de esperanza</h2>
+<blockquote class="versiculo"><p>“Y el Dios de esperanza os llene de todo gozo y paz en el creer, para que abundéis en esperanza por el poder del Espíritu Santo.”</p><cite>Romanos 15:13</cite></blockquote>
+<div class="lectura"><p>Estamos llegando al final de estos treinta días. Y la oración de Pablo es perfecta para este momento: que el Dios de esperanza te llene de gozo y de paz al creer.</p><p>Fijate el orden: primero creer, después gozo y paz, y como resultado, abundar en esperanza. No es una esperanza que vos fabricás con esfuerzo. Es el Espíritu Santo trabajando en vos.</p><p>Mirá todo lo que recorriste en estos días. Volvé a leer tus respuestas del diario. Vas a ver cómo Dios estuvo presente.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Dios de esperanza, llename de gozo y de paz. Que tu Espíritu haga crecer en mí una esperanza que no se apague. Gracias por estos días con vos. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>Releé tu diario de estos días. ¿Qué cambió en vos desde el día 1?</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag dia">
+<div class="dia-cabecera"><span class="dia-num">Día 30</span><span class="check">☐ Leído</span></div>
+<h2 class="dia-titulo">Lo que Él empezó, lo termina</h2>
+<blockquote class="versiculo"><p>“estando persuadido de esto, que el que comenzó en vosotros la buena obra, la perfeccionará hasta el día de Jesucristo;”</p><cite>Filipenses 1:6</cite></blockquote>
+<div class="lectura"><p>Llegaste al día 30. Felicitaciones. Quizás no fuiste perfecta, quizás salteaste días o te costó concentrarte. No importa. Lo importante es que volviste a buscar a Dios.</p><p>Y esta es la mejor noticia: lo que Dios empezó en vos, lo va a terminar. Estos treinta días no son el final, son un comienzo. Él va a seguir trabajando en tu vida, día a día, hasta completar su obra.</p><p>Te animamos a seguir con el plan de lectura de la Biblia incluido en este ebook. Que este hábito de encontrarte con Dios cada mañana se quede para siempre.</p></div>
+<div class="oracion"><span class="rotulo">Oración</span><p>Señor, gracias por estos treinta días. Gracias por lo que empezaste en mí. Confío en que vas a terminar tu obra. Quiero seguir buscándote cada día. Amén.</p></div>
+<div class="diario"><span class="rotulo">Para tu diario</span><p>Escribile una carta a Dios contándole qué te llevás de estos 30 días.</p><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag texto">
+<div class="eyebrow">Bono 1</div>
+<h2>30 tarjetas de versículos</h2>
+<p>Imprimí estas páginas, recortá por las líneas punteadas y llevá las tarjetas con vos: en la billetera, pegadas en el espejo, en la heladera o como señalador de tu Biblia. Una para cada día del devocional.</p>
+<div class="caja">Consejo: imprimí en papel de 180 g o más para que duren.</div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag tarjetas-pag"><div class="tarjetas"><div class="tarjeta"><span class="t-num">1</span><p>“Por la misericordia de Jehová no hemos sido consumidos, porque nunca decayeron sus misericordias. Nuevas son cada mañana; grande es tu fidelidad.”</p><cite>Lamentaciones 3:22-23</cite></div><div class="tarjeta"><span class="t-num">2</span><p>“Estad quietos, y conoced que yo soy Dios.”</p><cite>Salmos 46:10</cite></div><div class="tarjeta"><span class="t-num">3</span><p>“No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia.”</p><cite>Isaías 41:10</cite></div><div class="tarjeta"><span class="t-num">4</span><p>“Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar.”</p><cite>Mateo 11:28</cite></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag tarjetas-pag"><div class="tarjetas"><div class="tarjeta"><span class="t-num">5</span><p>“Por nada estéis afanosos, sino sean conocidas vuestras peticiones delante de Dios en toda oración y ruego, con acción de gracias. Y la paz de Dios, que sobrepasa todo entendimiento, guardará vuestros corazones y vuestros pensamientos en Cristo Jesús.”</p><cite>Filipenses 4:6-7</cite></div><div class="tarjeta"><span class="t-num">6</span><p>“Te alabaré; porque formidables, maravillosas son tus obras; estoy maravillado, y mi alma lo sabe muy bien.”</p><cite>Salmos 139:14</cite></div><div class="tarjeta"><span class="t-num">7</span><p>“Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis.”</p><cite>Jeremías 29:11</cite></div><div class="tarjeta"><span class="t-num">8</span><p>“Jehová es mi pastor; nada me faltará.”</p><cite>Salmos 23:1</cite></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag tarjetas-pag"><div class="tarjetas"><div class="tarjeta"><span class="t-num">9</span><p>“Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia. Reconócelo en todos tus caminos, y él enderezará tus veredas.”</p><cite>Proverbios 3:5-6</cite></div><div class="tarjeta"><span class="t-num">10</span><p>“Bástate mi gracia; porque mi poder se perfecciona en la debilidad.”</p><cite>2 Corintios 12:9</cite></div><div class="tarjeta"><span class="t-num">11</span><p>“Cercano está Jehová a los quebrantados de corazón; y salva a los contritos de espíritu.”</p><cite>Salmos 34:18</cite></div><div class="tarjeta"><span class="t-num">12</span><p>“Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien, esto es, a los que conforme a su propósito son llamados.”</p><cite>Romanos 8:28</cite></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag tarjetas-pag"><div class="tarjetas"><div class="tarjeta"><span class="t-num">13</span><p>“Mira que te mando que te esfuerces y seas valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo en dondequiera que vayas.”</p><cite>Josué 1:9</cite></div><div class="tarjeta"><span class="t-num">14</span><p>“Alzaré mis ojos a los montes; ¿De dónde vendrá mi socorro? Mi socorro viene de Jehová, que hizo los cielos y la tierra.”</p><cite>Salmos 121:1-2</cite></div><div class="tarjeta"><span class="t-num">15</span><p>“echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.”</p><cite>1 Pedro 5:7</cite></div><div class="tarjeta"><span class="t-num">16</span><p>“pero los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las águilas; correrán, y no se cansarán; caminarán, y no se fatigarán.”</p><cite>Isaías 40:31</cite></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag tarjetas-pag"><div class="tarjetas"><div class="tarjeta"><span class="t-num">17</span><p>“Antes sed benignos unos con otros, misericordiosos, perdonándoos unos a otros, como Dios también os perdonó a vosotros en Cristo.”</p><cite>Efesios 4:32</cite></div><div class="tarjeta"><span class="t-num">18</span><p>“Encomienda a Jehová tu camino, y confía en él; y él hará.”</p><cite>Salmos 37:5</cite></div><div class="tarjeta"><span class="t-num">19</span><p>“Así que, no os afanéis por el día de mañana, porque el día de mañana traerá su afán. Basta a cada día su propio mal.”</p><cite>Mateo 6:34</cite></div><div class="tarjeta"><span class="t-num">20</span><p>“Jehová está en medio de ti, poderoso, él salvará; se gozará sobre ti con alegría, callará de amor, se regocijará sobre ti con cánticos.”</p><cite>Sofonías 3:17</cite></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag tarjetas-pag"><div class="tarjetas"><div class="tarjeta"><span class="t-num">21</span><p>“No nos cansemos, pues, de hacer bien; porque a su tiempo segaremos, si no desmayamos.”</p><cite>Gálatas 6:9</cite></div><div class="tarjeta"><span class="t-num">22</span><p>“Lámpara es a mis pies tu palabra, y lumbrera a mi camino.”</p><cite>Salmos 119:105</cite></div><div class="tarjeta"><span class="t-num">23</span><p>“Estad siempre gozosos. Orad sin cesar. Dad gracias en todo, porque esta es la voluntad de Dios para con vosotros en Cristo Jesús.”</p><cite>1 Tesalonicenses 5:16-18</cite></div><div class="tarjeta"><span class="t-num">24</span><p>“Fuerza y honor son su vestidura; y se ríe de lo por venir.”</p><cite>Proverbios 31:25</cite></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag tarjetas-pag"><div class="tarjetas"><div class="tarjeta"><span class="t-num">25</span><p>“La paz os dejo, mi paz os doy; yo no os la doy como el mundo la da. No se turbe vuestro corazón, ni tenga miedo.”</p><cite>Juan 14:27</cite></div><div class="tarjeta"><span class="t-num">26</span><p>“Por la noche durará el lloro, y a la mañana vendrá la alegría.”</p><cite>Salmos 30:5</cite></div><div class="tarjeta"><span class="t-num">27</span><p>“Es, pues, la fe la certeza de lo que se espera, la convicción de lo que no se ve.”</p><cite>Hebreos 11:1</cite></div><div class="tarjeta"><span class="t-num">28</span><p>“He aquí que yo hago cosa nueva; pronto saldrá a luz; ¿no la conoceréis? Otra vez abriré camino en el desierto, y ríos en la soledad.”</p><cite>Isaías 43:19</cite></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag tarjetas-pag"><div class="tarjetas"><div class="tarjeta"><span class="t-num">29</span><p>“Y el Dios de esperanza os llene de todo gozo y paz en el creer, para que abundéis en esperanza por el poder del Espíritu Santo.”</p><cite>Romanos 15:13</cite></div><div class="tarjeta"><span class="t-num">30</span><p>“estando persuadido de esto, que el que comenzó en vosotros la buena obra, la perfeccionará hasta el día de Jesucristo;”</p><cite>Filipenses 1:6</cite></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag apertura">
+<div class="foto-plena sin-foto"></div>
+<div class="velo-abajo"></div>
+<div class="apertura-texto"><div class="eyebrow claro">Bono 2</div><h2>21 días de oración por mis hijos</h2><p>Una oración corta para cada día. Podés decirla en voz alta, con tus hijos o mientras duermen.</p></div></section>
+<section class="pag hijos-pag"><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 1</span> · Un regalo de Dios</div><p class="hijo-vers">“He aquí, herencia de Jehová son los hijos; cosa de estima el fruto del vientre.” <cite>Salmos 127:3</cite></p><p>Señor, gracias por el regalo de mis hijos. Ayudame a recordar cada día que son tuyos antes que míos, y a cuidarlos con amor y paciencia.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 2</span> · Que crezcan en tu camino</div><p class="hijo-vers">“Instruye al niño en su camino, y aun cuando fuere viejo no se apartará de él.” <cite>Proverbios 22:6</cite></p><p>Padre, dame sabiduría para guiar a mis hijos. Que lo que sembramos hoy en casa los acompañe toda la vida.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 3</span> · Paz en su corazón</div><p class="hijo-vers">“Y todos tus hijos serán enseñados por Jehová; y se multiplicará la paz de tus hijos.” <cite>Isaías 54:13</cite></p><p>Dios, enseñá vos a mis hijos. Multiplicá la paz en sus corazones, en la escuela, con sus amigos y en casa.</p></div><div class="notas"><span class="rotulo">Mis pedidos por mis hijos</span><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag hijos-pag"><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 4</span> · Protección</div><p class="hijo-vers">“Pues a sus ángeles mandará acerca de ti, que te guarden en todos tus caminos.” <cite>Salmos 91:11</cite></p><p>Señor, cuidá a mis hijos donde yo no puedo llegar. Guardalos en la calle, en la escuela y en cada lugar al que vayan.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 5</span> · Que caminen en la verdad</div><p class="hijo-vers">“No tengo yo mayor gozo que este, el oír que mis hijos andan en la verdad.” <cite>3 Juan 1:4</cite></p><p>Padre, que mis hijos amen la verdad. Que sean personas honestas y que te conozcan de verdad, no solo de nombre.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 6</span> · Un buen descanso</div><p class="hijo-vers">“En paz me acostaré, y asimismo dormiré; porque solo tú, Jehová, me haces vivir confiado.” <cite>Salmos 4:8</cite></p><p>Señor, dales a mis hijos un descanso tranquilo. Sacales los miedos de la noche y llenalos de tu paz.</p></div><div class="notas"><span class="rotulo">Mis pedidos por mis hijos</span><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag hijos-pag"><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 7</span> · Sabiduría</div><p class="hijo-vers">“Y si alguno de vosotros tiene falta de sabiduría, pídala a Dios, el cual da a todos abundantemente y sin reproche, y le será dada.” <cite>Santiago 1:5</cite></p><p>Dios, dales sabiduría a mis hijos para elegir bien, para estudiar y para enfrentar lo que les toque vivir.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 8</span> · Crecer en todo</div><p class="hijo-vers">“Y Jesús crecía en sabiduría y en estatura, y en gracia para con Dios y los hombres.” <cite>Lucas 2:52</cite></p><p>Señor, que mis hijos crezcan sanos de cuerpo, de mente y de corazón, como creció Jesús.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 9</span> · Buenas amistades</div><p class="hijo-vers">“El que anda con sabios, sabio será; mas el que se junta con necios será quebrantado.” <cite>Proverbios 13:20</cite></p><p>Padre, poné buenas amistades en la vida de mis hijos. Que tengan amigos que los cuiden y los hagan mejores.</p></div><div class="notas"><span class="rotulo">Mis pedidos por mis hijos</span><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag hijos-pag"><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 10</span> · Valentía</div><p class="hijo-vers">“Porque no nos ha dado Dios espíritu de cobardía, sino de poder, de amor y de dominio propio.” <cite>2 Timoteo 1:7</cite></p><p>Señor, sacá el miedo de mis hijos. Dales valentía, amor y dominio propio para cada desafío.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 11</span> · Un corazón obediente</div><p class="hijo-vers">“Hijos, obedeced en el Señor a vuestros padres, porque esto es justo.” <cite>Efesios 6:1</cite></p><p>Dios, dales a mis hijos un corazón dispuesto, y a mí la paciencia para corregir con amor y no con enojo.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 12</span> · Sus salidas y entradas</div><p class="hijo-vers">“Jehová guardará tu salida y tu entrada desde ahora y para siempre.” <cite>Salmos 121:8</cite></p><p>Señor, guardá a mis hijos cada vez que salen de casa y traelos de vuelta sanos y salvos.</p></div><div class="notas"><span class="rotulo">Mis pedidos por mis hijos</span><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag hijos-pag"><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 13</span> · Ser ejemplo</div><p class="hijo-vers">“Ninguno tenga en poco tu juventud, sino sé ejemplo de los creyentes en palabra, conducta, amor, espíritu, fe y pureza.” <cite>1 Timoteo 4:12</cite></p><p>Padre, que mis hijos sean luz entre sus compañeros. Que su manera de hablar y de actuar refleje tu amor.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 14</span> · Cerca de Jesús</div><p class="hijo-vers">“Pero Jesús dijo: Dejad a los niños venir a mí, y no se lo impidáis; porque de los tales es el reino de los cielos.” <cite>Mateo 19:14</cite></p><p>Jesús, atraé a mis hijos hacia vos. Que te conozcan como un amigo cercano y no como alguien lejano.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 15</span> · Su identidad</div><p class="hijo-vers">“Porque tú formaste mis entrañas; tú me hiciste en el vientre de mi madre.” <cite>Salmos 139:13</cite></p><p>Señor, que mis hijos sepan que vos los formaste con amor. Protegé su autoestima de las comparaciones y las burlas.</p></div><div class="notas"><span class="rotulo">Mis pedidos por mis hijos</span><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag hijos-pag"><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 16</span> · Guardar el corazón</div><p class="hijo-vers">“Sobre toda cosa guardada, guarda tu corazón; porque de él mana la vida.” <cite>Proverbios 4:23</cite></p><p>Dios, cuidá el corazón de mis hijos de lo que ven en pantallas, de palabras que hieren y de malas influencias.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 17</span> · Paciencia en casa</div><p class="hijo-vers">“con toda humildad y mansedumbre, soportándoos con paciencia los unos a los otros en amor,” <cite>Efesios 4:2</cite></p><p>Señor, traé paciencia y amor a nuestra casa. Que haya menos gritos y más abrazos, y que aprendamos a pedirnos perdón.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 18</span> · Nunca solos</div><p class="hijo-vers">“Esforzaos y cobrad ánimo; no temáis, ni tengáis miedo de ellos, porque Jehová tu Dios es el que va contigo; no te dejará, ni te desamparará.” <cite>Deuteronomio 31:6</cite></p><p>Padre, que mis hijos sepan que nunca están solos. Que en los momentos difíciles sientan tu compañía.</p></div><div class="notas"><span class="rotulo">Mis pedidos por mis hijos</span><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag hijos-pag"><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 19</span> · Guía para su futuro</div><p class="hijo-vers">“Te haré entender, y te enseñaré el camino en que debes andar; sobre ti fijaré mis ojos.” <cite>Salmos 32:8</cite></p><p>Señor, guiá el futuro de mis hijos: sus estudios, su vocación y las personas que van a elegir para su vida.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 20</span> · Una familia que te sirve</div><p class="hijo-vers">“pero yo y mi casa serviremos a Jehová.” <cite>Josué 24:15</cite></p><p>Dios, que nuestra casa sea un lugar donde se te ama y se te busca. Empezá por mí.</p></div><div class="hijo"><div class="hijo-cab"><span class="dia-num">Día 21</span> · Bendición</div><p class="hijo-vers">“Jehová te bendiga, y te guarde; Jehová haga resplandecer su rostro sobre ti, y tenga de ti misericordia; Jehová alce sobre ti su rostro, y ponga en ti paz.” <cite>Números 6:24-26</cite></p><p>Señor, hoy declaro esta bendición sobre cada uno de mis hijos [nombralos]. Gracias por escuchar estas 21 oraciones. Amén.</p></div><div class="notas"><span class="rotulo">Mis pedidos por mis hijos</span><div class="lineas"></div></div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag texto">
+<div class="eyebrow">Bono 3</div>
+<h2>La Biblia en un año</h2>
+<p>Este plan recorre la Biblia completa en 52 semanas, de Génesis a Apocalipsis. Son unos 23 capítulos por semana: entre 3 y 4 por día. Marcá cada semana cuando la termines. Si te atrasás, no pasa nada: seguí desde donde quedaste.</p>
+<div class="caja">Consejo: sumá un salmo por día como oración aparte. Los Salmos y los Proverbios son ideales para eso.</div><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag plan-pag"><table class='plan'><thead><tr><th>Sem.</th><th>Lectura</th><th>Cap.</th><th></th></tr></thead><tbody><tr><td class='sem'>1</td><td>Génesis 1–23</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>2</td><td>Génesis 24–46</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>3</td><td>Génesis 47–50, Éxodo 1–19</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>4</td><td>Éxodo 20–40, Levítico 1</td><td class='cap'>22</td><td class='box'>☐</td></tr><tr><td class='sem'>5</td><td>Levítico 2–24</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>6</td><td>Levítico 25–27, Números 1–20</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>7</td><td>Números 21–36, Deuteronomio 1–7</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>8</td><td>Deuteronomio 8–30</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>9</td><td>Deuteronomio 31–34, Josué 1–19</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>10</td><td>Josué 20–24, Jueces 1–18</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>11</td><td>Jueces 19–21, Rut 1–4, 1 Samuel 1–16</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>12</td><td>1 Samuel 17–31, 2 Samuel 1–7</td><td class='cap'>22</td><td class='box'>☐</td></tr><tr><td class='sem'>13</td><td>2 Samuel 8–24, 1 Reyes 1–6</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>14</td><td>1 Reyes 7–22, 2 Reyes 1–7</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>15</td><td>2 Reyes 8–25, 1 Crónicas 1–5</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>16</td><td>1 Crónicas 6–28</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>17</td><td>1 Crónicas 29, 2 Crónicas 1–22</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>18</td><td>2 Crónicas 23–36, Esdras 1–9</td><td class='cap'>23</td><td class='box'>☐</td></tr></tbody></table><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag plan-pag"><table class='plan'><thead><tr><th>Sem.</th><th>Lectura</th><th>Cap.</th><th></th></tr></thead><tbody><tr><td class='sem'>19</td><td>Esdras 10, Nehemías 1–13, Ester 1–8</td><td class='cap'>22</td><td class='box'>☐</td></tr><tr><td class='sem'>20</td><td>Ester 9–10, Job 1–21</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>21</td><td>Job 22–42, Salmos 1–2</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>22</td><td>Salmos 3–25</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>23</td><td>Salmos 26–48</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>24</td><td>Salmos 49–71</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>25</td><td>Salmos 72–94</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>26</td><td>Salmos 95–116</td><td class='cap'>22</td><td class='box'>☐</td></tr><tr><td class='sem'>27</td><td>Salmos 117–139</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>28</td><td>Salmos 140–150, Proverbios 1–12</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>29</td><td>Proverbios 13–31, Eclesiastés 1–4</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>30</td><td>Eclesiastés 5–12, Cantares 1–8, Isaías 1–7</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>31</td><td>Isaías 8–30</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>32</td><td>Isaías 31–53</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>33</td><td>Isaías 54–66, Jeremías 1–10</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>34</td><td>Jeremías 11–32</td><td class='cap'>22</td><td class='box'>☐</td></tr><tr><td class='sem'>35</td><td>Jeremías 33–52, Lamentaciones 1–3</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>36</td><td>Lamentaciones 4–5, Ezequiel 1–21</td><td class='cap'>23</td><td class='box'>☐</td></tr></tbody></table><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag plan-pag"><table class='plan'><thead><tr><th>Sem.</th><th>Lectura</th><th>Cap.</th><th></th></tr></thead><tbody><tr><td class='sem'>37</td><td>Ezequiel 22–44</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>38</td><td>Ezequiel 45–48, Daniel 1–12, Oseas 1–7</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>39</td><td>Oseas 8–14, Joel 1–3, Amós 1–9, Abdías 1, Jonás 1–3</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>40</td><td>Jonás 4, Miqueas 1–7, Nahúm 1–3, Habacuc 1–3, Sofonías 1–3, Hageo 1–2, Zacarías 1–4</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>41</td><td>Zacarías 5–14, Malaquías 1–4, Mateo 1–8</td><td class='cap'>22</td><td class='box'>☐</td></tr><tr><td class='sem'>42</td><td>Mateo 9–28, Marcos 1–3</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>43</td><td>Marcos 4–16, Lucas 1–10</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>44</td><td>Lucas 11–24, Juan 1–9</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>45</td><td>Juan 10–21, Hechos 1–11</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>46</td><td>Hechos 12–28, Romanos 1–6</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>47</td><td>Romanos 7–16, 1 Corintios 1–13</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>48</td><td>1 Corintios 14–16, 2 Corintios 1–13, Gálatas 1–6, Efesios 1</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>49</td><td>Efesios 2–6, Filipenses 1–4, Colosenses 1–4, 1 Tesalonicenses 1–5, 2 Tesalonicenses 1–3, 1 Timoteo 1</td><td class='cap'>22</td><td class='box'>☐</td></tr><tr><td class='sem'>50</td><td>1 Timoteo 2–6, 2 Timoteo 1–4, Tito 1–3, Filemón 1, Hebreos 1–10</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>51</td><td>Hebreos 11–13, Santiago 1–5, 1 Pedro 1–5, 2 Pedro 1–3, 1 Juan 1–5, 2 Juan 1, 3 Juan 1</td><td class='cap'>23</td><td class='box'>☐</td></tr><tr><td class='sem'>52</td><td>Judas 1, Apocalipsis 1–22</td><td class='cap'>23</td><td class='box'>☐</td></tr></tbody></table><footer><span>Raíces de Fe</span><span class="folio"></span></footer></section>
+<section class="pag apertura">
+<div class="foto-plena sin-foto"></div>
+<div class="velo-abajo"></div>
+<div class="apertura-texto"><h2>Esto recién empieza</h2><p>Lo que Dios empezó en vos, lo va a terminar. Gracias por caminar estos 30 días con nosotras.</p><p class="marca-cierre">Raíces de Fe</p></div></section>
+</body>
+</html>
