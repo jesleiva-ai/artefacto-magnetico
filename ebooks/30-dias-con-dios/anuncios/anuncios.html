@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Anuncios 30 Días con Dios</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Mismos tokens que el ebook. Cada .ad se captura como imagen independiente. */
+:root{--marfil:#FAF7F0;--salvia:#5E7A63;--tinta:#24352B;--dorado:#A9853A;--oro-claro:#F1DFB1;
+  --f-titulo:"Cormorant Garamond",Georgia,serif;--f-texto:"Source Serif 4",Georgia,serif;--f-rotulo:"Inter",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#ddd;display:flex;flex-direction:column;gap:40px;padding:40px}
+.ad{position:relative;width:1080px;height:1350px;overflow:hidden;color:#fff;font-family:var(--f-texto)}
+.ad.cuadrado{height:1080px}
+.foto{position:absolute;inset:0;background-size:cover;background-position:center}
+.velo{position:absolute;inset:0}
+.contenido{position:relative;height:100%;display:flex;flex-direction:column;padding:90px 80px}
+h1{font-family:var(--f-titulo);font-weight:600;margin:0;line-height:1.02;text-wrap:balance}
+.sello{align-self:flex-start;font-family:var(--f-rotulo);font-size:22px;letter-spacing:.22em;text-transform:uppercase;border:2px solid rgba(255,255,255,.8);padding:12px 26px;border-radius:60px}
+.bajada{font-size:36px;line-height:1.35;max-width:820px}
+.precio{display:inline-flex;align-items:center;gap:18px;background:var(--marfil);color:var(--tinta);border-radius:60px;padding:18px 34px;font-family:var(--f-rotulo);font-size:28px;font-weight:600}
+.precio b{color:var(--dorado);font-size:34px}
+.wsp{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-rotulo);font-size:26px;font-weight:600;letter-spacing:.02em}
+.wsp::before{content:"";width:22px;height:22px;border-radius:50%;background:#25D366;box-shadow:0 0 0 6px rgba(37,211,102,.25)}
+.lista{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;font-size:32px}
+.lista li::before{content:"✓  ";color:var(--oro-claro);font-family:var(--f-rotulo);font-weight:700}
+.mock{position:absolute;box-shadow:0 30px 60px rgba(0,0,0,.35),0 6px 14px rgba(0,0,0,.2);border-radius:6px}
+
+/* Anuncio 1: paz */
+#a1 .velo{background:linear-gradient(180deg,rgba(24,36,28,.15) 0%,rgba(24,36,28,.0) 30%,rgba(24,36,28,.78) 72%,rgba(24,36,28,.92) 100%)}
+#a1 h1{font-size:108px;margin-top:auto}
+#a1 .bajada{margin:28px 0 40px}
+/* Anuncio 2: mate */
+#a2 .velo{background:linear-gradient(180deg,rgba(24,36,28,.82) 0%,rgba(24,36,28,.35) 40%,rgba(24,36,28,.1) 60%,rgba(24,36,28,.75) 100%)}
+#a2 h1{font-size:100px;margin-top:40px}
+#a2 .bajada{margin-top:26px}
+#a2 .pie{margin-top:auto;display:flex;justify-content:space-between;align-items:center}
+/* Anuncio 3: hijos */
+#a3 .velo{background:linear-gradient(180deg,rgba(24,36,28,.0) 25%,rgba(24,36,28,.8) 62%,rgba(24,36,28,.94) 100%)}
+#a3 h1{font-size:104px;margin-top:auto}
+#a3 .bajada{margin:26px 0 36px}
+#a3 .regalo{font-family:var(--f-rotulo);font-size:24px;letter-spacing:.2em;text-transform:uppercase;color:var(--oro-claro);margin-bottom:22px}
+
+/* Carrusel */
+.car{background:var(--marfil);color:var(--tinta)}
+.car .contenido{padding:70px}
+.car .eyebrow{font-family:var(--f-rotulo);font-size:22px;letter-spacing:.22em;text-transform:uppercase;color:var(--dorado)}
+.car h1{font-size:76px;margin-top:14px}
+.car .num{position:absolute;right:56px;top:56px;font-family:var(--f-rotulo);font-size:22px;color:var(--salvia)}
+.car-portada{background:var(--salvia);color:var(--marfil)}
+.car-portada h1{font-size:92px}
+.car-final{background:var(--tinta);color:var(--marfil);justify-content:center}
+</style>
+</head>
+<body>
+
+<!-- 1 · Paz para días de ansiedad -->
+<div class="ad" id="a1">
+  <div class="foto" style="background-image:url(../img/rincon.jpg)"></div><div class="velo"></div>
+  <div class="contenido">
+    <div class="sello">Devocional para mujeres</div>
+    <h1>Para los días en que todo pesa</h1>
+    <p class="bajada">10 minutos por día para soltar, respirar y volver a encontrarte con Dios. 30 días, una Palabra para cada mañana.</p>
+    <div><span class="precio">PDF + 3 bonos · <b>$7.990</b></span></div>
+  </div>
+</div>
+
+<!-- 2 · El mate con Dios -->
+<div class="ad" id="a2">
+  <div class="foto" style="background-image:url(../img/portada.jpg)"></div><div class="velo"></div>
+  <div class="contenido">
+    <div class="sello">30 Días con Dios</div>
+    <h1>El primer mate del día, con Dios</h1>
+    <p class="bajada">Una lectura corta, un versículo, una oración y una pregunta para tu diario. Cada mañana, durante 30 días.</p>
+    <div class="pie"><span class="precio">Devocional en PDF · <b>$7.990</b></span><span class="wsp">Escribinos</span></div>
+  </div>
+</div>
+
+<!-- 3 · Oración por los hijos -->
+<div class="ad" id="a3">
+  <div class="foto" style="background-image:url(../img/hijos.jpg)"></div><div class="velo"></div>
+  <div class="contenido">
+    <h1>21 días de oración por tus hijos</h1>
+    <p class="bajada">Una oración corta con su versículo para cada día. Para decirla en voz alta, con ellos o mientras duermen.</p>
+    <div class="regalo">Incluida de regalo en el devocional 30 Días con Dios</div>
+    <div><span class="precio">Todo por <b>$7.990</b></span></div>
+  </div>
+</div>
+
+<!-- 4 · Carrusel "Mirá cómo es por dentro" (1:1) -->
+<div class="ad cuadrado car car-portada" id="c1">
+  <div class="contenido">
+    <div class="eyebrow" style="color:var(--oro-claro)">Deslizá →</div>
+    <h1 style="max-width:520px">Mirá cómo es por dentro</h1>
+    <p class="bajada" style="margin-top:24px;max-width:470px">El devocional y sus 3 bonos, página por página.</p>
+  </div>
+  <img class="mock" src="pags/p1.png" style="width:400px;right:80px;top:240px;transform:rotate(3deg)">
+</div>
+
+<div class="ad cuadrado car" id="c2">
+  <div class="contenido"><span class="num">2/5</span>
+    <div class="eyebrow">30 días</div>
+    <h1 style="max-width:440px">Un día, una página</h1>
+    <ul class="lista" style="color:var(--tinta);margin-top:40px;max-width:420px;font-size:30px">
+      <li>Versículo</li><li>Lectura breve</li><li>Oración</li><li>Pregunta para tu diario</li>
+    </ul>
+  </div>
+  <img class="mock" src="pags/p7.png" style="width:420px;right:70px;top:200px">
+</div>
+
+<div class="ad cuadrado car" id="c3">
+  <div class="contenido"><span class="num">3/5</span>
+    <div class="eyebrow">Bono 1</div>
+    <h1>30 tarjetas de versículos para imprimir</h1>
+    <p class="bajada" style="margin-top:24px;max-width:430px;font-size:30px">Para la billetera, el espejo o de señalador.</p>
+  </div>
+  <img class="mock" src="pags/p41.png" style="width:420px;right:80px;top:300px;transform:rotate(-2deg)">
+</div>
+
+<div class="ad cuadrado car" id="c4">
+  <div class="contenido"><span class="num">4/5</span>
+    <div class="eyebrow">Bono 2</div>
+    <h1>21 días de oración por tus hijos</h1>
+  </div>
+  <img class="mock" src="pags/p49.png" style="width:380px;left:110px;top:380px;transform:rotate(-3deg)">
+  <img class="mock" src="pags/p50.png" style="width:380px;right:110px;top:340px;transform:rotate(2deg)">
+</div>
+
+<div class="ad cuadrado car car-final" id="c5">
+  <div class="contenido" style="justify-content:center"><span class="num" style="color:var(--oro-claro)">5/5</span>
+    <div class="eyebrow" style="color:var(--oro-claro)">Bono 3</div>
+    <h1 style="font-size:84px">La Biblia completa en un año</h1>
+    <p class="bajada" style="margin:24px 0 50px;color:var(--marfil)">Un plan de 52 semanas para seguir después de los 30 días.</p>
+    <div style="display:flex;gap:30px;align-items:center"><span class="precio">Todo por <b>$7.990</b></span><span class="wsp">Escribinos y te contamos</span></div>
+  </div>
+</div>
+
+</body>
+</html>
