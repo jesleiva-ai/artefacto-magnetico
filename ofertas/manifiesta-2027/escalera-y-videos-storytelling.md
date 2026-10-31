@@ -25,7 +25,7 @@ La idea: quien compra *Manifiesta tu Año* ya confió en vos. Cada paso siguient
 > "¡Listo, ya tenés tu acceso! 🎉 Como recién empezás tu proceso, te quiero hacer una oferta que no voy a repetir: el **Pack Año Consciente** (*Realidad Consciente* + *Vidas Bloqueadas* + *Libertad Emocional*), que trabaja las emociones y los bloqueos que *Manifiesta tu Año* destapa. Por separado son $X; solo hoy, para vos, **$17**. ¿Te lo mando?"
 
 ### ⚠️ Antes de vender, cuidado con dos productos
-- **Portal Espiritual → bono *Secretos del Nuevo Orden Mundial*:** el contenido conspirativo te puede generar rechazos en Meta y dañar la confianza en la marca. Te recomiendo sacarlo de esta escalera.
+- **Portal Espiritual → bono *Secretos del Nuevo Orden Mundial*:** ya se sacó de la versión del *Pack sanación profunda*. Todavía queda una copia en `ECOSISTEMA ESPIRITUALIDAD/PORTAL ESPIRITUAL`: usá siempre la versión del pack para entregar.
 - **Salud Cuántica:** no lo promociones en anuncios con promesas de salud o curación (Meta restringe las afirmaciones de salud). Ofrecelo solo por WhatsApp a quien ya te compró y presentalo como bienestar, no como tratamiento.
 
 ---
