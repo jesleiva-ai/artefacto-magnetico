@@ -70,7 +70,7 @@ Ficha de cliente: hombres y mujeres de 25 a 45 años que sienten que "los años 
 - **Hook 1:** "Te muestro por dentro el ebook con el que voy a planear mi 2027."
 - **Hook 2:** "10 capítulos + 3 bonos por menos de lo que cuesta un café."
 - **Cuerpo (stack de valor):** Ebook 10 capítulos + Bono 1 *El Enemigo Oculto: 21 días para reprogramar tu subconsciente* (valor $12) + Bono 2 *Audioguía de Silencio Interno* ($12) + Bono 3 *Video de Reprogramación Consciente* ($12). **Hoy, todo por [PRECIO].**
-- **CTA:** "Escribime *QUIERO* y te paso el link."
+- **CTA:** "Escribime *MANIFIESTA* y te paso el link."
 
 ### Conjunto 5: "Despertar de la prosperidad" (dinero/abundancia)
 *Modela a:* São Miguel ("Receba saúde e prosperidade"), Crescermax ("Reprograme sua mente para a abundância").
@@ -80,7 +80,7 @@ Ficha de cliente: hombres y mujeres de 25 a 45 años que sienten que "los años 
 - **Cuerpo:** Capítulo 6 (*El Despertar de la Prosperidad*: relación con el dinero, bloqueos de escasez, decisiones conscientes) + Bono 1 (romper el autosabotaje).
 - **CTA:** "Escribí *ABUNDANCIA* por WhatsApp."
 
-> La palabra clave distinta en cada conjunto (2027 / RITUAL / MI VERSIÓN / QUIERO / ABUNDANCIA) sirve para saber en el WhatsApp de qué ángulo viene cada venta, aunque Meta no lo mida.
+> La palabra clave distinta en cada conjunto (2027 / RITUAL / MI VERSIÓN / MANIFIESTA / ABUNDANCIA) sirve para saber en el WhatsApp de qué ángulo viene cada venta, aunque Meta no lo mida.
 
 ---
 
@@ -103,7 +103,7 @@ Ficha de cliente: hombres y mujeres de 25 a 45 años que sienten que "los años 
 - **Día 1–3:** no tocar nada. Esperar a que cada conjunto gaste al menos 2–3 veces el precio del producto.
 - **Apagar** un conjunto si gastó 3× el precio sin ventas, o si el costo por conversación es más del doble que el promedio de los otros.
 - **Escalar** el conjunto ganador +20–30 % cada 48 h, o duplicarlo con el mismo público y más presupuesto.
-- **Cerrar el loop:** registrar en una planilla las ventas por palabra clave (2027 / RITUAL / …), porque Meta solo te mide conversaciones.
+- **Cerrar el loop:** registrar en una planilla las ventas por palabra clave (2027 / RITUAL / MI VERSIÓN / MANIFIESTA / ABUNDANCIA), porque Meta solo te mide conversaciones.
 - **Cambio de ángulo por el calendario:** entre el **26/12 y el 31/12** subir presupuesto al C2 (Ritual de cierre). Del **1 al 15/1** pasar a "Empezá 2027 bien" con C1 y C3.
 
 ---
@@ -151,3 +151,13 @@ Ficha de cliente: hombres y mujeres de 25 a 45 años que sienten que "los años 
 3. **Cuenta publicitaria + página + número de WhatsApp** conectado a esa página.
 4. **Presupuesto diario** por conjunto.
 5. **Creativos:** la portada dorada sirve como base. Faltan 15 piezas (5 conjuntos × 3 formatos), que se pueden generar.
+
+---
+
+## 6. Actualización: Argentina + Maxagente (Sofi)
+
+- **País:** Argentina. **Cobro:** transferencia a **Ualá** (alias `mi.biblioteca.ua`, titular Jesica Leiva).
+- **Precios ARS:** ebook **$3.990** · extra *Magnetismo del Éxito* **+$1.990** (total $5.980) · *Pack Año Consciente* **$6.990** · downsell *Vidas Bloqueadas* **$2.990** · *Pack Desbloqueo Profundo* **$9.990**.
+- **Ventas por chat:** las atiende **Sofi** en Maxagente, con el mismo número que *30 Días con Dios* (+54 9 349 646 0829). Sofi identifica el producto por el mensaje del anuncio.
+- **Mensaje pre-escrito de los anuncios:** "Hola, quiero el ebook Manifiesta tu Año 2027 ✨". La palabra clave del C4 cambió de *QUIERO* a **MANIFIESTA** para que no se confunda con el devocional.
+- **Precio visible en los anuncios:** "$3.990" o "menos de $4.000". Así se filtra a quien no va a comprar.
