@@ -19,3 +19,15 @@ Decisión: `elegida` · `alternativa` · `descartada` · `vista` (mostrada sin d
 | 2026-11-18 | 2449645 | Ceramicaemprendedor | manual-dos-moldes-para-ceramica | vetada |
 | 2026-11-18 | 2447017 | Mi Taller Creativo | mitallercreativo-ok | vista |
 | 2026-11-18 | 2447496 | Regarte | kitradiestesiaintegral | vista |
+| 2026-11-18 | 2446927 | Lupa Digital | pilates-sin-improvisar (AR) | elegida |
+| 2026-11-18 | 2452274 | Cotiza Fácil | cotiza-facil (CO/MX) | alternativa |
+| 2026-11-18 | 2479184 | Impulso Digital | karadanochizu (JP) | alternativa |
+| 2026-11-18 | 2447625 | Dulces Herramientas | dulcesherramientas (AR) | alternativa |
+| 2026-11-18 | 2478801 | Nova Academy | sonaefile (JP) | vista |
+| 2026-11-18 | 2447413 | Habilidades Para Los Chicos | habilidades-para-los-chicos | vista |
+| 2026-11-18 | 2447519 | CD Digital Store | fotografia-hoy | vista |
+| 2026-11-18 | 2447793 | Estefania Guevara | el-hilo-rojo-del-destino | vista |
+| 2026-11-18 | 2446882 | Santa Biblia | mapasantabiblia | vista |
+| 2026-11-18 | 2478787 | 納得トレ | nattokutore (JP) | vista |
+| 2026-11-18 | 2452037 | Mente Visual | actas-resueltas | vista |
+| 2026-11-18 | 2451997 | Eudermia | metodo-glow-skin | descartada (marca personal) |
