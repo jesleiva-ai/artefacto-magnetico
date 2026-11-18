@@ -31,3 +31,18 @@ Decisión: `elegida` · `alternativa` · `descartada` · `vista` (mostrada sin d
 | 2026-11-18 | 2478787 | 納得トレ | nattokutore (JP) | vista |
 | 2026-11-18 | 2452037 | Mente Visual | actas-resueltas | vista |
 | 2026-11-18 | 2451997 | Eudermia | metodo-glow-skin | descartada (marca personal) |
+| 2026-11-18 | 1375354 | L'Année Prête Maternelle | anneematernelle (FR/BE) | alternativa |
+| 2026-11-18 | 1373213 | Fred Digne | manuel-savoir-faire-perdus (FR) | alternativa |
+| 2026-11-18 | 1372889 | Mijaíl Petrov | migiarusa (versión rusa del manual) | vista |
+| 2026-11-18 | 1375198 | Pod Lupą | podlupa (PL) | alternativa |
+| 2026-11-18 | 2447879 | Andamiaje | mi-caja-lectora (AR) | alternativa |
+| 2026-11-18 | 1785874 | Sr. SMS | hotmart E107764996A (BR) | alternativa |
+| 2026-11-18 | 1792645 | Olhos que Encantam | kiwify YgKGMAT (BR) | alternativa |
+| 2026-11-18 | 1373020 | PixelPack LATAM | pixelpack | vista |
+| 2026-11-18 | 1425229 | Aline Moldes e Costura Criativa | sin destino | vista |
+| 2026-11-18 | 2448452 | Paka Diseno | pakadiseno-in | vista |
+| 2026-11-18 | 2446847 | Cristina Romero | calisteniaasiaticaes | vista |
+| 2026-11-18 | 1785827 | Bruna Trufas | hotmart E104383330D | vista |
+| 2026-11-18 | 1410911 | iFood | googleplay | descartada (marca) |
+| 2026-11-18 | 1785869 | Luiz eugenio fagundes - Marketing | hotmart G99822231V | descartada (marca personal) |
+| 2026-11-18 | 1373689 | Mente Inquieta | planner-mente-inquieta | descartada (perfil 13 activos) |
