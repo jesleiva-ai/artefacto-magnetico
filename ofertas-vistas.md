@@ -37,7 +37,7 @@ Decisión: `elegida` · `alternativa` · `descartada` · `vista` (mostrada sin d
 | 2026-11-18 | 1375198 | Pod Lupą | podlupa (PL) | alternativa |
 | 2026-11-18 | 2447879 | Andamiaje | mi-caja-lectora (AR) | alternativa |
 | 2026-11-18 | 1785874 | Sr. SMS | hotmart E107764996A (BR) | alternativa |
-| 2026-11-18 | 1792645 | Olhos que Encantam | kiwify YgKGMAT (BR) | alternativa |
+| 2026-11-18 | 1792645 | Olhos que Encantam | kiwify YgKGMAT (BR) | descartada (reventa de maquillaje físico) |
 | 2026-11-18 | 1373020 | PixelPack LATAM | pixelpack | vista |
 | 2026-11-18 | 1425229 | Aline Moldes e Costura Criativa | sin destino | vista |
 | 2026-11-18 | 2448452 | Paka Diseno | pakadiseno-in | vista |
